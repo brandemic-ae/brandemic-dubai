@@ -1,6 +1,8 @@
 # Brandemic Dubai - Custom Animations
 
-This repository contains all custom GSAP and Barba.js animations for the Brandemic Dubai website.
+Custom GSAP and Barba.js animations for the Brandemic Dubai website.
+
+> 📚 **For Webflow Developers:** See [WORKFLOW.md](WORKFLOW.md) and [CLASS-REFERENCE.md](CLASS-REFERENCE.md)
 
 ## 📁 Project Structure
 
@@ -173,4 +175,33 @@ Each page's animations can be traced through its page module in `/src/pages/`. F
 - Webflow
 
 These are NOT bundled and must be loaded before the main script.
+
+---
+
+## 👥 Team Quick Reference
+
+### For Webflow Developers
+
+1. **Before changing any element:** Check [CLASS-REFERENCE.md](CLASS-REFERENCE.md)
+2. **Need new animation?** Create request using template in [WORKFLOW.md](WORKFLOW.md)
+3. **Testing:** Always use staging URL (`@main`) before production
+
+### For JS Developer
+
+```bash
+# Quick release commands
+npm run release:patch   # Bug fixes: 1.0.0 → 1.0.1
+npm run release:minor   # Features: 1.0.0 → 1.1.0
+npm run release:major   # Breaking: 1.0.0 → 2.0.0
+```
+
+### jsDelivr URLs
+
+```
+# Production (pinned version)
+https://cdn.jsdelivr.net/gh/USERNAME/REPO@v1.0.0/dist/main.min.js
+
+# Staging (latest)
+https://cdn.jsdelivr.net/gh/USERNAME/REPO@main/dist/main.js
+```
 
