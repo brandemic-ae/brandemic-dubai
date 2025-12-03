@@ -7,9 +7,9 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "release:patch": "node scripts/release.js patch",
-    "release:minor": "node scripts/release.js minor",
-    "release:major": "node scripts/release.js major"
+    "release:patch": "node scripts/release.cjs patch",
+    "release:minor": "node scripts/release.cjs minor",
+    "release:major": "node scripts/release.cjs major"
   },
   "keywords": [
     "gsap",

@@ -12,12 +12,12 @@
 
 **Production (in Webflow site settings):**
 ```html
-<script src="https://cdn.jsdelivr.net/gh/YOUR_USERNAME/brandemic-dubai-site@v1.0.0/dist/main.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/brandemic-ae/brandemic-dubai@v1.0.0/dist/main.min.js"></script>
 ```
 
 **Staging (in Webflow staging subdomain or test page):**
 ```html
-<script src="https://cdn.jsdelivr.net/gh/YOUR_USERNAME/brandemic-dubai-site@main/dist/main.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/brandemic-ae/brandemic-dubai@main/dist/main.js"></script>
 ```
 
 ---

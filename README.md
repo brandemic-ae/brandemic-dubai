@@ -4,77 +4,6 @@ Custom GSAP and Barba.js animations for the Brandemic Dubai website.
 
 > 📚 **For Webflow Developers:** See [WORKFLOW.md](WORKFLOW.md) and [CLASS-REFERENCE.md](CLASS-REFERENCE.md)
 
-## 📁 Project Structure
-
-```
-src/
-├── index.js                    # Main entry point
-├── core/                       # Core functionality
-│   ├── gsapConfig.js          # GSAP plugin registration
-│   ├── barba.js               # Barba.js page transitions
-│   ├── smoothScroll.js        # ScrollSmoother setup
-│   └── webflow.js             # Webflow reset utilities
-├── components/                 # Reusable UI components
-│   ├── cursor/
-│   │   └── customCursor.js    # Custom cursor animations
-│   ├── navigation/
-│   │   ├── megaMenu.js        # Mega menu toggle
-│   │   └── navHover.js        # Navigation hover effects
-│   ├── buttons/
-│   │   └── buttonFill.js      # Button fill hover effect
-│   ├── video/
-│   │   └── videoPlayer.js     # Video playback & fullscreen
-│   ├── swiper/
-│   │   ├── toolsSwiper.js     # Tools swiper
-│   │   ├── testimonialsSwiper.js
-│   │   ├── featuredSwiper.js
-│   │   └── processSwiper.js
-│   ├── accordion/
-│   │   └── awardsAccordion.js # Awards accordion
-│   └── filter/
-│       └── portfolioFilter.js # Portfolio filtering
-├── animations/                 # Animation modules
-│   ├── text/
-│   │   ├── charAnimations.js  # Character-based animations
-│   │   ├── wordAnimations.js  # Word-based animations
-│   │   └── lineAnimations.js  # Line-based animations
-│   ├── scroll/
-│   │   ├── parallax.js        # Parallax effects
-│   │   ├── scrollingText.js   # Horizontal scroll text
-│   │   └── scrollDown.js      # Scroll indicator
-│   ├── svg/
-│   │   └── drawPaths.js       # SVG path drawing
-│   ├── sections/
-│   │   ├── featuredWork.js    # Featured work animations
-│   │   ├── serviceHover.js    # Service hover effects
-│   │   ├── vision.js          # Vision section
-│   │   ├── cta.js             # CTA animation
-│   │   ├── milestones.js      # Milestone blocks
-│   │   ├── process.js         # Process section
-│   │   ├── ticker.js          # Various tickers
-│   │   └── gallery.js         # Gallery images
-│   └── hero/
-│       ├── homeHero.js        # Home page hero
-│       ├── hpiHero.js         # Generic HPI hero
-│       ├── contactHero.js     # Contact page hero
-│       ├── serviceHero.js     # Service page hero
-│       └── thankHero.js       # Thank you page hero
-├── pages/                      # Page-specific orchestration
-│   ├── home.js
-│   ├── about.js
-│   ├── portfolio.js
-│   ├── contact.js
-│   ├── caseStudy.js
-│   ├── service.js
-│   └── thanks.js
-├── footer/
-│   └── footer.js              # Footer animations
-└── utils/
-    ├── delay.js               # Delay utility
-    ├── isMobile.js            # Mobile detection
-    └── feedspring.js          # Instagram feed loader
-```
-
 ## 🚀 Getting Started
 
 ### Prerequisites
@@ -111,7 +40,7 @@ This creates:
 ## 📝 Usage in Webflow
 
 1. Build the project: `npm run build`
-2. Host `dist/main.js` or `dist/main.min.js` on a CDN (GitHub Pages, Netlify, Vercel, etc.)
+2. Host `dist/main.js` or `dist/main.min.js` on a CDN (GitHub Pages)
 3. In Webflow, add the script tag in your site's custom code:
 
 ```html
@@ -199,9 +128,9 @@ npm run release:major   # Breaking: 1.0.0 → 2.0.0
 
 ```
 # Production (pinned version)
-https://cdn.jsdelivr.net/gh/USERNAME/REPO@v1.0.0/dist/main.min.js
+https://cdn.jsdelivr.net/gh/brandemic-ae/brandemic-dubai@main/dist/main.min.js
 
 # Staging (latest)
-https://cdn.jsdelivr.net/gh/USERNAME/REPO@main/dist/main.js
+https://cdn.jsdelivr.net/gh/brandemic-ae/brandemic-dubai@main/dist/main.js
 ```
 
