@@ -15,4 +15,3 @@ export function resetWebflow(data) {
     window.Webflow && window.Webflow.ready();
     window.Webflow && window.Webflow.require("ix2").init();
 }
-
