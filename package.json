@@ -1,6 +1,6 @@
 {
   "name": "brandemic-dubai-animations",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Custom GSAP and Barba.js animations for Brandemic Dubai website",
   "main": "src/index.js",
   "type": "module",
