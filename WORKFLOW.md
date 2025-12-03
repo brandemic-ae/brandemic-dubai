@@ -4,7 +4,7 @@
 
 | Environment | Purpose | JS URL | When to Use |
 |-------------|---------|--------|-------------|
-| **Production** | Live site | `@v1.0.0` (pinned) | After full testing |
+| **Production** | Live site | `@v1.0.x` (pinned) | After full testing |
 | **Staging** | Testing | `@main` (latest) | Test new features |
 | **Development** | Local dev | `@main` or local | Active development |
 
@@ -12,7 +12,7 @@
 
 **Production (in Webflow site settings):**
 ```html
-<script src="https://cdn.jsdelivr.net/gh/brandemic-ae/brandemic-dubai@v1.0.0/dist/main.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/brandemic-ae/brandemic-dubai@v1.0.x/dist/main.min.js"></script>
 ```
 
 **Staging (in Webflow staging subdomain or test page):**
@@ -184,14 +184,3 @@ Use Webflow's backup feature to restore previous version.
 
 ### Option 3: Disable All Custom JS Temporarily
 Replace script with empty/minimal version while debugging.
-
----
-
-## 📊 Version History
-
-Track all releases here:
-
-| Version | Date | Changes | Author |
-|---------|------|---------|--------|
-| v1.0.0 | 2024-XX-XX | Initial modular release | - |
-| | | | |

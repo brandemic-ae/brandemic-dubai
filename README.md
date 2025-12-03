@@ -128,7 +128,7 @@ npm run release:major   # Breaking: 1.0.0 → 2.0.0
 
 ```
 # Production (pinned version)
-https://cdn.jsdelivr.net/gh/brandemic-ae/brandemic-dubai@main/dist/main.min.js
+https://cdn.jsdelivr.net/gh/brandemic-ae/brandemic-dubai@v1.0.1/dist/main.min.js
 
 # Staging (latest)
 https://cdn.jsdelivr.net/gh/brandemic-ae/brandemic-dubai@main/dist/main.js
