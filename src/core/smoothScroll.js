@@ -48,4 +48,3 @@ export function recreateSmoother() {
     });
     return smoother;
 }
-
