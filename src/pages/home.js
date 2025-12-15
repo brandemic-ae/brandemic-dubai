@@ -50,6 +50,8 @@ export function initHomeAnimations() {
     animateSvgPaths();
     animateScrollingText();
     animateCTA();
+    faqAccordion();
+    faqLineAnimation()
     loadFeedSpring();
     initToolsSwiperScripts();
     initTestimonialsSwiperScripts();
@@ -66,5 +68,6 @@ export function destroyHomeAnimations() {
     destroyVisionSectionAnimation();
     destroyToolsSwiperScripts();
     destroyTestimonialsSwiperScripts();
+    destroyFaqsAccordion()
 }
 

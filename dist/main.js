@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2025-12-03T11:01:45.394Z
+ * Built: 2025-12-15T09:31:34.010Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -1412,6 +1412,8 @@
         animateSvgPaths();
         animateScrollingText();
         animateCTA();
+        faqAccordion();
+        faqLineAnimation();
         loadFeedSpring();
         initToolsSwiperScripts();
         initTestimonialsSwiperScripts();
@@ -1428,6 +1430,7 @@
         destroyVisionSectionAnimation();
         destroyToolsSwiperScripts();
         destroyTestimonialsSwiperScripts();
+        destroyFaqsAccordion();
     }
 
     /**
