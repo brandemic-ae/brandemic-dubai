@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2025-12-15T09:31:34.010Z
+ * Built: 2025-12-16T10:41:20.841Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -1388,6 +1388,78 @@
         if (oldScript) oldScript.remove();
 
         document.head.appendChild(script);
+    }
+
+    /**
+     * FAQs Accordion - Expandable accordion for FAQs section
+     */
+
+
+    let faqsAccordionListeners = [];
+
+    /**
+     * Initialize FAQs accordion
+     */
+    function faqAccordion() {
+        const mobile = isMobile();
+
+        const acc = document.getElementsByClassName("faq_toggle");
+        const panels = document.getElementsByClassName("faqs_panel");
+
+        for (let i = 0; i < acc.length; i++) {
+            const handler = function () {
+                for (let j = 0; j < panels.length; j++) {
+                    if (j !== i) {
+                        panels[j].style.maxHeight = null;
+                        acc[j].classList.remove("active");
+                    }
+                }
+
+                this.classList.toggle("active");
+                const panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                    if (typeof ScrollTrigger !== "undefined" && !mobile) {
+                        ScrollTrigger.refresh();
+                    }
+                }
+            };
+
+            acc[i].addEventListener("click", handler);
+            faqsAccordionListeners.push({ el: acc[i], handler });
+        }
+    }
+
+    /**
+     * Destroy awards accordion listeners
+     */
+    function destroyFaqsAccordion() {
+        faqsAccordionListeners.forEach(({ el, handler }) => {
+            el.removeEventListener("click", handler);
+        });
+        faqsAccordionListeners = [];
+    }
+
+    /**
+     * Animate accordion lines on scroll
+     */
+    function faqLineAnimation() {
+        gsap.fromTo(
+            ".faqs_accordion",
+            { clipPath: "polygon(0 0, 0% 0, 0% 100%, 0 100%)" },
+            {
+                clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+                duration: 1,
+                stagger: 0.2,
+                ease: "power1.out",
+                scrollTrigger: {
+                    trigger: ".faq_accordions",
+                    start: "top 70%",
+                },
+            }
+        );
     }
 
     /**

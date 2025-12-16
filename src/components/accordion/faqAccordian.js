@@ -64,7 +64,7 @@ export function faqLineAnimation() {
             stagger: 0.2,
             ease: "power1.out",
             scrollTrigger: {
-                trigger: ".faqs_accordions",
+                trigger: ".faq_accordions",
                 start: "top 70%",
             },
         }
