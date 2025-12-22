@@ -15,7 +15,8 @@ import { scrollPinObserver, destroyScrollPinObserver } from '../animations/secti
 import { aboutTicker, destroyAboutTicker } from '../animations/sections/ticker.js';
 
 // Accordion
-import { awardsAccordion, destroyAwardsAccordion, accordionLineAnimation } from '../components/accordion/awardsAccordion.js';
+// import { initAccordionComponents, destroyAccordionComponents } from '../components/accordion/accordion.js';
+import { initAccordionComponents, destroyAccordionComponents } from '../components/accordion/accordion.js';
 
 // Scroll
 import { applyParallaxEffect } from '../animations/scroll/parallax.js';
@@ -34,8 +35,7 @@ export function initAboutAnimations() {
     animateMilestones();
     scrollPinObserver();
     aboutTicker();
-    awardsAccordion();
-    accordionLineAnimation();
+    initAccordionComponents();
     initCharAnimations();
     initLineAnimations();
     applyParallaxEffect();
@@ -51,6 +51,6 @@ export function destroyAboutAnimations() {
     destroyScrollPinObserver();
     destroyProcessSwiper();
     destroyAboutTicker();
-    destroyAwardsAccordion();
+    destroyAccordionComponents();
 }
 

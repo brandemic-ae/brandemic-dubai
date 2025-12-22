@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2025-12-16T10:41:20.841Z
+ * Built: 2025-12-22T15:12:12.202Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -1390,22 +1390,10 @@
         document.head.appendChild(script);
     }
 
-    /**
-     * FAQs Accordion - Expandable accordion for FAQs section
-     */
+    let accordionListeners = [];
 
-
-    let faqsAccordionListeners = [];
-
-    /**
-     * Initialize FAQs accordion
-     */
-    function faqAccordion() {
+    function initAccordion(acc, panels) {
         const mobile = isMobile();
-
-        const acc = document.getElementsByClassName("faq_toggle");
-        const panels = document.getElementsByClassName("faqs_panel");
-
         for (let i = 0; i < acc.length; i++) {
             const handler = function () {
                 for (let j = 0; j < panels.length; j++) {
@@ -1414,37 +1402,31 @@
                         acc[j].classList.remove("active");
                     }
                 }
-
                 this.classList.toggle("active");
                 const panel = this.nextElementSibling;
                 if (panel.style.maxHeight) {
                     panel.style.maxHeight = null;
-                } else {
+                }
+                else {
                     panel.style.maxHeight = panel.scrollHeight + "px";
                     if (typeof ScrollTrigger !== "undefined" && !mobile) {
                         ScrollTrigger.refresh();
                     }
                 }
+                
             };
-
             acc[i].addEventListener("click", handler);
-            faqsAccordionListeners.push({ el: acc[i], handler });
+            accordionListeners.push({ el: acc[i], handler });
         }
     }
 
-    /**
-     * Destroy awards accordion listeners
-     */
-    function destroyFaqsAccordion() {
-        faqsAccordionListeners.forEach(({ el, handler }) => {
+    function destroyAccordionListeners() {
+        accordionListeners.forEach(({ el, handler }) => {
             el.removeEventListener("click", handler);
         });
-        faqsAccordionListeners = [];
+        accordionListeners = [];
     }
 
-    /**
-     * Animate accordion lines on scroll
-     */
     function faqLineAnimation() {
         gsap.fromTo(
             ".faqs_accordion",
@@ -1461,11 +1443,44 @@
             }
         );
     }
+    function awardsLineAnimation() {
+        gsap.fromTo(
+            ".awards_accordion",
+            { clipPath: "polygon(0 0, 0% 0, 0% 100%, 0 100%)" },
+            {
+                clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+                duration: 1,
+                stagger: 0.2,
+                ease: "power1.out",
+                scrollTrigger: {
+                    trigger: ".awards_accordions",
+                    start: "top 70%",
+                },
+            }
+        );
+    }
+
+    function initAccordionComponents() {
+        const faqsAccordions = document.querySelectorAll(".faq_toggle");
+        const awardsAccordions = document.querySelectorAll(".awards_toggle");
+
+        const faqspanels = document.querySelectorAll(".faqs_panel");
+        const awardsPanels = document.querySelectorAll(".awards_panel");
+
+        initAccordion(faqsAccordions, faqspanels);
+        initAccordion(awardsAccordions, awardsPanels);
+
+        faqLineAnimation();
+        awardsLineAnimation();
+    }
+
+    function destroyAccordionComponents() {
+        destroyAccordionListeners();
+    }
 
     /**
      * Home Page - Initialize and destroy animations
      */
-
 
     /**
      * Initialize all home page animations
@@ -1484,8 +1499,7 @@
         animateSvgPaths();
         animateScrollingText();
         animateCTA();
-        faqAccordion();
-        faqLineAnimation();
+        initAccordionComponents();
         loadFeedSpring();
         initToolsSwiperScripts();
         initTestimonialsSwiperScripts();
@@ -1502,7 +1516,7 @@
         destroyVisionSectionAnimation();
         destroyToolsSwiperScripts();
         destroyTestimonialsSwiperScripts();
-        destroyFaqsAccordion();
+        destroyAccordionComponents();
     }
 
     /**
@@ -1887,78 +1901,6 @@
     }
 
     /**
-     * Awards Accordion - Expandable accordion for awards section
-     */
-
-
-    let awardsAccordionListeners = [];
-
-    /**
-     * Initialize awards accordion
-     */
-    function awardsAccordion() {
-        const mobile = isMobile();
-
-        const acc = document.getElementsByClassName("awards_toggle");
-        const panels = document.getElementsByClassName("awards_panel");
-
-        for (let i = 0; i < acc.length; i++) {
-            const handler = function () {
-                for (let j = 0; j < panels.length; j++) {
-                    if (j !== i) {
-                        panels[j].style.maxHeight = null;
-                        acc[j].classList.remove("active");
-                    }
-                }
-
-                this.classList.toggle("active");
-                const panel = this.nextElementSibling;
-                if (panel.style.maxHeight) {
-                    panel.style.maxHeight = null;
-                } else {
-                    panel.style.maxHeight = panel.scrollHeight + "px";
-                    if (typeof ScrollTrigger !== "undefined" && !mobile) {
-                        ScrollTrigger.refresh();
-                    }
-                }
-            };
-
-            acc[i].addEventListener("click", handler);
-            awardsAccordionListeners.push({ el: acc[i], handler });
-        }
-    }
-
-    /**
-     * Destroy awards accordion listeners
-     */
-    function destroyAwardsAccordion() {
-        awardsAccordionListeners.forEach(({ el, handler }) => {
-            el.removeEventListener("click", handler);
-        });
-        awardsAccordionListeners = [];
-    }
-
-    /**
-     * Animate accordion lines on scroll
-     */
-    function accordionLineAnimation() {
-        gsap.fromTo(
-            ".awards_accordion",
-            { clipPath: "polygon(0 0, 0% 0, 0% 100%, 0 100%)" },
-            {
-                clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-                duration: 1,
-                stagger: 0.2,
-                ease: "power1.out",
-                scrollTrigger: {
-                    trigger: ".awards_accordions",
-                    start: "top 70%",
-                },
-            }
-        );
-    }
-
-    /**
      * Process Swiper - Mobile swiper for process section
      */
 
@@ -2005,8 +1947,7 @@
         animateMilestones();
         scrollPinObserver();
         aboutTicker();
-        awardsAccordion();
-        accordionLineAnimation();
+        initAccordionComponents();
         initCharAnimations();
         initLineAnimations();
         applyParallaxEffect();
@@ -2022,7 +1963,7 @@
         destroyScrollPinObserver();
         destroyProcessSwiper();
         destroyAboutTicker();
-        destroyAwardsAccordion();
+        destroyAccordionComponents();
     }
 
     /**

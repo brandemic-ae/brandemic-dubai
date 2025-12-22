@@ -33,8 +33,7 @@ import { initTestimonialsSwiperScripts, destroyTestimonialsSwiperScripts } from 
 // Utils
 import { loadFeedSpring } from '../utils/feedspring.js';
 // FAQ
-import { faqAccordion, faqLineAnimation, destroyFaqsAccordion } from '../components/accordion/faqAccordian.js';
-
+import { initAccordionComponents, destroyAccordionComponents } from '../components/accordion/accordion.js';
 /**
  * Initialize all home page animations
  */
@@ -52,8 +51,7 @@ export function initHomeAnimations() {
     animateSvgPaths();
     animateScrollingText();
     animateCTA();
-    faqAccordion();
-    faqLineAnimation();
+    initAccordionComponents();
     loadFeedSpring();
     initToolsSwiperScripts();
     initTestimonialsSwiperScripts();
@@ -70,6 +68,6 @@ export function destroyHomeAnimations() {
     destroyVisionSectionAnimation();
     destroyToolsSwiperScripts();
     destroyTestimonialsSwiperScripts();
-    destroyFaqsAccordion();
+    destroyAccordionComponents();
 }
 
