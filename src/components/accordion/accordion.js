@@ -67,9 +67,7 @@ export function initAccordionComponents() {
 
     if (document.querySelector(".faqs_accordion")) {
         lineAnimation(
-        ".faq_accordions .faqs_accordion",
-        ".faq_accordions"
-        );    
+        ".faqs_accordion",".faq_accordions");    
     }
 
     if (document.querySelector(".awards_accordion")) {
