@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2025-12-23T12:25:01.173Z
+ * Built: 2025-12-23T13:56:09.684Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -1427,9 +1427,9 @@
         accordionListeners = [];
     }
 
-    function LineAnimation(accordion) {
+    function lineAnimation(animatedElements,triggerElement) {
         gsap.fromTo(
-            accordion,
+            animatedElements,
             { clipPath: "polygon(0 0, 0% 0, 0% 100%, 0 100%)" },
             {
                 clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
@@ -1437,7 +1437,7 @@
                 stagger: 0.2,
                 ease: "power1.out",
                 scrollTrigger: {
-                    trigger: accordion,
+                    trigger: triggerElement,
                     start: "top 70%",
                 },
             }
@@ -1455,10 +1455,14 @@
         initAccordion(faqsAccordions, faqspanels);
         initAccordion(awardsAccordions, awardsPanels);
 
-        LineAnimation(".faq_accordions");
-        LineAnimation(".awards_accordion");
-    }
+        if (document.querySelector(".faqs_accordion")) {
+        lineAnimation(".faqs_accordion", ".faq_accordions");
+        }
 
+        if (document.querySelector(".awards_accordion")) {
+        lineAnimation(".awards_accordion", ".awards_accordions");
+        }
+    }
     function destroyAccordionComponents() {
         destroyAccordionListeners();
     }
