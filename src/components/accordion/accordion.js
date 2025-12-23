@@ -65,7 +65,7 @@ export function initAccordionComponents() {
     initAccordion(faqsAccordions, faqspanels);
     initAccordion(awardsAccordions, awardsPanels);
 
-    LineAnimation(".faq_accordion");
+    LineAnimation(".faq_accordions");
     LineAnimation(".awards_accordion");
 }
 

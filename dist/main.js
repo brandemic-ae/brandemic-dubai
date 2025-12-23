@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2025-12-23T12:19:41.445Z
+ * Built: 2025-12-23T12:25:01.173Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -1455,7 +1455,7 @@
         initAccordion(faqsAccordions, faqspanels);
         initAccordion(awardsAccordions, awardsPanels);
 
-        LineAnimation(".faq_accordion");
+        LineAnimation(".faq_accordions");
         LineAnimation(".awards_accordion");
     }
 
