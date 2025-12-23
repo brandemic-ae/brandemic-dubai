@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2025-12-22T15:12:12.202Z
+ * Built: 2025-12-23T12:19:41.445Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -1427,9 +1427,9 @@
         accordionListeners = [];
     }
 
-    function faqLineAnimation() {
+    function LineAnimation(accordion) {
         gsap.fromTo(
-            ".faqs_accordion",
+            accordion,
             { clipPath: "polygon(0 0, 0% 0, 0% 100%, 0 100%)" },
             {
                 clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
@@ -1437,28 +1437,13 @@
                 stagger: 0.2,
                 ease: "power1.out",
                 scrollTrigger: {
-                    trigger: ".faq_accordions",
+                    trigger: accordion,
                     start: "top 70%",
                 },
             }
         );
     }
-    function awardsLineAnimation() {
-        gsap.fromTo(
-            ".awards_accordion",
-            { clipPath: "polygon(0 0, 0% 0, 0% 100%, 0 100%)" },
-            {
-                clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-                duration: 1,
-                stagger: 0.2,
-                ease: "power1.out",
-                scrollTrigger: {
-                    trigger: ".awards_accordions",
-                    start: "top 70%",
-                },
-            }
-        );
-    }
+
 
     function initAccordionComponents() {
         const faqsAccordions = document.querySelectorAll(".faq_toggle");
@@ -1466,12 +1451,12 @@
 
         const faqspanels = document.querySelectorAll(".faqs_panel");
         const awardsPanels = document.querySelectorAll(".awards_panel");
-
+        
         initAccordion(faqsAccordions, faqspanels);
         initAccordion(awardsAccordions, awardsPanels);
 
-        faqLineAnimation();
-        awardsLineAnimation();
+        LineAnimation(".faq_accordion");
+        LineAnimation(".awards_accordion");
     }
 
     function destroyAccordionComponents() {

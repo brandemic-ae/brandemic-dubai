@@ -37,9 +37,9 @@ export function destroyAccordionListeners() {
     accordionListeners = [];
 }
 
-function faqLineAnimation() {
+function LineAnimation(accordion) {
     gsap.fromTo(
-        ".faqs_accordion",
+        accordion,
         { clipPath: "polygon(0 0, 0% 0, 0% 100%, 0 100%)" },
         {
             clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
@@ -47,28 +47,13 @@ function faqLineAnimation() {
             stagger: 0.2,
             ease: "power1.out",
             scrollTrigger: {
-                trigger: ".faq_accordions",
+                trigger: accordion,
                 start: "top 70%",
             },
         }
     );
 }
-function awardsLineAnimation() {
-    gsap.fromTo(
-        ".awards_accordion",
-        { clipPath: "polygon(0 0, 0% 0, 0% 100%, 0 100%)" },
-        {
-            clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-            duration: 1,
-            stagger: 0.2,
-            ease: "power1.out",
-            scrollTrigger: {
-                trigger: ".awards_accordions",
-                start: "top 70%",
-            },
-        }
-    );
-}
+
 
 export function initAccordionComponents() {
     const faqsAccordions = document.querySelectorAll(".faq_toggle");
@@ -76,12 +61,12 @@ export function initAccordionComponents() {
 
     const faqspanels = document.querySelectorAll(".faqs_panel");
     const awardsPanels = document.querySelectorAll(".awards_panel");
-
+    
     initAccordion(faqsAccordions, faqspanels);
     initAccordion(awardsAccordions, awardsPanels);
 
-    faqLineAnimation();
-    awardsLineAnimation();
+    LineAnimation(".faq_accordion");
+    LineAnimation(".awards_accordion");
 }
 
 export function destroyAccordionComponents() {
