@@ -66,11 +66,14 @@ export function initAccordionComponents() {
     initAccordion(awardsAccordions, awardsPanels);
 
     if (document.querySelector(".faqs_accordion")) {
-    lineAnimation(".faqs_accordion", ".faq_accordions");
+        lineAnimation(
+        ".faq_accordions .faqs_accordion",
+        ".faq_accordions"
+        );    
     }
 
     if (document.querySelector(".awards_accordion")) {
-    lineAnimation(".awards_accordion", ".awards_accordions");
+        lineAnimation(".awards_accordion", ".awards_accordions");
     }
 }
 export function destroyAccordionComponents() {

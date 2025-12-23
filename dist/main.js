@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2025-12-23T13:56:09.684Z
+ * Built: 2025-12-23T14:11:49.516Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -1456,11 +1456,14 @@
         initAccordion(awardsAccordions, awardsPanels);
 
         if (document.querySelector(".faqs_accordion")) {
-        lineAnimation(".faqs_accordion", ".faq_accordions");
+            lineAnimation(
+            ".faq_accordions .faqs_accordion",
+            ".faq_accordions"
+            );    
         }
 
         if (document.querySelector(".awards_accordion")) {
-        lineAnimation(".awards_accordion", ".awards_accordions");
+            lineAnimation(".awards_accordion", ".awards_accordions");
         }
     }
     function destroyAccordionComponents() {
