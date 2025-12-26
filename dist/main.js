@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2025-12-26T08:18:57.555Z
+ * Built: 2025-12-26T09:31:21.981Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -1427,9 +1427,9 @@
         accordionListeners = [];
     }
 
-    function lineAnimation(animatedElements,triggerElement) {
+    function lineAnimation() {
         gsap.fromTo(
-            animatedElements,
+            '.accordion',
             { clipPath: "polygon(0 0, 0% 0, 0% 100%, 0 100%)" },
             {
                 clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
@@ -1437,7 +1437,7 @@
                 stagger: 0.2,
                 ease: "power1.out",
                 scrollTrigger: {
-                    trigger: triggerElement,
+                    trigger: '.accordions',
                     start: "top 70%",
                 },
             }
@@ -1446,14 +1446,10 @@
 
 
     function initAccordionComponents() {
-        const faqsAccordions = document.querySelectorAll(".faq_toggle");
-        const awardsAccordions = document.querySelectorAll(".awards_toggle");
-
-        const faqspanels = document.querySelectorAll(".faqs_panel");
-        const awardsPanels = document.querySelectorAll(".awards_panel");
+        const accordions = document.querySelectorAll(".accordion_toggle");
+        const panels = document.querySelectorAll(".accordion_panel");
         
-        initAccordion(faqsAccordions, faqspanels);
-        initAccordion(awardsAccordions, awardsPanels);
+        initAccordion(accordions, panels);
 
     }
     function destroyAccordionComponents() {
@@ -1482,7 +1478,7 @@
         animateScrollingText();
         animateCTA();
         initAccordionComponents();
-        lineAnimation(".faqs_accordion",".faq_accordions");
+        lineAnimation();
         loadFeedSpring();
         initToolsSwiperScripts();
         initTestimonialsSwiperScripts();
@@ -1931,7 +1927,7 @@
         scrollPinObserver();
         aboutTicker();
         initAccordionComponents();
-        lineAnimation(".awards_accordion", ".awards_accordions");
+        lineAnimation();
         initCharAnimations();
         initLineAnimations();
         applyParallaxEffect();
