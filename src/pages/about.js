@@ -16,7 +16,7 @@ import { aboutTicker, destroyAboutTicker } from '../animations/sections/ticker.j
 
 // Accordion
 // import { initAccordionComponents, destroyAccordionComponents } from '../components/accordion/accordion.js';
-import { initAccordionComponents, destroyAccordionComponents } from '../components/accordion/accordion.js';
+import { initAccordionComponents, destroyAccordionComponents, lineAnimation } from '../components/accordion/accordion.js';
 
 // Scroll
 import { applyParallaxEffect } from '../animations/scroll/parallax.js';
@@ -36,6 +36,7 @@ export function initAboutAnimations() {
     scrollPinObserver();
     aboutTicker();
     initAccordionComponents();
+    lineAnimation(".awards_accordion", ".awards_accordions");
     initCharAnimations();
     initLineAnimations();
     applyParallaxEffect();

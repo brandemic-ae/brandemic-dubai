@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2025-12-23T14:18:56.349Z
+ * Built: 2025-12-26T08:14:49.057Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -1455,14 +1455,6 @@
         initAccordion(faqsAccordions, faqspanels);
         initAccordion(awardsAccordions, awardsPanels);
 
-        if (document.querySelector(".faqs_accordion")) {
-            lineAnimation(
-            ".faqs_accordion",".faq_accordions");    
-        }
-
-        if (document.querySelector(".awards_accordion")) {
-            lineAnimation(".awards_accordion", ".awards_accordions");
-        }
     }
     function destroyAccordionComponents() {
         destroyAccordionListeners();
@@ -1490,6 +1482,7 @@
         animateScrollingText();
         animateCTA();
         initAccordionComponents();
+        lineAnimation(".faqs_accordion",".faq_accordions");
         loadFeedSpring();
         initToolsSwiperScripts();
         initTestimonialsSwiperScripts();
@@ -1938,6 +1931,7 @@
         scrollPinObserver();
         aboutTicker();
         initAccordionComponents();
+        lineAnimation(".awards_accordion", ".awards_accordions");
         initCharAnimations();
         initLineAnimations();
         applyParallaxEffect();

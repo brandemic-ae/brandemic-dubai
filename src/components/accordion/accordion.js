@@ -30,14 +30,14 @@ function initAccordion(acc, panels) {
     }
 }
 
-export function destroyAccordionListeners() {
+function destroyAccordionListeners() {
     accordionListeners.forEach(({ el, handler }) => {
         el.removeEventListener("click", handler);
     });
     accordionListeners = [];
 }
 
-function lineAnimation(animatedElements,triggerElement) {
+export function lineAnimation(animatedElements,triggerElement) {
     gsap.fromTo(
         animatedElements,
         { clipPath: "polygon(0 0, 0% 0, 0% 100%, 0 100%)" },
@@ -65,14 +65,6 @@ export function initAccordionComponents() {
     initAccordion(faqsAccordions, faqspanels);
     initAccordion(awardsAccordions, awardsPanels);
 
-    if (document.querySelector(".faqs_accordion")) {
-        lineAnimation(
-        ".faqs_accordion",".faq_accordions");    
-    }
-
-    if (document.querySelector(".awards_accordion")) {
-        lineAnimation(".awards_accordion", ".awards_accordions");
-    }
 }
 export function destroyAccordionComponents() {
     destroyAccordionListeners();
