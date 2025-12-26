@@ -52,7 +52,7 @@ export function initHomeAnimations() {
     animateScrollingText();
     animateCTA();
     initAccordionComponents();
-    lineAnimation(".faqs_accordion",".faq_accordions");
+    lineAnimation();
     loadFeedSpring();
     initToolsSwiperScripts();
     initTestimonialsSwiperScripts();

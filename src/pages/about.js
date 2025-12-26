@@ -36,7 +36,7 @@ export function initAboutAnimations() {
     scrollPinObserver();
     aboutTicker();
     initAccordionComponents();
-    lineAnimation(".awards_accordion", ".awards_accordions");
+    lineAnimation();
     initCharAnimations();
     initLineAnimations();
     applyParallaxEffect();
