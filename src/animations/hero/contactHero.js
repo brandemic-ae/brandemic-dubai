@@ -2,6 +2,8 @@
  * Contact Hero Animation - Contact page hero with floating images and greeting cycle
  */
 
+import { createHeroTimeline } from '../../utils/heroTimeline.js';
+
 let contactHeroTl = null;
 let contactCycleCall = null;
 
@@ -9,15 +11,14 @@ let contactCycleCall = null;
  * Initialize contact hero animation
  */
 export function initContactHeroAnimation() {
-    contactHeroTl = gsap.timeline();
+    contactHeroTl = createHeroTimeline();
 
     const splitContactHeroHeadline = new SplitText(".contact_hero-tl-1", { type: "chars,words,lines" });
     const splitContactHeroPara = new SplitText(".contact_hero-tl-2", { type: "chars,words,lines" });
     const leftImages = ['.is-one', '.is-two', '.is-three'];
     const rightImages = ['.is-four', '.is-five', '.is-six'];
 
-    contactHeroTl.fromTo(".main-wrapper", { autoAlpha: 0 }, { autoAlpha: 1, ease: "linear" })
-        .from(splitContactHeroHeadline.chars, {
+    contactHeroTl.from(splitContactHeroHeadline.chars, {
             opacity: 0,
             x: 16,
             y: "30%",

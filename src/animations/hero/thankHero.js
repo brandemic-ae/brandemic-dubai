@@ -2,19 +2,20 @@
  * Thank You Hero Animation - Thank you page hero
  */
 
+import { createHeroTimeline } from '../../utils/heroTimeline.js';
+
 let thankHeroTl = null;
 
 /**
  * Initialize thank you hero animation
  */
 export function initThankHeroAnimation() {
-    thankHeroTl = gsap.timeline();
+    thankHeroTl = createHeroTimeline();
 
     const splitThankHeroHeadline = new SplitText(".thank_hero-tl-1", { type: "chars,words,lines" });
     const splitThankHeroPara = new SplitText(".thank_hero-tl-2", { type: "chars,words,lines" });
 
-    thankHeroTl.fromTo(".main-wrapper", { autoAlpha: 0 }, { autoAlpha: 1, ease: "linear" })
-        .from(splitThankHeroHeadline.chars, {
+    thankHeroTl.from(splitThankHeroHeadline.chars, {
             opacity: 0,
             x: 16,
             y: "30%",

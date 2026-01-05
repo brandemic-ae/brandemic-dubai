@@ -2,13 +2,15 @@
  * Service Hero Animation - Service page hero with floating images
  */
 
+import { createHeroTimeline } from '../../utils/heroTimeline.js';
+
 let serviceHeroTl = null;
 
 /**
  * Initialize service hero animation
  */
 export function initServiceHeroAnimation() {
-    serviceHeroTl = gsap.timeline();
+    serviceHeroTl = createHeroTimeline();
 
     const splitServiceTag = new SplitText(".service_hero-tl-0", { type: "chars,words,lines" });
     const splitServiceHeroHeadline = new SplitText(".service_hero-tl-1", { type: "chars,words,lines" });
@@ -16,8 +18,7 @@ export function initServiceHeroAnimation() {
     const serviceLeftImages = ['.is-one', '.is-two', '.is-three'];
     const serviceRightImages = ['.is-four', '.is-five', '.is-six'];
 
-    serviceHeroTl.fromTo(".main-wrapper", { autoAlpha: 0 }, { autoAlpha: 1, ease: "linear" })
-        .from(splitServiceTag.chars, {
+    serviceHeroTl.from(splitServiceTag.chars, {
             opacity: 0,
             x: 16,
             y: "30%",

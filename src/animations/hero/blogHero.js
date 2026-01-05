@@ -1,6 +1,6 @@
 /**
- * HPI Hero Animation - Generic hero page intro animation
- * Used on About, Portfolio, and Case Study pages
+ * Blog Hero Animation - Hero intro animation for blog pages
+ * Similar to HPI Hero but without image animation
  */
 
 import { createHeroTimeline } from '../../utils/heroTimeline.js';
@@ -8,9 +8,9 @@ import { createHeroTimeline } from '../../utils/heroTimeline.js';
 let heroTl = null;
 
 /**
- * Initialize HPI hero animation
+ * Initialize Blog hero animation
  */
-export function initHPIHeroAnimation() {
+export function initBlogHeroAnimation() {
     heroTl = createHeroTimeline();
 
     const heroHeadline = document.querySelector(".hero-timeline-1");
@@ -38,20 +38,12 @@ export function initHPIHeroAnimation() {
             stagger: 0.03,
         }, "-=0.5");
     }
-
-    heroTl.fromTo(".hero-timeline-3", {
-        clipPath: "polygon(0 0, 100% 0, 100% 0%, 0 0%)",
-    }, {
-        clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-        duration: 0.8,
-        ease: "power1.inOut",
-    }, "-=0.2");
 }
 
 /**
- * Destroy HPI hero animation
+ * Destroy Blog hero animation
  */
-export function destroyHPIHeroAnimation() {
+export function destroyBlogHeroAnimation() {
     if (heroTl) heroTl.kill();
 }
 

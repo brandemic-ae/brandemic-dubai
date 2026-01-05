@@ -2,6 +2,8 @@
  * Home Hero Animation - Main homepage hero with cycling words
  */
 
+import { createHeroTimeline } from '../../utils/heroTimeline.js';
+
 let homeHeroTl = null;
 let heroCycleCall = null;
 
@@ -14,11 +16,9 @@ export function initHomeHeroAnimation() {
 
     const splitHomeHeroChars = new SplitText(homeHeroChars, { type: "chars,words,lines" });
 
-    homeHeroTl = gsap.timeline();
+    homeHeroTl = createHeroTimeline();
 
-    homeHeroTl
-        .fromTo(".main-wrapper", { autoAlpha: 0 }, { autoAlpha: 1, ease: "linear" })
-        .from(splitHomeHeroChars.chars, {
+    homeHeroTl.from(splitHomeHeroChars.chars, {
             opacity: 0,
             x: 16,
             y: "30%",
