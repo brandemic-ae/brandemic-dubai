@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2025-12-26T09:31:21.981Z
+ * Built: 2026-01-05T11:06:33.887Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -353,8 +353,24 @@
     }
 
     /**
+     * Hero Timeline Utility - Creates base timeline with autoAlpha for all pages
+     * Ensures autoAlpha completes before page-specific animations run
+     */
+
+    /**
+     * Create a hero timeline with the base autoAlpha animation
+     * @returns {gsap.core.Timeline} Timeline with autoAlpha already added
+     */
+    function createHeroTimeline() {
+        const tl = gsap.timeline();
+        tl.fromTo(".main-wrapper", { autoAlpha: 0 }, { autoAlpha: 1, ease: "linear" });
+        return tl;
+    }
+
+    /**
      * Home Hero Animation - Main homepage hero with cycling words
      */
+
 
     let homeHeroTl = null;
     let heroCycleCall = null;
@@ -368,11 +384,9 @@
 
         const splitHomeHeroChars = new SplitText(homeHeroChars, { type: "chars,words,lines" });
 
-        homeHeroTl = gsap.timeline();
+        homeHeroTl = createHeroTimeline();
 
-        homeHeroTl
-            .fromTo(".main-wrapper", { autoAlpha: 0 }, { autoAlpha: 1, ease: "linear" })
-            .from(splitHomeHeroChars.chars, {
+        homeHeroTl.from(splitHomeHeroChars.chars, {
                 opacity: 0,
                 x: 16,
                 y: "30%",
@@ -1503,13 +1517,14 @@
      * Used on About, Portfolio, and Case Study pages
      */
 
-    let heroTl = null;
+
+    let heroTl$1 = null;
 
     /**
      * Initialize HPI hero animation
      */
     function initHPIHeroAnimation() {
-        heroTl = gsap.timeline();
+        heroTl$1 = createHeroTimeline();
 
         const heroHeadline = document.querySelector(".hero-timeline-1");
         const heroPara = document.querySelector(".hero-timeline-2");
@@ -1519,8 +1534,7 @@
         const splitHeroHeadline = new SplitText(heroHeadline, { type: "chars,words,lines" });
         const splitHeroPara = heroPara ? new SplitText(heroPara, { type: "chars,words,lines" }) : null;
 
-        heroTl.fromTo(".main-wrapper", { autoAlpha: 0 }, { autoAlpha: 1, ease: "linear" })
-            .from(splitHeroHeadline.chars, {
+        heroTl$1.from(splitHeroHeadline.chars, {
                 opacity: 0,
                 x: 16,
                 y: "30%",
@@ -1529,7 +1543,7 @@
             });
 
         if (splitHeroPara) {
-            heroTl.from(splitHeroPara.words, {
+            heroTl$1.from(splitHeroPara.words, {
                 opacity: 0,
                 x: 16,
                 y: "30%",
@@ -1538,7 +1552,7 @@
             }, "-=0.5");
         }
 
-        heroTl.fromTo(".hero-timeline-3", {
+        heroTl$1.fromTo(".hero-timeline-3", {
             clipPath: "polygon(0 0, 100% 0, 100% 0%, 0 0%)",
         }, {
             clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
@@ -1551,7 +1565,7 @@
      * Destroy HPI hero animation
      */
     function destroyHPIHeroAnimation() {
-        if (heroTl) heroTl.kill();
+        if (heroTl$1) heroTl$1.kill();
     }
 
     /**
@@ -2051,6 +2065,7 @@
      * Contact Hero Animation - Contact page hero with floating images and greeting cycle
      */
 
+
     let contactHeroTl = null;
     let contactCycleCall = null;
 
@@ -2058,15 +2073,14 @@
      * Initialize contact hero animation
      */
     function initContactHeroAnimation() {
-        contactHeroTl = gsap.timeline();
+        contactHeroTl = createHeroTimeline();
 
         const splitContactHeroHeadline = new SplitText(".contact_hero-tl-1", { type: "chars,words,lines" });
         const splitContactHeroPara = new SplitText(".contact_hero-tl-2", { type: "chars,words,lines" });
         const leftImages = ['.is-one', '.is-two', '.is-three'];
         const rightImages = ['.is-four', '.is-five', '.is-six'];
 
-        contactHeroTl.fromTo(".main-wrapper", { autoAlpha: 0 }, { autoAlpha: 1, ease: "linear" })
-            .from(splitContactHeroHeadline.chars, {
+        contactHeroTl.from(splitContactHeroHeadline.chars, {
                 opacity: 0,
                 x: 16,
                 y: "30%",
@@ -2322,13 +2336,14 @@
      * Service Hero Animation - Service page hero with floating images
      */
 
+
     let serviceHeroTl = null;
 
     /**
      * Initialize service hero animation
      */
     function initServiceHeroAnimation() {
-        serviceHeroTl = gsap.timeline();
+        serviceHeroTl = createHeroTimeline();
 
         const splitServiceTag = new SplitText(".service_hero-tl-0", { type: "chars,words,lines" });
         const splitServiceHeroHeadline = new SplitText(".service_hero-tl-1", { type: "chars,words,lines" });
@@ -2336,8 +2351,7 @@
         const serviceLeftImages = ['.is-one', '.is-two', '.is-three'];
         const serviceRightImages = ['.is-four', '.is-five', '.is-six'];
 
-        serviceHeroTl.fromTo(".main-wrapper", { autoAlpha: 0 }, { autoAlpha: 1, ease: "linear" })
-            .from(splitServiceTag.chars, {
+        serviceHeroTl.from(splitServiceTag.chars, {
                 opacity: 0,
                 x: 16,
                 y: "30%",
@@ -2543,19 +2557,19 @@
      * Thank You Hero Animation - Thank you page hero
      */
 
+
     let thankHeroTl = null;
 
     /**
      * Initialize thank you hero animation
      */
     function initThankHeroAnimation() {
-        thankHeroTl = gsap.timeline();
+        thankHeroTl = createHeroTimeline();
 
         const splitThankHeroHeadline = new SplitText(".thank_hero-tl-1", { type: "chars,words,lines" });
         const splitThankHeroPara = new SplitText(".thank_hero-tl-2", { type: "chars,words,lines" });
 
-        thankHeroTl.fromTo(".main-wrapper", { autoAlpha: 0 }, { autoAlpha: 1, ease: "linear" })
-            .from(splitThankHeroHeadline.chars, {
+        thankHeroTl.from(splitThankHeroHeadline.chars, {
                 opacity: 0,
                 x: 16,
                 y: "30%",
@@ -2600,6 +2614,96 @@
      */
     function destroyThankAnimations() {
         destroyThankHeroAnimation();
+    }
+
+    /**
+     * Blog Hero Animation - Hero intro animation for blog pages
+     * Similar to HPI Hero but without image animation
+     */
+
+
+    let heroTl = null;
+
+    /**
+     * Initialize Blog hero animation
+     */
+    function initBlogHeroAnimation() {
+        heroTl = createHeroTimeline();
+
+        const heroHeadline = document.querySelector(".hero-timeline-1");
+        const heroPara = document.querySelector(".hero-timeline-2");
+
+        if (!heroHeadline) return;
+
+        const splitHeroHeadline = new SplitText(heroHeadline, { type: "chars,words,lines" });
+        const splitHeroPara = heroPara ? new SplitText(heroPara, { type: "chars,words,lines" }) : null;
+
+        heroTl.from(splitHeroHeadline.chars, {
+                opacity: 0,
+                x: 16,
+                y: "30%",
+                filter: "blur(10px)",
+                stagger: 0.03,
+            });
+
+        if (splitHeroPara) {
+            heroTl.from(splitHeroPara.words, {
+                opacity: 0,
+                x: 16,
+                y: "30%",
+                filter: "blur(10px)",
+                stagger: 0.03,
+            }, "-=0.5");
+        }
+    }
+
+    /**
+     * Destroy Blog hero animation
+     */
+    function destroyBlogHeroAnimation() {
+        if (heroTl) heroTl.kill();
+    }
+
+    /**
+     * Blog Page - Initialize and destroy animations
+     */
+
+
+    /**
+     * Initialize all blog page animations
+     */
+    function initBlogAnimations() {
+        initBlogHeroAnimation();
+        animateCTA();
+    }
+
+    /**
+     * Destroy all blog page animations
+     */
+    function destroyBlogAnimations() {
+        destroyBlogHeroAnimation();
+    }
+
+    /**
+     * Blog Post Page (CMS) - Initialize and destroy animations
+     */
+
+
+    let blogPostTl = null;
+
+    /**
+     * Initialize all blog post page animations
+     */
+    function initBlogPostAnimations() {
+        blogPostTl = createHeroTimeline();
+        animateCTA();
+    }
+
+    /**
+     * Destroy all blog post page animations
+     */
+    function destroyBlogPostAnimations() {
+        if (blogPostTl) blogPostTl.kill();
     }
 
     /**
@@ -2741,6 +2845,22 @@
                 },
                 beforeLeave(data) {
                     destroyThankAnimations();
+                },
+            }, {
+                namespace: 'blogs',
+                afterEnter(data) {
+                    initBlogAnimations();
+                },
+                beforeLeave(data) {
+                    destroyBlogAnimations();
+                },
+            }, {
+                namespace: 'blog',
+                afterEnter(data) {
+                    initBlogPostAnimations();
+                },
+                beforeLeave(data) {
+                    destroyBlogPostAnimations();
                 },
             }]
         });
