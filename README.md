@@ -76,18 +76,6 @@ This creates:
 5. **Commit:** Include both source changes and built files
 6. **Push:** Deploy automatically via your CDN
 
-## 🗂️ Pages & Namespaces
-
-| Page | Barba Namespace | Init Function |
-|------|-----------------|---------------|
-| Home | `home` | `initHomeAnimations()` |
-| About | `about` | `initAboutAnimations()` |
-| Portfolio | `portfolio` | `initPortfolioAnimations()` |
-| Contact | `contact` | `initContactAnimations()` |
-| Case Study | `case-study` | `initCaseStudyAnimations()` |
-| Service | `service` | `initServiceAnimations()` |
-| Thank You | `thanks` | `initThankAnimations()` |
-
 ## 🐛 Debugging
 
 Each page's animations can be traced through its page module in `/src/pages/`. For example, to debug home page animations:

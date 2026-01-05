@@ -109,6 +109,8 @@ Every page in Webflow MUST have `data-barba="container"` and `data-barba-namespa
 | Case Study (template) | `case-study` |
 | Service pages | `service` |
 | Thank You | `thanks` |
+| Blogs (listing) | `blogs` |
+| Blog Post (CMS template) | `blog` |
 
 **In Webflow:** Add custom attribute on the page wrapper:
 - `data-barba` = `container`
@@ -143,25 +145,6 @@ When Webflow devs need new animations, create an issue/message with:
 ### Webflow Preview Link
 [Link to the staging page]
 ```
-
----
-
-## 🗂️ JS File Quick Reference
-
-Need to change something? Here's where to look:
-
-| What | File |
-|------|------|
-| Home page animations | `src/pages/home.js` |
-| About page animations | `src/pages/about.js` |
-| Portfolio filtering | `src/components/filter/portfolioFilter.js` |
-| Navigation/menu | `src/components/navigation/megaMenu.js` |
-| Custom cursor | `src/components/cursor/customCursor.js` |
-| Page transitions | `src/core/barba.js` |
-| Text animations | `src/animations/text/*.js` |
-| Service hover | `src/animations/sections/serviceHover.js` |
-| Video player | `src/components/video/videoPlayer.js` |
-| Swipers | `src/components/swiper/*.js` |
 
 ---
 
