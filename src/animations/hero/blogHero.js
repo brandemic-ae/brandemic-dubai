@@ -15,6 +15,7 @@ export function initBlogHeroAnimation() {
 
     const heroHeadline = document.querySelector(".hero-timeline-1");
     const heroPara = document.querySelector(".hero-timeline-2");
+    const blogCards = document.querySelectorAll(".related_blog-item");
 
     if (!heroHeadline) return;
 
@@ -37,6 +38,16 @@ export function initBlogHeroAnimation() {
             filter: "blur(10px)",
             stagger: 0.03,
         }, "-=0.5");
+    }
+    if (blogCards.length) {
+        heroTl.from(blogCards, {
+            opacity: 0,
+            y: 30,
+            filter: "blur(8px)",
+            stagger: 0.2,
+            duration: 1,
+            ease: "power2.out",
+        }, "-=0.3");
     }
 }
 

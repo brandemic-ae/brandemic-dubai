@@ -7,6 +7,9 @@ import { createHeroTimeline } from '../utils/heroTimeline.js';
 // Sections
 import { animateCTA } from '../animations/sections/cta.js';
 
+// Components
+import { initTableOfContents, destroyTableOfContents } from '../components/toc/tableOfContents.js';
+
 let blogPostTl = null;
 
 /**
@@ -15,6 +18,7 @@ let blogPostTl = null;
 export function initBlogPostAnimations() {
     blogPostTl = createHeroTimeline();
     animateCTA();
+    initTableOfContents();
 }
 
 /**
@@ -22,5 +26,6 @@ export function initBlogPostAnimations() {
  */
 export function destroyBlogPostAnimations() {
     if (blogPostTl) blogPostTl.kill();
+    destroyTableOfContents();
 }
 

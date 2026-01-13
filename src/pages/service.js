@@ -22,11 +22,16 @@ import { animateSvgPaths } from '../animations/svg/drawPaths.js';
 import { initFeaturedSwiper, destroyFeaturedSwiper } from '../components/swiper/featuredSwiper.js';
 import { initTestimonialsSwiperScripts, destroyTestimonialsSwiperScripts } from '../components/swiper/testimonialsSwiper.js';
 
+// FAQ
+import { initAccordionComponents, destroyAccordionComponents, lineAnimation } from '../components/accordion/accordion.js';
+
 /**
  * Initialize all service page animations
  */
 export function initServiceAnimations() {
     initServiceHeroAnimation();
+    initAccordionComponents();
+    lineAnimation();
     startScrollDownAnimation();
     initCharAnimations();
     animateSvgPaths();
@@ -41,6 +46,7 @@ export function initServiceAnimations() {
  */
 export function destroyServiceAnimations() {
     destroyServiceHeroAnimation();
+    destroyAccordionComponents();
     destroyFeaturedSwiper();
     destroyServiceProcessScroll();
     destroyServiceHoverAnimation();
