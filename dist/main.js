@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-01-13T11:28:45.269Z
+ * Built: 2026-01-13T12:59:43.452Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -2750,14 +2750,11 @@
 
             // Create anchor link
             const link = document.createElement('a');
-            link.href = `#${heading.id}`;
             link.className = 'toc_list-link';
             link.textContent = heading.textContent;
 
             // Create click handler
-            const clickHandler = (e) => {
-                e.preventDefault();
-
+            const clickHandler = () => {
                 const smoother = getSmoother();
                 if (smoother) {
                     // Use ScrollSmoother's scrollTo method

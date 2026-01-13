@@ -51,14 +51,11 @@ export function initTableOfContents() {
 
         // Create anchor link
         const link = document.createElement('a');
-        link.href = `#${heading.id}`;
         link.className = 'toc_list-link';
         link.textContent = heading.textContent;
 
         // Create click handler
-        const clickHandler = (e) => {
-            e.preventDefault();
-
+        const clickHandler = () => {
             const smoother = getSmoother();
             if (smoother) {
                 // Use ScrollSmoother's scrollTo method
