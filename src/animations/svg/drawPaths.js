@@ -16,6 +16,7 @@ export function animateSvgPaths() {
             scrollTrigger: {
                 trigger: path,
                 start: "top 50%",
+                markers: true,
             },
         });
     });

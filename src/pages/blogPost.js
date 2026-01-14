@@ -20,7 +20,7 @@ let blogPostTl = null;
  */
 export function initBlogPostAnimations() {
     blogPostTl = createHeroTimeline();
-    animateSvgPaths();ß
+    animateSvgPaths();
     animateCTA();
     initTableOfContents();
 }
