@@ -42,21 +42,9 @@ export function recreateSmoother() {
     smoother.scrollTo(0);
     smoother.kill();
     smoother = ScrollSmoother.create({
-        wrapper: '#smooth-wrapper',
-        content: '#smooth-content',
         smooth: 1,
         effects: true,
         smoothTouch: 0,
     });
     return smoother;
-}
-
-/**
- * Refresh smoother to re-parse data-speed attributes
- * Call this after page content with data-speed elements is loaded
- */
-export function refreshSmoother() {
-    if (smoother) {
-        smoother.refresh(true);
-    }
 }

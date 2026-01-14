@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-01-14T10:07:10.932Z
+ * Built: 2026-01-14T10:17:22.126Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -63,23 +63,11 @@
         smoother.scrollTo(0);
         smoother.kill();
         smoother = ScrollSmoother.create({
-            wrapper: '#smooth-wrapper',
-            content: '#smooth-content',
             smooth: 1,
             effects: true,
             smoothTouch: 0,
         });
         return smoother;
-    }
-
-    /**
-     * Refresh smoother to re-parse data-speed attributes
-     * Call this after page content with data-speed elements is loaded
-     */
-    function refreshSmoother() {
-        if (smoother) {
-            smoother.refresh(true);
-        }
     }
 
     /**
@@ -1262,8 +1250,6 @@
         const smoother = getSmoother();
         if (smoother) {
             smoother.effects(".parallax-image", { speed: "auto" });
-            // Refresh to re-parse all data-speed attributes after transition
-            refreshSmoother();
         }
     }
 
@@ -2276,7 +2262,6 @@
     function initContactAnimations() {
         initCharAnimations();
         initContactHeroAnimation();
-        refreshSmoother();
     }
 
     /**
@@ -2557,7 +2542,6 @@
         serviceProcessScroll();
         serviceHoverAnimation();
         initTestimonialsSwiperScripts();
-        refreshSmoother();
     }
 
     /**
@@ -2626,7 +2610,6 @@
      */
     function initThankAnimations() {
         initThankHeroAnimation();
-        refreshSmoother();
     }
 
     /**
@@ -2706,7 +2689,6 @@
     function initBlogAnimations() {
         initBlogHeroAnimation();
         animateCTA();
-        refreshSmoother();
     }
 
     /**
@@ -2823,7 +2805,6 @@
         blogPostTl = createHeroTimeline();
         animateCTA();
         initTableOfContents();
-        refreshSmoother();
     }
 
     /**

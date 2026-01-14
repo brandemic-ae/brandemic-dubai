@@ -10,9 +10,6 @@ import { animateCTA } from '../animations/sections/cta.js';
 // Components
 import { initTableOfContents, destroyTableOfContents } from '../components/toc/tableOfContents.js';
 
-// Smooth Scroll
-import { refreshSmoother } from '../core/smoothScroll.js';
-
 let blogPostTl = null;
 
 /**
@@ -22,7 +19,6 @@ export function initBlogPostAnimations() {
     blogPostTl = createHeroTimeline();
     animateCTA();
     initTableOfContents();
-    refreshSmoother();
 }
 
 /**
