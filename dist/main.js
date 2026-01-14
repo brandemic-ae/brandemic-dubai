@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-01-14T10:17:22.126Z
+ * Built: 2026-01-14T10:24:35.410Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -2803,6 +2803,7 @@
      */
     function initBlogPostAnimations() {
         blogPostTl = createHeroTimeline();
+        animateSvgPaths();ß;
         animateCTA();
         initTableOfContents();
     }

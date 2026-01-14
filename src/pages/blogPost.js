@@ -4,6 +4,9 @@
 
 import { createHeroTimeline } from '../utils/heroTimeline.js';
 
+// SVG
+import { animateSvgPaths } from '../animations/svg/drawPaths.js';
+
 // Sections
 import { animateCTA } from '../animations/sections/cta.js';
 
@@ -17,6 +20,7 @@ let blogPostTl = null;
  */
 export function initBlogPostAnimations() {
     blogPostTl = createHeroTimeline();
+    animateSvgPaths();ß
     animateCTA();
     initTableOfContents();
 }
