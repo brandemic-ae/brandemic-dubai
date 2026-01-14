@@ -7,6 +7,7 @@ import { horizontalLoop } from '../../utils/horizontalLoop.js';
 let aboutTickerLoops = [];
 let caseStudyTickerLoop = null;
 let livXTickerLoop = null;
+let hopscotchTickerLoops = [];
 
 /**
  * Initialize about page tickers (brands, team, culture)
@@ -82,7 +83,36 @@ export function livXTicker() {
 }
 
 /**
- * Destroy case study and livX tickers
+ * Initialize Hopscotch tickers (two tickers moving in opposite directions)
+ */
+export function hopscotchTicker() {
+    const tickerOne = document.querySelector(".hopscotch_ticker.is-one");
+    const tickerTwo = document.querySelector(".hopscotch_ticker.is-two");
+    if (!tickerOne && !tickerTwo) return;
+
+    const elements = [
+        { selector: ".hopscotch_ticker.is-one .hopscotch_ticker-svg", reversed: false },
+        { selector: ".hopscotch_ticker.is-two .hopscotch_ticker-svg", reversed: true },
+    ];
+
+    hopscotchTickerLoops = elements.map(({ selector, reversed }) => {
+        const items = gsap.utils.toArray(selector);
+        if (items.length === 0) return null;
+
+        const loop = horizontalLoop(items, {
+            draggable: false,
+            inertia: false,
+            repeat: -1,
+            center: false,
+            reversed
+        });
+
+        return loop;
+    }).filter(Boolean);
+}
+
+/**
+ * Destroy case study variant tickers
  */
 export function destroyTickers() {
     if (caseStudyTickerLoop && caseStudyTickerLoop.kill) {
@@ -94,5 +124,12 @@ export function destroyTickers() {
         livXTickerLoop.kill();
         livXTickerLoop = null;
     }
+
+    hopscotchTickerLoops.forEach(loop => {
+        if (loop && typeof loop.kill === 'function') {
+            loop.kill();
+        }
+    });
+    hopscotchTickerLoops = [];
 }
 

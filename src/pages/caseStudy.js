@@ -11,12 +11,15 @@ import { initLineAnimations } from '../animations/text/lineAnimations.js';
 
 // Sections
 import { featuredWorkLoop } from '../animations/sections/featuredWork.js';
-import { caseStudyTicker, livXTicker, destroyTickers } from '../animations/sections/ticker.js';
+import { caseStudyTicker, livXTicker, hopscotchTicker, destroyTickers } from '../animations/sections/ticker.js';
 import { animateCTA } from '../animations/sections/cta.js';
 import { animateGalleryImages } from '../animations/sections/gallery.js';
 
 // Scroll
 import { applyParallaxEffect } from '../animations/scroll/parallax.js';
+
+// Variant animations (case-study specific)
+import { initHappyFeetAnimation, destroyHappyFeetAnimation } from '../animations/sections/case-study/happyfeet.js';
 
 /**
  * Initialize all case study page animations
@@ -31,8 +34,10 @@ export function initCaseStudyAnimations() {
     animateCTA();
     animateGalleryImages();
 
-    // LivX
+    // Variant animations (element-guarded)
     livXTicker();
+    hopscotchTicker();
+    initHappyFeetAnimation();
 }
 
 /**
@@ -41,5 +46,6 @@ export function initCaseStudyAnimations() {
 export function destroyCaseStudyAnimations() {
     destroyHPIHeroAnimation();
     destroyTickers();
+    destroyHappyFeetAnimation();
 }
 
