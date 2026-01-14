@@ -8,12 +8,16 @@ import { initContactHeroAnimation, destroyContactHeroAnimation } from '../animat
 // Text Animations
 import { initCharAnimations } from '../animations/text/charAnimations.js';
 
+// Smooth Scroll
+import { refreshSmoother } from '../core/smoothScroll.js';
+
 /**
  * Initialize all contact page animations
  */
 export function initContactAnimations() {
     initCharAnimations();
     initContactHeroAnimation();
+    refreshSmoother();
 }
 
 /**

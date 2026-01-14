@@ -25,6 +25,9 @@ import { initTestimonialsSwiperScripts, destroyTestimonialsSwiperScripts } from 
 // FAQ
 import { initAccordionComponents, destroyAccordionComponents, lineAnimation } from '../components/accordion/accordion.js';
 
+// Smooth Scroll
+import { refreshSmoother } from '../core/smoothScroll.js';
+
 /**
  * Initialize all service page animations
  */
@@ -39,6 +42,7 @@ export function initServiceAnimations() {
     serviceProcessScroll();
     serviceHoverAnimation();
     initTestimonialsSwiperScripts();
+    refreshSmoother();
 }
 
 /**

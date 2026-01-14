@@ -5,11 +5,15 @@
 // Hero
 import { initThankHeroAnimation, destroyThankHeroAnimation } from '../animations/hero/thankHero.js';
 
+// Smooth Scroll
+import { refreshSmoother } from '../core/smoothScroll.js';
+
 /**
  * Initialize all thank you page animations
  */
 export function initThankAnimations() {
     initThankHeroAnimation();
+    refreshSmoother();
 }
 
 /**
