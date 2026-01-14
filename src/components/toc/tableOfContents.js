@@ -4,10 +4,18 @@
  */
 
 import { getSmoother } from '../../core/smoothScroll.js';
+import { isMobile } from '../../utils/isMobile.js';
 
 // Store click handlers for cleanup
 let clickHandlers = [];
 let sideInfoPin = null;
+
+// Mobile drawer state
+let mobileTocOpen = false;
+let mobileTocHandlers = {
+    wrapperClick: null,
+    outsideClick: null,
+};
 
 /**
  * Generate a URL-friendly slug from text
@@ -79,8 +87,9 @@ export function initTableOfContents() {
         tocContainer.appendChild(link);
     });
 
-    // Initialize sticky sidebar
+    // Initialize sticky sidebar (desktop) or mobile drawer
     initStickySidebar();
+    initMobileTocDrawer();
 }
 
 /**
@@ -88,6 +97,9 @@ export function initTableOfContents() {
  * Works with ScrollSmoother where CSS sticky doesn't
  */
 function initStickySidebar() {
+    // Skip sticky on mobile
+    if (isMobile()) return;
+
     const contentWrapper = document.querySelector('.blog_content-wrapper');
     const sideInfo = document.querySelector('.blog_side-info-wrapper');
 
@@ -114,12 +126,113 @@ function destroyStickySidebar() {
 }
 
 /**
+ * Open mobile TOC drawer with animation
+ */
+function openMobileToc() {
+    const tocLists = document.querySelector('.toc_lists');
+    if (!tocLists || mobileTocOpen) return;
+
+    mobileTocOpen = true;
+    tocLists.style.display = 'flex';
+
+    gsap.fromTo(tocLists, 
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.3, ease: 'power2.out' }
+    );
+}
+
+/**
+ * Close mobile TOC drawer with animation
+ */
+function closeMobileToc() {
+    const tocLists = document.querySelector('.toc_lists');
+    if (!tocLists || !mobileTocOpen) return;
+
+    gsap.to(tocLists, {
+        y: "-20px",
+        opacity: 0,
+        duration: 0.2,
+        ease: 'power2.in',
+        onComplete: () => {
+            tocLists.style.display = 'none';
+            mobileTocOpen = false;
+        }
+    });
+}
+
+/**
+ * Initialize mobile TOC drawer functionality
+ * Opens/closes the TOC list on mobile devices
+ */
+function initMobileTocDrawer() {
+    // Only initialize on mobile
+    if (!isMobile()) return;
+
+    const tocWrapper = document.querySelector('.blog_toc-wrapper');
+    const tocLists = document.querySelector('.toc_lists');
+
+    if (!tocWrapper || !tocLists) return;
+
+    // Toggle drawer on wrapper click
+    mobileTocHandlers.wrapperClick = (e) => {
+        // Don't toggle if clicking on a link inside
+        if (e.target.closest('.toc_list-link')) return;
+
+        if (mobileTocOpen) {
+            closeMobileToc();
+        } else {
+            openMobileToc();
+        }
+    };
+
+    // Close drawer when clicking outside
+    mobileTocHandlers.outsideClick = (e) => {
+        if (mobileTocOpen && !tocWrapper.contains(e.target)) {
+            closeMobileToc();
+        }
+    };
+
+    // Add close handler to TOC links
+    clickHandlers.forEach(({ element }) => {
+        const originalHandler = element.onclick;
+        element.addEventListener('click', () => {
+            if (isMobile()) {
+                closeMobileToc();
+            }
+        });
+    });
+
+    tocWrapper.addEventListener('click', mobileTocHandlers.wrapperClick);
+    document.addEventListener('click', mobileTocHandlers.outsideClick);
+}
+
+/**
+ * Destroy mobile TOC drawer
+ */
+function destroyMobileTocDrawer() {
+    const tocWrapper = document.querySelector('.blog_toc-wrapper');
+
+    if (tocWrapper && mobileTocHandlers.wrapperClick) {
+        tocWrapper.removeEventListener('click', mobileTocHandlers.wrapperClick);
+    }
+
+    if (mobileTocHandlers.outsideClick) {
+        document.removeEventListener('click', mobileTocHandlers.outsideClick);
+    }
+
+    mobileTocHandlers.wrapperClick = null;
+    mobileTocHandlers.outsideClick = null;
+    mobileTocOpen = false;
+}
+
+/**
  * Destroy Table of Contents
  * Removes event listeners and cleans up
  */
 export function destroyTableOfContents() {
-    // Kill sticky sidebar
+    // Kill sticky sidebar and mobile drawer
     destroyStickySidebar();
+    destroyMobileTocDrawer();
 
     // Remove all click handlers
     clickHandlers.forEach(({ element, handler }) => {
