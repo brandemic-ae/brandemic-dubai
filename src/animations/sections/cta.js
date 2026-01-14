@@ -22,7 +22,7 @@ export function animateCTA() {
     });
 
     // Apply SplitText once
-    const splitCtaChars = new SplitText(visibleParagraphs, { type: "chars, words" });
+    const splitCtaChars = new SplitText(visibleParagraphs, { type: "chars" });
     const ctaChars = splitCtaChars.chars;
     const paragraphs = splitCtaChars.elements;
 
