@@ -149,7 +149,7 @@ function closeMobileToc() {
     if (!tocLists || !mobileTocOpen) return;
 
     gsap.to(tocLists, {
-        y: "-20px",
+        y: 20,
         opacity: 0,
         duration: 0.2,
         ease: 'power2.in',
