@@ -12,6 +12,7 @@ import { animateCTA } from '../animations/sections/cta.js';
 
 // Components
 import { initTableOfContents, destroyTableOfContents } from '../components/toc/tableOfContents.js';
+import { initShareButton, destroyShareButton } from '../components/share/shareButton.js';
 
 let blogPostTl = null;
 
@@ -23,6 +24,7 @@ export function initBlogPostAnimations() {
     animateSvgPaths();
     animateCTA();
     initTableOfContents();
+    initShareButton();
 }
 
 /**
@@ -31,5 +33,6 @@ export function initBlogPostAnimations() {
 export function destroyBlogPostAnimations() {
     if (blogPostTl) blogPostTl.kill();
     destroyTableOfContents();
+    destroyShareButton();
 }
 
