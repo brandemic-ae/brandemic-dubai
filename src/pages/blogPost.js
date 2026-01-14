@@ -11,8 +11,8 @@ import { animateSvgPaths } from '../animations/svg/drawPaths.js';
 import { animateCTA } from '../animations/sections/cta.js';
 
 // Components
-import { initTableOfContents, destroyTableOfContents } from '../components/toc/tableOfContents.js';
 import { initShareButton, destroyShareButton } from '../components/share/shareButton.js';
+import { initTableOfContents, destroyTableOfContents } from '../components/toc/tableOfContents.js';
 
 let blogPostTl = null;
 
@@ -22,9 +22,9 @@ let blogPostTl = null;
 export function initBlogPostAnimations() {
     blogPostTl = createHeroTimeline();
     animateSvgPaths();
+    initShareButton();
     animateCTA();
     initTableOfContents();
-    initShareButton();
 }
 
 /**
@@ -32,7 +32,7 @@ export function initBlogPostAnimations() {
  */
 export function destroyBlogPostAnimations() {
     if (blogPostTl) blogPostTl.kill();
-    destroyTableOfContents();
     destroyShareButton();
+    destroyTableOfContents();
 }
 

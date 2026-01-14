@@ -1,11 +1,13 @@
 /**
  * Table of Contents - Dynamically generates TOC from H2 headings
+ * Includes sticky sidebar functionality using ScrollTrigger pin
  */
 
 import { getSmoother } from '../../core/smoothScroll.js';
 
 // Store click handlers for cleanup
 let clickHandlers = [];
+let sideInfoPin = null;
 
 /**
  * Generate a URL-friendly slug from text
@@ -76,6 +78,39 @@ export function initTableOfContents() {
         // Append link to TOC container
         tocContainer.appendChild(link);
     });
+
+    // Initialize sticky sidebar
+    initStickySidebar();
+}
+
+/**
+ * Initialize sticky sidebar using ScrollTrigger pin
+ * Works with ScrollSmoother where CSS sticky doesn't
+ */
+function initStickySidebar() {
+    const contentWrapper = document.querySelector('.blog_content-wrapper');
+    const sideInfo = document.querySelector('.blog_side-info-wrapper');
+
+    if (!contentWrapper || !sideInfo) return;
+
+    sideInfoPin = ScrollTrigger.create({
+        trigger: sideInfo,
+        start: 'top top+=100', // Adjust offset based on nav height
+        endTrigger: contentWrapper,
+        end: 'bottom bottom',
+        pin: true,
+        pinSpacing: false,
+    });
+}
+
+/**
+ * Destroy sticky sidebar
+ */
+function destroyStickySidebar() {
+    if (sideInfoPin) {
+        sideInfoPin.kill();
+        sideInfoPin = null;
+    }
 }
 
 /**
@@ -83,6 +118,9 @@ export function initTableOfContents() {
  * Removes event listeners and cleans up
  */
 export function destroyTableOfContents() {
+    // Kill sticky sidebar
+    destroyStickySidebar();
+
     // Remove all click handlers
     clickHandlers.forEach(({ element, handler }) => {
         element.removeEventListener('click', handler);
