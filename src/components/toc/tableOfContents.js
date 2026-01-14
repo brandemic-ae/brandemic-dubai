@@ -50,8 +50,9 @@ export function initTableOfContents() {
         }
 
         // Create anchor link
-        const link = document.createElement('a');
+        const link = document.createElement('p');
         link.className = 'toc_list-link';
+        link.classList.add('link-hover-ix');
         link.textContent = heading.textContent;
 
         // Create click handler

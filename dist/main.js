@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-01-13T12:59:43.452Z
+ * Built: 2026-01-14T09:36:27.214Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -1187,7 +1187,7 @@
         });
 
         // Apply SplitText once
-        const splitCtaChars = new SplitText(visibleParagraphs, { type: "chars" });
+        const splitCtaChars = new SplitText(visibleParagraphs, { type: "chars, words" });
         const ctaChars = splitCtaChars.chars;
         const paragraphs = splitCtaChars.elements;
 
@@ -2749,8 +2749,9 @@
             }
 
             // Create anchor link
-            const link = document.createElement('a');
+            const link = document.createElement('p');
             link.className = 'toc_list-link';
+            link.classList.add('link-hover-ix');
             link.textContent = heading.textContent;
 
             // Create click handler
