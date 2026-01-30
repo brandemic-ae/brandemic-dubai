@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-01-14T16:10:43.222Z
+ * Built: 2026-01-30T13:14:14.050Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -1239,6 +1239,140 @@
     }
 
     /**
+     * Ticker Animations - Horizontal loop tickers for various sections
+     */
+
+
+    let aboutTickerLoops = [];
+    let caseStudyTickerLoop = null;
+    let livXTickerLoop = null;
+    let hopscotchTickerLoops = [];
+
+    /**
+     * Initialize about page tickers (brands, team, culture)
+     */
+    function aboutTicker() {
+        const elements = [
+            { selector: ".brand_logo", reversed: false },
+            { selector: ".team_ticker-wrapper.is-one .team_card", reversed: false },
+            { selector: ".team_ticker-wrapper.is-two .team_card", reversed: true },
+            { selector: ".culture_image", reversed: false }
+        ];
+
+        aboutTickerLoops = elements.map(({ selector, reversed }) => {
+            const items = gsap.utils.toArray(selector);
+            if (items.length === 0) return null;
+
+            const loop = horizontalLoop(items, {
+                draggable: false,
+                inertia: false,
+                repeat: -1,
+                center: false,
+                reversed
+            });
+
+            return loop;
+        }).filter(Boolean);
+    }
+
+    /**
+     * Destroy about page tickers
+     */
+    function destroyAboutTicker() {
+        aboutTickerLoops.forEach(loop => {
+            if (loop && typeof loop.kill === 'function') {
+                loop.kill();
+            }
+        });
+        aboutTickerLoops = [];
+    }
+
+    /**
+     * Initialize case study ticker
+     */
+    function caseStudyTicker() {
+        const wrapper = document.querySelector(".case_studies-ticker-element");
+        if (!wrapper) return;
+
+        const wrapperContent = gsap.utils.toArray(".case_study-ticker-image");
+
+        caseStudyTickerLoop = horizontalLoop(wrapperContent, {
+            draggable: false,
+            inertia: false,
+            repeat: -1,
+            center: false,
+        });
+    }
+
+    /**
+     * Initialize LivX ticker
+     */
+    function livXTicker() {
+        const livxTexts = document.querySelector(".is-livx-texts");
+        if (!livxTexts) return;
+
+        const livxText = gsap.utils.toArray(".livx_ticker-text");
+
+        livXTickerLoop = horizontalLoop(livxText, {
+            draggable: false,
+            inertia: false,
+            repeat: -1,
+            center: false,
+        });
+    }
+
+    /**
+     * Initialize Hopscotch tickers (two tickers moving in opposite directions)
+     */
+    function hopscotchTicker() {
+        const tickerOne = document.querySelector(".hopscotch_ticker.is-one");
+        const tickerTwo = document.querySelector(".hopscotch_ticker.is-two");
+        if (!tickerOne && !tickerTwo) return;
+
+        const elements = [
+            { selector: ".hopscotch_ticker.is-one .hopscotch_ticker-svg", reversed: false },
+            { selector: ".hopscotch_ticker.is-two .hopscotch_ticker-svg", reversed: true },
+        ];
+
+        hopscotchTickerLoops = elements.map(({ selector, reversed }) => {
+            const items = gsap.utils.toArray(selector);
+            if (items.length === 0) return null;
+
+            const loop = horizontalLoop(items, {
+                draggable: false,
+                inertia: false,
+                repeat: -1,
+                center: false,
+                reversed
+            });
+
+            return loop;
+        }).filter(Boolean);
+    }
+
+    /**
+     * Destroy case study variant tickers
+     */
+    function destroyTickers() {
+        if (caseStudyTickerLoop && caseStudyTickerLoop.kill) {
+            caseStudyTickerLoop.kill();
+            caseStudyTickerLoop = null;
+        }
+
+        if (livXTickerLoop && livXTickerLoop.kill) {
+            livXTickerLoop.kill();
+            livXTickerLoop = null;
+        }
+
+        hopscotchTickerLoops.forEach(loop => {
+            if (loop && typeof loop.kill === 'function') {
+                loop.kill();
+            }
+        });
+        hopscotchTickerLoops = [];
+    }
+
+    /**
      * Parallax Effect - Smooth parallax on images
      */
 
@@ -1484,11 +1618,12 @@
         initLineAnimations();
         playVideo();
         startVideo();
-        animateWorkImages();
+        animateWorkImages();    
         applyParallaxEffect();
         serviceHoverAnimation();
         visionSectionAnimation();
         animateSvgPaths();
+        aboutTicker();
         animateScrollingText();
         animateCTA();
         initAccordionComponents();
@@ -1510,6 +1645,7 @@
         destroyToolsSwiperScripts();
         destroyTestimonialsSwiperScripts();
         destroyAccordionComponents();
+        destroyAboutTicker();
     }
 
     /**
@@ -1794,140 +1930,6 @@
             processTl.kill();
             processTl = null;
         }
-    }
-
-    /**
-     * Ticker Animations - Horizontal loop tickers for various sections
-     */
-
-
-    let aboutTickerLoops = [];
-    let caseStudyTickerLoop = null;
-    let livXTickerLoop = null;
-    let hopscotchTickerLoops = [];
-
-    /**
-     * Initialize about page tickers (brands, team, culture)
-     */
-    function aboutTicker() {
-        const elements = [
-            { selector: ".brand_logo", reversed: false },
-            { selector: ".team_ticker-wrapper.is-one .team_card", reversed: false },
-            { selector: ".team_ticker-wrapper.is-two .team_card", reversed: true },
-            { selector: ".culture_image", reversed: false }
-        ];
-
-        aboutTickerLoops = elements.map(({ selector, reversed }) => {
-            const items = gsap.utils.toArray(selector);
-            if (items.length === 0) return null;
-
-            const loop = horizontalLoop(items, {
-                draggable: false,
-                inertia: false,
-                repeat: -1,
-                center: false,
-                reversed
-            });
-
-            return loop;
-        }).filter(Boolean);
-    }
-
-    /**
-     * Destroy about page tickers
-     */
-    function destroyAboutTicker() {
-        aboutTickerLoops.forEach(loop => {
-            if (loop && typeof loop.kill === 'function') {
-                loop.kill();
-            }
-        });
-        aboutTickerLoops = [];
-    }
-
-    /**
-     * Initialize case study ticker
-     */
-    function caseStudyTicker() {
-        const wrapper = document.querySelector(".case_studies-ticker-element");
-        if (!wrapper) return;
-
-        const wrapperContent = gsap.utils.toArray(".case_study-ticker-image");
-
-        caseStudyTickerLoop = horizontalLoop(wrapperContent, {
-            draggable: false,
-            inertia: false,
-            repeat: -1,
-            center: false,
-        });
-    }
-
-    /**
-     * Initialize LivX ticker
-     */
-    function livXTicker() {
-        const livxTexts = document.querySelector(".is-livx-texts");
-        if (!livxTexts) return;
-
-        const livxText = gsap.utils.toArray(".livx_ticker-text");
-
-        livXTickerLoop = horizontalLoop(livxText, {
-            draggable: false,
-            inertia: false,
-            repeat: -1,
-            center: false,
-        });
-    }
-
-    /**
-     * Initialize Hopscotch tickers (two tickers moving in opposite directions)
-     */
-    function hopscotchTicker() {
-        const tickerOne = document.querySelector(".hopscotch_ticker.is-one");
-        const tickerTwo = document.querySelector(".hopscotch_ticker.is-two");
-        if (!tickerOne && !tickerTwo) return;
-
-        const elements = [
-            { selector: ".hopscotch_ticker.is-one .hopscotch_ticker-svg", reversed: false },
-            { selector: ".hopscotch_ticker.is-two .hopscotch_ticker-svg", reversed: true },
-        ];
-
-        hopscotchTickerLoops = elements.map(({ selector, reversed }) => {
-            const items = gsap.utils.toArray(selector);
-            if (items.length === 0) return null;
-
-            const loop = horizontalLoop(items, {
-                draggable: false,
-                inertia: false,
-                repeat: -1,
-                center: false,
-                reversed
-            });
-
-            return loop;
-        }).filter(Boolean);
-    }
-
-    /**
-     * Destroy case study variant tickers
-     */
-    function destroyTickers() {
-        if (caseStudyTickerLoop && caseStudyTickerLoop.kill) {
-            caseStudyTickerLoop.kill();
-            caseStudyTickerLoop = null;
-        }
-
-        if (livXTickerLoop && livXTickerLoop.kill) {
-            livXTickerLoop.kill();
-            livXTickerLoop = null;
-        }
-
-        hopscotchTickerLoops.forEach(loop => {
-            if (loop && typeof loop.kill === 'function') {
-                loop.kill();
-            }
-        });
-        hopscotchTickerLoops = [];
     }
 
     /**
