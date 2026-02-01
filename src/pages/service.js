@@ -41,7 +41,6 @@ export function initServiceAnimations() {
     animateSvgPaths();
     animateWorkImages();
     initFeaturedSwiper();
-    ScrollTrigger.refresh();
     serviceProcessScroll();
     serviceHoverAnimation();
     initTestimonialsSwiperScripts();
