@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-02-01T04:04:15.990Z
+ * Built: 2026-02-01T05:15:32.681Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -2717,11 +2717,13 @@
         initServiceHeroAnimation();
         initAccordionComponents();
         lineAnimation();
+        animateWorkImages();
         startScrollDownAnimation();
         initCharAnimations();
         animateSvgPaths();
         animateWorkImages();
         initFeaturedSwiper();
+        ScrollTrigger.refresh();
         serviceProcessScroll();
         serviceHoverAnimation();
         initTestimonialsSwiperScripts();

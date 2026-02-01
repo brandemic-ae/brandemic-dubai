@@ -35,11 +35,13 @@ export function initServiceAnimations() {
     initServiceHeroAnimation();
     initAccordionComponents();
     lineAnimation();
+    animateWorkImages();
     startScrollDownAnimation();
     initCharAnimations();
     animateSvgPaths();
     animateWorkImages();
     initFeaturedSwiper();
+    ScrollTrigger.refresh();
     serviceProcessScroll();
     serviceHoverAnimation();
     initTestimonialsSwiperScripts();
