@@ -25,6 +25,9 @@ import { initTestimonialsSwiperScripts, destroyTestimonialsSwiperScripts } from 
 // FAQ
 import { initAccordionComponents, destroyAccordionComponents, lineAnimation } from '../components/accordion/accordion.js';
 
+//FeaturedWorks
+import { animateWorkImages, destroyFeaturedWorkLoop } from '../animations/sections/featuredWork.js';
+
 /**
  * Initialize all service page animations
  */
@@ -35,6 +38,7 @@ export function initServiceAnimations() {
     startScrollDownAnimation();
     initCharAnimations();
     animateSvgPaths();
+    animateWorkImages();
     initFeaturedSwiper();
     serviceProcessScroll();
     serviceHoverAnimation();
@@ -50,6 +54,7 @@ export function destroyServiceAnimations() {
     destroyFeaturedSwiper();
     destroyServiceProcessScroll();
     destroyServiceHoverAnimation();
+    destroyFeaturedWorkLoop();
     destroyTestimonialsSwiperScripts();
 }
 
