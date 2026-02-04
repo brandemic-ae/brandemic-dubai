@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-02-01T05:48:49.757Z
+ * Built: 2026-02-04T10:25:39.309Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -925,16 +925,6 @@
             image.removeEventListener("mouseleave", handlers.mouseleave);
         });
         featuredWorkLoopHandlers.clear();
-        const wrapper = document.querySelector(".work_images-wrapper");
-        if (wrapper) {
-            wrapper.classList.remove("flex-layout");
-        }
-
-        ScrollTrigger.getAll().forEach(st => {
-            if (st.trigger && st.trigger.classList.contains("our-work_block")) {
-            st.kill();
-            }
-        });
     }
 
     /**
@@ -1261,7 +1251,7 @@
     /**
      * Initialize about page tickers (brands, team, culture)
      */
-    function aboutTicker() {
+    function brandTicker() {
         const elements = [
             { selector: ".brand_logo", reversed: false },
             { selector: ".team_ticker-wrapper.is-one .team_card", reversed: false },
@@ -1288,7 +1278,7 @@
     /**
      * Destroy about page tickers
      */
-    function destroyAboutTicker() {
+    function destroyBrandTicker() {
         aboutTickerLoops.forEach(loop => {
             if (loop && typeof loop.kill === 'function') {
                 loop.kill();
@@ -1633,7 +1623,7 @@
         serviceHoverAnimation();
         visionSectionAnimation();
         animateSvgPaths();
-        aboutTicker();
+        brandTicker();
         animateScrollingText();
         animateCTA();
         initAccordionComponents();
@@ -1655,7 +1645,7 @@
         destroyToolsSwiperScripts();
         destroyTestimonialsSwiperScripts();
         destroyAccordionComponents();
-        destroyAboutTicker();
+        destroyBrandTicker();
     }
 
     /**
@@ -1988,7 +1978,7 @@
         initHPIHeroAnimation();
         animateMilestones();
         scrollPinObserver();
-        aboutTicker();
+        brandTicker();
         initAccordionComponents();
         lineAnimation();
         initCharAnimations();
@@ -2005,7 +1995,7 @@
         destroyHPIHeroAnimation();
         destroyScrollPinObserver();
         destroyProcessSwiper();
-        destroyAboutTicker();
+        destroyBrandTicker();
         destroyAccordionComponents();
     }
 
@@ -2731,7 +2721,6 @@
         startScrollDownAnimation();
         initCharAnimations();
         animateSvgPaths();
-        animateWorkImages();
         initFeaturedSwiper();
         serviceProcessScroll();
         serviceHoverAnimation();
