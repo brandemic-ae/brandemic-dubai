@@ -72,7 +72,7 @@ export function initContactHeroAnimation() {
             stagger: 0.2
         }, "-=1.3")
         .to(".scroll-down", {
-            autoAlpha: 1,
+            opacity: 1,
             duration: 1,
             ease: "power3.out"
         }, "-=1.3")

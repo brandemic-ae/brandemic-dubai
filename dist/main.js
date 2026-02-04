@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-02-04T12:43:15.685Z
+ * Built: 2026-02-04T12:57:31.748Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -2305,7 +2305,7 @@
                 stagger: 0.2
             }, "-=1.3")
             .to(".scroll-down", {
-                autoAlpha: 1,
+                opacity: 1,
                 duration: 1,
                 ease: "power3.out"
             }, "-=1.3")
