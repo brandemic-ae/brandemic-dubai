@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-02-04T12:57:31.748Z
+ * Built: 2026-02-04T13:28:30.090Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -2427,6 +2427,16 @@
         if (contactCycleCall) contactCycleCall.kill();
     }
 
+    function destroyWebflowLottie() {
+      if (!window.Webflow || !Webflow.require) return;
+      Webflow.require('lottie').destroy();
+    }
+
+    function initWebflowLottie() {
+      if (!window.Webflow || !Webflow.require) return;
+      Webflow.require('lottie').ready();
+    }
+
     /**
      * Contact Page - Initialize and destroy animations
      */
@@ -2438,6 +2448,7 @@
     function initContactAnimations() {
         initCharAnimations();
         initContactHeroAnimation();
+        initWebflowLottie();
     }
 
     /**
@@ -2445,6 +2456,7 @@
      */
     function destroyContactAnimations() {
         destroyContactHeroAnimation();
+        destroyWebflowLottie();
     }
 
     /**
@@ -2729,6 +2741,7 @@
         serviceProcessScroll();
         serviceHoverAnimation();
         initTestimonialsSwiperScripts();
+        initWebflowLottie();
     }
 
     /**
@@ -2742,6 +2755,7 @@
         destroyServiceHoverAnimation();
         destroyFeaturedWorkLoop();
         destroyTestimonialsSwiperScripts();
+        destroyWebflowLottie();
     }
 
     /**
