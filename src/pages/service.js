@@ -3,7 +3,7 @@
  */
 
 // Hero
-import { initServiceHeroAnimation, destroyServiceHeroAnimation } from '../animations/hero/serviceHero.js';
+import { initHeroAnimation, destroyHeroAnimation } from '../animations/hero/serviceHero.js';
 
 // Text Animations
 import { initCharAnimations } from '../animations/text/charAnimations.js';
@@ -32,7 +32,7 @@ import { animateWorkImages, destroyFeaturedWorkLoop } from '../animations/sectio
  * Initialize all service page animations
  */
 export function initServiceAnimations() {
-    initServiceHeroAnimation();
+    initHeroAnimation();
     initAccordionComponents();
     lineAnimation();
     animateWorkImages();
@@ -49,7 +49,7 @@ export function initServiceAnimations() {
  * Destroy all service page animations
  */
 export function destroyServiceAnimations() {
-    destroyServiceHeroAnimation();
+    destroyHeroAnimation();
     destroyAccordionComponents();
     destroyFeaturedSwiper();
     destroyServiceProcessScroll();

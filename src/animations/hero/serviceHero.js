@@ -9,7 +9,7 @@ let serviceHeroTl = null;
 /**
  * Initialize service hero animation
  */
-export function initServiceHeroAnimation() {
+export function initHeroAnimation() {
     serviceHeroTl = createHeroTimeline();
 
     const splitServiceTag = new SplitText(".service_hero-tl-0", { type: "chars,words,lines" });
@@ -76,13 +76,13 @@ export function initServiceHeroAnimation() {
             duration: 1,
             ease: "power3.out",
         }, "-=1.3")
-        .add(() => initServiceHeroFloatingEffect());
+        .add(() => initHeroFloatingEffect());
 }
 
 /**
  * Initialize floating effect for service hero images
  */
-function initServiceHeroFloatingEffect() {
+function initHeroFloatingEffect() {
     const floatTargets = [
         { selector: '.is-one', xFactor: 20, yFactor: 10, rotFactor: 5 },
         { selector: '.is-two', xFactor: 15, yFactor: 20, rotFactor: -6 },
@@ -128,7 +128,7 @@ function initServiceHeroFloatingEffect() {
 /**
  * Destroy service hero animation
  */
-export function destroyServiceHeroAnimation() {
+export function destroyHeroAnimation() {
     if (serviceHeroTl) serviceHeroTl.kill();
 }
 

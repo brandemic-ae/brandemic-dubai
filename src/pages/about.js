@@ -1,6 +1,7 @@
 /**
  * About Page - Initialize and destroy animations
  */
+import { initHeroAnimation, destroyHeroAnimation } from '../animations/hero/serviceHero.js';
 
 // Hero
 import { initHPIHeroAnimation, destroyHPIHeroAnimation } from '../animations/hero/hpiHero.js';
@@ -31,7 +32,7 @@ import { initProcessSwiper, destroyProcessSwiper } from '../components/swiper/pr
  * Initialize all about page animations
  */
 export function initAboutAnimations() {
-    initHPIHeroAnimation();
+    initHeroAnimation();
     animateMilestones();
     scrollPinObserver();
     brandTicker();
@@ -48,7 +49,7 @@ export function initAboutAnimations() {
  * Destroy all about page animations
  */
 export function destroyAboutAnimations() {
-    destroyHPIHeroAnimation();
+    destroyHeroAnimation();
     destroyScrollPinObserver();
     destroyProcessSwiper();
     destroyBrandTicker();
