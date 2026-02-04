@@ -84,6 +84,7 @@ export function initContactHeroAnimation() {
         .add(() => cycleHeadingWords())
         .add(() => initContactHeroFloatingEffect());
 }
+
 /**
  * Initialize floating effect for contact hero images
  */
