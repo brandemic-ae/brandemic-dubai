@@ -71,15 +71,10 @@ export function initHeroAnimation() {
             ease: "power3.out",
             stagger: 0.2
         }, "-=1.3")
-        .fromTo(".scroll-down",
-        {
-            autoAlpha: 0
-        },
-        {
+        .to(".scroll-down", {
             autoAlpha: 1,
             duration: 1,
-            ease: "power3.out",
-            immediateRender: false
+            ease: "power3.out"
         }, "-=1.3")
         .add(() => initHeroFloatingEffect());
 }
