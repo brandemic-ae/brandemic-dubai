@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-02-04T11:16:23.155Z
+ * Built: 2026-02-04T11:28:31.727Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -2303,6 +2303,11 @@
                 duration: 1.5,
                 ease: "power3.out",
                 stagger: 0.2
+            }, "-=1.3")
+            .from(".scroll-down", {
+                opacity: 0,
+                duration: 1,
+                ease: "power3.out",
             }, "-=1.3")
             .add(() => cycleHeadingWords())
             .add(() => initContactHeroFloatingEffect());

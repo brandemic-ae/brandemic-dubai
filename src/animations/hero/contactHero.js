@@ -71,6 +71,11 @@ export function initContactHeroAnimation() {
             ease: "power3.out",
             stagger: 0.2
         }, "-=1.3")
+        .from(".scroll-down", {
+            opacity: 0,
+            duration: 1,
+            ease: "power3.out",
+        }, "-=1.3")
         .add(() => cycleHeadingWords())
         .add(() => initContactHeroFloatingEffect());
 }
