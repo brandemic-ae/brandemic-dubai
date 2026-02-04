@@ -39,7 +39,6 @@ export function initServiceAnimations() {
     startScrollDownAnimation();
     initCharAnimations();
     animateSvgPaths();
-    animateWorkImages();
     initFeaturedSwiper();
     serviceProcessScroll();
     serviceHoverAnimation();

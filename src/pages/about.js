@@ -12,7 +12,7 @@ import { initLineAnimations } from '../animations/text/lineAnimations.js';
 // Sections
 import { animateMilestones } from '../animations/sections/milestones.js';
 import { scrollPinObserver, destroyScrollPinObserver } from '../animations/sections/process.js';
-import { aboutTicker, destroyAboutTicker } from '../animations/sections/ticker.js';
+import { brandTicker, destroyBrandTicker } from '../animations/sections/ticker.js';
 
 // Accordion
 // import { initAccordionComponents, destroyAccordionComponents } from '../components/accordion/accordion.js';
@@ -34,7 +34,7 @@ export function initAboutAnimations() {
     initHPIHeroAnimation();
     animateMilestones();
     scrollPinObserver();
-    aboutTicker();
+    brandTicker();
     initAccordionComponents();
     lineAnimation();
     initCharAnimations();
@@ -51,7 +51,7 @@ export function destroyAboutAnimations() {
     destroyHPIHeroAnimation();
     destroyScrollPinObserver();
     destroyProcessSwiper();
-    destroyAboutTicker();
+    destroyBrandTicker();
     destroyAccordionComponents();
 }
 

@@ -12,7 +12,7 @@ let hopscotchTickerLoops = [];
 /**
  * Initialize about page tickers (brands, team, culture)
  */
-export function aboutTicker() {
+export function brandTicker() {
     const elements = [
         { selector: ".brand_logo", reversed: false },
         { selector: ".team_ticker-wrapper.is-one .team_card", reversed: false },
@@ -39,7 +39,7 @@ export function aboutTicker() {
 /**
  * Destroy about page tickers
  */
-export function destroyAboutTicker() {
+export function destroyBrandTicker() {
     aboutTickerLoops.forEach(loop => {
         if (loop && typeof loop.kill === 'function') {
             loop.kill();

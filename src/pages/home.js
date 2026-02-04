@@ -18,7 +18,7 @@ import { animateWorkImages, destroyFeaturedWorkLoop } from '../animations/sectio
 import { serviceHoverAnimation, destroyServiceHoverAnimation } from '../animations/sections/serviceHover.js';
 import { visionSectionAnimation, destroyVisionSectionAnimation } from '../animations/sections/vision.js';
 import { animateCTA } from '../animations/sections/cta.js';
-import { aboutTicker, destroyAboutTicker } from '../animations/sections/ticker.js';
+import { brandTicker, destroyBrandTicker } from '../animations/sections/ticker.js';
 
 // Scroll
 import { applyParallaxEffect } from '../animations/scroll/parallax.js';
@@ -50,7 +50,7 @@ export function initHomeAnimations() {
     serviceHoverAnimation();
     visionSectionAnimation();
     animateSvgPaths();
-    aboutTicker();
+    brandTicker();
     animateScrollingText();
     animateCTA();
     initAccordionComponents();
@@ -72,6 +72,6 @@ export function destroyHomeAnimations() {
     destroyToolsSwiperScripts();
     destroyTestimonialsSwiperScripts();
     destroyAccordionComponents();
-    destroyAboutTicker();
+    destroyBrandTicker();
 }
 

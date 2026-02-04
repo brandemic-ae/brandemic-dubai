@@ -48,16 +48,6 @@ export function destroyFeaturedWorkLoop() {
         image.removeEventListener("mouseleave", handlers.mouseleave);
     });
     featuredWorkLoopHandlers.clear();
-    const wrapper = document.querySelector(".work_images-wrapper");
-    if (wrapper) {
-        wrapper.classList.remove("flex-layout");
-    }
-
-    ScrollTrigger.getAll().forEach(st => {
-        if (st.trigger && st.trigger.classList.contains("our-work_block")) {
-        st.kill();
-        }
-    });
 }
 
 /**
