@@ -1,9 +1,17 @@
-    export function destroyWebflowLottie() {
+export function destroyWebflowLottie() {
   if (!window.Webflow || !Webflow.require) return;
-  Webflow.require('lottie').destroy();
+
+  Webflow.push(() => {
+    const lottie = Webflow.require('lottie');
+    lottie.destroy();
+  });
 }
 
 export function initWebflowLottie() {
   if (!window.Webflow || !Webflow.require) return;
-  Webflow.require('lottie').ready();
+
+  Webflow.push(() => {
+    const lottie = Webflow.require('lottie');
+    lottie.ready();
+  });
 }
