@@ -28,7 +28,6 @@ import { initAccordionComponents, destroyAccordionComponents, lineAnimation } fr
 //FeaturedWorks
 import { animateWorkImages, destroyFeaturedWorkLoop } from '../animations/sections/featuredWork.js';
 
-import { triggerWebflowLottie, destroyLottieAnimations } from '../components/lottie/lottie.js';
 
 /**
  * Initialize all service page animations
@@ -45,7 +44,6 @@ export function initServiceAnimations() {
     serviceProcessScroll();
     serviceHoverAnimation();
     initTestimonialsSwiperScripts();
-    triggerWebflowLottie();
 }
 
 /**
@@ -59,6 +57,5 @@ export function destroyServiceAnimations() {
     destroyServiceHoverAnimation();
     destroyFeaturedWorkLoop();
     destroyTestimonialsSwiperScripts();
-    destroyLottieAnimations();
 }
 

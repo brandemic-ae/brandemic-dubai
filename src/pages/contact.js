@@ -8,7 +8,6 @@ import { initContactHeroAnimation, destroyContactHeroAnimation } from '../animat
 // Text Animations
 import { initCharAnimations } from '../animations/text/charAnimations.js';
 
-import { triggerWebflowLottie, destroyLottieAnimations } from '../components/lottie/lottie.js';
 
 /**
  * Initialize all contact page animations
@@ -16,7 +15,6 @@ import { triggerWebflowLottie, destroyLottieAnimations } from '../components/lot
 export function initContactAnimations() {
     initCharAnimations();
     initContactHeroAnimation();
-    triggerWebflowLottie();
 }
 
 /**
@@ -24,6 +22,5 @@ export function initContactAnimations() {
  */
 export function destroyContactAnimations() {
     destroyContactHeroAnimation();
-    destroyLottieAnimations();
 }
 
