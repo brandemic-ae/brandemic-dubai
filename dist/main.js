@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-02-05T08:32:41.518Z
+ * Built: 2026-02-05T09:33:25.169Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -3254,6 +3254,31 @@
         destroyTableOfContents();
     }
 
+    function initLotties(container) {
+      container.querySelectorAll('[data-lottie]').forEach(el => {
+        // prevent double init
+        if (el._lottieInstance) return;
+
+        const anim = lottie.loadAnimation({
+          container: el,
+          renderer: 'svg',
+          loop: true,
+          autoplay: true,
+          path: el.dataset.lottieSrc
+        });
+
+        el._lottieInstance = anim;
+      });
+    }
+    function destroyLotties(container) {
+      container.querySelectorAll('[data-lottie]').forEach(el => {
+        if (el._lottieInstance) {
+          el._lottieInstance.destroy();
+          el._lottieInstance = null;
+        }
+      });
+    }
+
     /**
      * Barba.js Configuration - Page transitions and view management
      */
@@ -3269,7 +3294,7 @@
                 async leave(data) {
                     const done = this.async();
                     const isOpen = getIsOpen();
-
+                    destroyLotties(data.current.container);
                     if (isOpen) {
                         const closeMenuTimeline = getCloseMenuTimeline();
                         closeMenuTimeline.restart();
@@ -3336,6 +3361,7 @@
                         filter: "blur(10px)",
                         duration: 0.5,
                     });
+                    initLotties(data.next.container);
                 },
             }],
             views: [{
