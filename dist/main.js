@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-02-05T11:45:12.224Z
+ * Built: 2026-02-05T11:59:33.639Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -3500,7 +3500,7 @@
         const allBlocks = document.querySelectorAll('.nav_link-block');
         
         allBlocks.forEach(block => {
-            const arrow = block.querySelector('.nav_arrow-icon');
+            const arrow = block.querySelector('.nav_arrow-icon','.nav_link-block-services');
             const link = block.querySelector('.nav_link');
 
             block.addEventListener('mouseenter', () => {
@@ -3581,6 +3581,24 @@
                 onComplete: () => {
                     gsap.set(subNavLinks, { display: "none" });
                 }
+            });
+        });
+        // Add hover effect for individual submenu items
+        subNavLinks.forEach(subLink => {
+            subLink.addEventListener('mouseenter', () => {
+                // Fade out other submenu links
+                subNavLinks.forEach(otherLink => {
+                    if (otherLink !== subLink) {
+                        gsap.to(otherLink, { opacity: 0.4, duration: 0.3 });
+                    }
+                });
+            });
+
+            subLink.addEventListener('mouseleave', () => {
+                // Restore opacity to all submenu links
+                subNavLinks.forEach(otherLink => {
+                    gsap.to(otherLink, { opacity: 1, duration: 0.3 });
+                });
             });
         });
     }

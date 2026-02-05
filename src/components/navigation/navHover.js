@@ -9,7 +9,7 @@ export function initNavHoverAnimation() {
     const allBlocks = document.querySelectorAll('.nav_link-block');
     
     allBlocks.forEach(block => {
-        const arrow = block.querySelector('.nav_arrow-icon');
+        const arrow = block.querySelector('.nav_arrow-icon','.nav_link-block-services');
         const link = block.querySelector('.nav_link');
 
         block.addEventListener('mouseenter', () => {
@@ -90,6 +90,24 @@ export function initSubMenuNavHover() {
             onComplete: () => {
                 gsap.set(subNavLinks, { display: "none" });
             }
+        });
+    });
+    // Add hover effect for individual submenu items
+    subNavLinks.forEach(subLink => {
+        subLink.addEventListener('mouseenter', () => {
+            // Fade out other submenu links
+            subNavLinks.forEach(otherLink => {
+                if (otherLink !== subLink) {
+                    gsap.to(otherLink, { opacity: 0.4, duration: 0.3 });
+                }
+            });
+        });
+
+        subLink.addEventListener('mouseleave', () => {
+            // Restore opacity to all submenu links
+            subNavLinks.forEach(otherLink => {
+                gsap.to(otherLink, { opacity: 1, duration: 0.3 });
+            });
         });
     });
 }
