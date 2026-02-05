@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-02-05T09:33:25.169Z
+ * Built: 2026-02-05T09:53:50.790Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -3291,6 +3291,9 @@
         barba.init({
             sync: true,
             transitions: [{
+                once(data) {
+                    initLotties(data.next.container);
+                },
                 async leave(data) {
                     const done = this.async();
                     const isOpen = getIsOpen();

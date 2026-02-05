@@ -58,6 +58,9 @@ export function initBarba() {
     barba.init({
         sync: true,
         transitions: [{
+            once(data) {
+                initLotties(data.next.container);
+            },
             async leave(data) {
                 const done = this.async();
                 const isOpen = getIsOpen();
