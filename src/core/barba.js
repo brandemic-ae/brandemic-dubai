@@ -9,7 +9,7 @@ import { recreateSmoother } from './smoothScroll.js';
 import { mouseHover, getScaleAnim } from '../components/cursor/customCursor.js';
 import { getIsOpen, setIsOpen, getCloseMenuTimeline } from '../components/navigation/megaMenu.js';
 import { footerLimitless, copyYear } from '../footer/footer.js';
-import { prefetchLottieResources } from '../components/lottie/lottie.js';
+
 // Page modules
 import { initHomeAnimations, destroyHomeAnimations } from '../pages/home.js';
 import { initAboutAnimations, destroyAboutAnimations } from '../pages/about.js';
@@ -55,7 +55,6 @@ export function getHeroAnimationFunction(namespace) {
  * Initialize Barba.js with all transitions and views
  */
 export function initBarba() {
-    prefetchLottieResources();
     barba.init({
         sync: true,
         transitions: [{

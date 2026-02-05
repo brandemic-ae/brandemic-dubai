@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-02-05T05:59:29.429Z
+ * Built: 2026-02-05T08:32:41.518Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -350,32 +350,6 @@
             const currentYear = new Date().getFullYear();
             yearSpan.textContent = currentYear;
         }
-    }
-
-    /**
-     * Lottie Prefetch Utility
-     * Simple solution to cache Lottie resources before Barba.js transitions
-     */
-
-    /**
-     * Prefetch all Lottie JSON files on the page
-     * This caches them so Barba.js can use the cached versions
-     */
-    function prefetchLottieResources() {
-        const lottieElements = document.querySelectorAll('[data-animation-type="lottie"]');
-        
-        lottieElements.forEach((element) => {
-            const src = element.getAttribute('data-src');
-            
-            if (src) {
-                const link = document.createElement('link');
-                link.rel = 'prefetch';
-                link.href = src;
-                link.as = 'fetch';
-                link.crossOrigin = 'anonymous';
-                document.head.appendChild(link);
-            }
-        });
     }
 
     /**
@@ -3289,7 +3263,6 @@
      * Initialize Barba.js with all transitions and views
      */
     function initBarba() {
-        prefetchLottieResources();
         barba.init({
             sync: true,
             transitions: [{
