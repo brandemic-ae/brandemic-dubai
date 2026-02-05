@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-02-04T13:32:48.937Z
+ * Built: 2026-02-05T05:39:35.591Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -2427,22 +2427,58 @@
         if (contactCycleCall) contactCycleCall.kill();
     }
 
-    function destroyWebflowLottie() {
-      if (!window.Webflow || !Webflow.require) return;
+    /**
+     * Force load Webflow Lottie animations after Barba.js page transitions
+     * Solves the issue where Lottie JSON resources aren't requested due to SPA caching
+     */
 
-      Webflow.push(() => {
-        const lottie = Webflow.require('lottie');
-        lottie.destroy();
-      });
+    /**
+     * Trigger Webflow's Lottie initialization
+     */
+    function triggerWebflowLottie() {
+        // Force Webflow to re-scan and initialize Lottie elements
+        if (window.Webflow && typeof window.Webflow.require === 'function') {
+            try {
+                // Get Webflow's Lottie module
+                const Webflow = window.Webflow;
+                
+                // Destroy previous instance
+                if (Webflow.destroy) {
+                    Webflow.destroy();
+                }
+                
+                // Re-initialize Webflow
+                if (Webflow.ready) {
+                    Webflow.ready();
+                }
+                
+                // Specifically trigger Lottie module
+                const lottieModule = Webflow.require('lottie');
+                if (lottieModule && lottieModule.ready) {
+                    lottieModule.ready();
+                }
+                
+                // Force redraw
+                if (Webflow.redraw) {
+                    Webflow.redraw.up();  
+                }
+            } catch (error) {
+                console.warn('Error reinitializing Webflow Lottie:', error);
+            }
+        }
     }
-
-    function initWebflowLottie() {
-      if (!window.Webflow || !Webflow.require) return;
-
-      Webflow.push(() => {
-        const lottie = Webflow.require('lottie');
-        lottie.ready();
-      });
+    /**
+     * Destroy all Lottie instances before page transition
+     */
+    function destroyLottieAnimations() {
+        const lottieElements = document.querySelectorAll('[data-animation-type="lottie"]');
+        
+        lottieElements.forEach((element) => {
+            if (element.lottie) {
+                element.lottie.destroy();
+                delete element.lottie;
+            }
+        });
     }
 
     /**
@@ -2456,7 +2492,7 @@
     function initContactAnimations() {
         initCharAnimations();
         initContactHeroAnimation();
-        initWebflowLottie();
+        triggerWebflowLottie();
     }
 
     /**
@@ -2464,7 +2500,7 @@
      */
     function destroyContactAnimations() {
         destroyContactHeroAnimation();
-        destroyWebflowLottie();
+        destroyLottieAnimations();
     }
 
     /**
@@ -2749,7 +2785,7 @@
         serviceProcessScroll();
         serviceHoverAnimation();
         initTestimonialsSwiperScripts();
-        initWebflowLottie();
+        triggerWebflowLottie();
     }
 
     /**
@@ -2763,7 +2799,7 @@
         destroyServiceHoverAnimation();
         destroyFeaturedWorkLoop();
         destroyTestimonialsSwiperScripts();
-        destroyWebflowLottie();
+        destroyLottieAnimations();
     }
 
     /**
