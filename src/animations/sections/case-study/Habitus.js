@@ -73,7 +73,7 @@ export function initHabitusSVG() {
       scrollTrigger: {
         trigger: svg,
         start: "top 80%",
-        end: "bottom 30%",
+        end: "bottom 50%",
         scrub: true,
         markers:true,
         onUpdate(self) {

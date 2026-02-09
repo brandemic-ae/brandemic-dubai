@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-02-09T07:24:02.021Z
+ * Built: 2026-02-09T07:26:39.248Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -2693,7 +2693,7 @@
           scrollTrigger: {
             trigger: svg,
             start: "top 80%",
-            end: "bottom 30%",
+            end: "bottom 50%",
             scrub: true,
             markers:true,
             onUpdate(self) {
