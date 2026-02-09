@@ -20,6 +20,7 @@ import { applyParallaxEffect } from '../animations/scroll/parallax.js';
 
 // Variant animations (case-study specific)
 import { initHappyFeetAnimation, destroyHappyFeetAnimation } from '../animations/sections/case-study/happyfeet.js';
+import { initHabitusSVG, destroyHabitusSVG } from '../animations/sections/case-study/Habitus.js';
 
 /**
  * Initialize all case study page animations
@@ -38,6 +39,7 @@ export function initCaseStudyAnimations() {
     livXTicker();
     hopscotchTicker();
     initHappyFeetAnimation();
+    initHabitusSVG();
 }
 
 /**
@@ -47,5 +49,6 @@ export function destroyCaseStudyAnimations() {
     destroyHPIHeroAnimation();
     destroyTickers();
     destroyHappyFeetAnimation();
+    destroyHabitusSVG()
 }
 
