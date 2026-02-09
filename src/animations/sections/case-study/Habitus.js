@@ -69,8 +69,7 @@ export function initHabitusSVG() {
           drawSVG: "100%",
           ease: "none",
           stagger: 0.1,
-        },
-        "<"
+        }
       );
     }
 
