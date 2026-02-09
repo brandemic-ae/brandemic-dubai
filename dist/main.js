@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-02-09T07:26:39.248Z
+ * Built: 2026-02-09T08:04:25.422Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -2675,10 +2675,10 @@
 
         const circles = svg.querySelectorAll("circle");
         if (circles.length) {
-          restTl.to(
+          restTl.from(
             circles,
             {
-              drawSVG: "0% 100%",
+              drawSVG: "0%",
               duration: 0.3,
               ease: "none",
               stagger: 0.1

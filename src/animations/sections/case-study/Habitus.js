@@ -55,10 +55,10 @@ export function initHabitusSVG() {
 
     const circles = svg.querySelectorAll("circle");
     if (circles.length) {
-      restTl.to(
+      restTl.from(
         circles,
         {
-          drawSVG: "0% 100%",
+          drawSVG: "0%",
           duration: 0.3,
           ease: "none",
           stagger: 0.1
