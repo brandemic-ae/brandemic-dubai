@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-02-09T08:04:25.422Z
+ * Built: 2026-02-09T08:07:25.622Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -2634,18 +2634,15 @@
 
       habitusActive = true;
       // Initial reset
-      gsap.set(
-        ".habitus_svg path, .habitus_svg line, .habitus_svg circle",
-        { drawSVG: "0%" }
-      );
+      gsap.set(".habitus_svg path, .habitus_svg line, .habitus_svg circle", {
+        drawSVG: "0%",
+      });
 
       svgs.forEach((svg) => {
         const line = svg.querySelector(".is-line");
         if (!line) return; // Guard 3: malformed SVG
 
-        const rest = svg.querySelectorAll(
-          "path:not(.is-line), circle"
-        );
+        const rest = svg.querySelectorAll("path:not(.is-line), circle");
 
         let restPlayed = false;
 
@@ -2657,33 +2654,31 @@
           restTl.to(primary, {
             drawSVG: "100%",
             duration: 0.3,
-            ease: "none"
+            ease: "none",
           });
         }
 
         const remainingPaths = svg.querySelectorAll(
-          "path:not(.is-line):not(.is-primary)"
+          "path:not(.is-line):not(.is-primary)",
         );
         if (remainingPaths.length) {
           restTl.to(remainingPaths, {
             drawSVG: "100%",
             duration: 0.3,
             ease: "none",
-            stagger: 0.07
+            stagger: 0.07,
           });
         }
 
         const circles = svg.querySelectorAll("circle");
         if (circles.length) {
-          restTl.from(
+          restTl.fromTo(
             circles,
             {
               drawSVG: "0%",
-              duration: 0.3,
-              ease: "none",
-              stagger: 0.1
             },
-            "-=0.4"
+            { drawSVG: "100%", duration: 0.3, ease: "none", stagger: 0.1 },
+            "-=0.4",
           );
         }
 
@@ -2695,7 +2690,7 @@
             start: "top 80%",
             end: "bottom 50%",
             scrub: true,
-            markers:true,
+            markers: true,
             onUpdate(self) {
               if (self.progress === 1 && !restPlayed) {
                 restPlayed = true;
@@ -2707,25 +2702,24 @@
                 restTl.pause(0);
                 gsap.set(rest, { drawSVG: "0%" });
               }
-            }
-          }
+            },
+          },
         });
 
         scrubTl.to(line, {
           drawSVG: "100%",
-          ease: "none"
+          ease: "none",
         });
 
         habitusInstances.push({
           restTl,
           scrubTl,
-          scrollTrigger: scrubTl.scrollTrigger
+          scrollTrigger: scrubTl.scrollTrigger,
         });
       });
 
       ScrollTrigger.refresh();
     }
-
 
     // Destroy Habitus SVG animation (Barba leave safe)
     function destroyHabitusSVG() {
