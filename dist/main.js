@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-02-09T06:06:42.946Z
+ * Built: 2026-02-09T07:24:02.021Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -2692,9 +2692,10 @@
         const scrubTl = gsap.timeline({
           scrollTrigger: {
             trigger: svg,
-            start: "top center",
-            end: "+=300",
+            start: "top 80%",
+            end: "bottom 30%",
             scrub: true,
+            markers:true,
             onUpdate(self) {
               if (self.progress === 1 && !restPlayed) {
                 restPlayed = true;

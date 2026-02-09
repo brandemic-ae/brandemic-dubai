@@ -72,9 +72,10 @@ export function initHabitusSVG() {
     const scrubTl = gsap.timeline({
       scrollTrigger: {
         trigger: svg,
-        start: "top center",
-        end: "+=300",
+        start: "top 80%",
+        end: "bottom 30%",
         scrub: true,
+        markers:true,
         onUpdate(self) {
           if (self.progress === 1 && !restPlayed) {
             restPlayed = true;
