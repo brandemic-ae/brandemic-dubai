@@ -31,8 +31,7 @@ export function initHabitusSVG() {
         start: "top 80%",
         end: "bottom 50%",
         scrub: true,
-        markers: true,
-      },
+      }
     });
 
     // 1️⃣ Driver line (solo)
