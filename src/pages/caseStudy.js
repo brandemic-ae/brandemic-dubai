@@ -49,6 +49,6 @@ export function destroyCaseStudyAnimations() {
     destroyHPIHeroAnimation();
     destroyTickers();
     destroyHappyFeetAnimation();
-    destroyHabitusSVG()
+    destroyHabitusSVG();
 }
 

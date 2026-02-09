@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-02-09T09:21:56.437Z
+ * Built: 2026-02-09T09:25:13.988Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
