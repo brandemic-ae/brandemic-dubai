@@ -21,7 +21,7 @@ export function initHabitusSVG() {
     const line = svg.querySelector(".is-line");
     if (!line) return; // Guard 3: malformed SVG
 
-    const rest = svg.querySelectorAll("path:not(.is-line), circle");
+    const rest = svg.querySelectorAll("path:not(.is-line)");
 
     let restPlayed = false;
 
@@ -50,16 +50,6 @@ export function initHabitusSVG() {
     }
 
     const circles = svg.querySelectorAll("circle");
-    if (circles.length) {
-      restTl.fromTo(
-        circles,
-        {
-          drawSVG: "0%",
-        },
-        { drawSVG: "100%", duration: 0.3, ease: "none", stagger: 0.1 },
-        "-=0.4",
-      );
-    }
 
     // SCRUBBED DRIVER LINE
 
@@ -89,6 +79,14 @@ export function initHabitusSVG() {
       drawSVG: "100%",
       ease: "none",
     });
+
+    if (circles.length) {
+      scrubTl.to(
+        circles,
+        { drawSVG: "100%", ease: "none", stagger: 0.1 },
+        0,
+      );
+    }
 
     habitusInstances.push({
       restTl,

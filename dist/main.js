@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-02-09T08:07:25.622Z
+ * Built: 2026-02-09T08:16:38.718Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -2642,7 +2642,7 @@
         const line = svg.querySelector(".is-line");
         if (!line) return; // Guard 3: malformed SVG
 
-        const rest = svg.querySelectorAll("path:not(.is-line), circle");
+        const rest = svg.querySelectorAll("path:not(.is-line)");
 
         let restPlayed = false;
 
@@ -2671,16 +2671,6 @@
         }
 
         const circles = svg.querySelectorAll("circle");
-        if (circles.length) {
-          restTl.fromTo(
-            circles,
-            {
-              drawSVG: "0%",
-            },
-            { drawSVG: "100%", duration: 0.3, ease: "none", stagger: 0.1 },
-            "-=0.4",
-          );
-        }
 
         // SCRUBBED DRIVER LINE
 
@@ -2710,6 +2700,14 @@
           drawSVG: "100%",
           ease: "none",
         });
+
+        if (circles.length) {
+          scrubTl.to(
+            circles,
+            { drawSVG: "100%", ease: "none", stagger: 0.1 },
+            0,
+          );
+        }
 
         habitusInstances.push({
           restTl,
