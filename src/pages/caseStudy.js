@@ -23,6 +23,7 @@ import { initHappyFeetAnimation, destroyHappyFeetAnimation } from '../animations
 import { initHabitusSVG, destroyHabitusSVG } from '../animations/sections/case-study/habitus.js';
 import { initGyglTextPathAnimation, destroyGyglTextPathAnimation, initGyglMarqueeSVG, destroyGyglMarqueeSVG } from '../animations/sections/case-study/gygl.js';
 import { initSkaiTextPathAnimation, destroySkaiTextPathAnimation } from '../animations/sections/case-study/skai.js';
+import { initFloutRotateGroupAnimation,destroyFloutRotateGroupAnimation } from '../animations/sections/case-study/flout.js';
 /**
  * Initialize all case study page animations
  */
@@ -44,6 +45,7 @@ export function initCaseStudyAnimations() {
     initGyglTextPathAnimation();
     initGyglMarqueeSVG();
     initSkaiTextPathAnimation();
+    initFloutRotateGroupAnimation();
 }
 
 /**
@@ -57,5 +59,6 @@ export function destroyCaseStudyAnimations() {
     destroyGyglTextPathAnimation();
     destroyGyglMarqueeSVG();
     destroySkaiTextPathAnimation();
+    destroyFloutRotateGroupAnimation();
 }
 

@@ -26,35 +26,42 @@ export function destroyGyglTextPathAnimation() {
 
   gyglTextPathEl = null;
 }
-
-let gyglMarqueeSVGTween = null;
-let gyglMarqueeSVGEl = null;
+let gyglMarqueeSVGEls = [];
+let gyglMarqueeSVGTweens = [];
 
 export function initGyglMarqueeSVG() {
-  gyglMarqueeSVGEl = document.querySelector(".gygl-marquee-svg");
-  if (!gyglMarqueeSVGEl) return;
+  gyglMarqueeSVGEls = Array.from(
+    document.querySelectorAll(".gygl-marquee-svg")
+  );
+
+  if (!gyglMarqueeSVGEls.length) return;
 
   // prevent duplicate init
-  if (gyglMarqueeSVGTween) return;
+  if (gyglMarqueeSVGTweens.length) return;
 
-  gyglMarqueeSVGTween = gsap.to(gyglMarqueeSVGEl, {
-    x: "-100%",
-    duration: 40,
-    ease: "none",
-    repeat: -1,
-    modifiers: {
-      x: gsap.utils.unitize(x => parseFloat(x) % 100)
-    }
+  gyglMarqueeSVGEls.forEach((el) => {
+    const tween = gsap.to(el, {
+      x: "-100%",
+      duration: 40,
+      ease: "none",
+      repeat: -1,
+      modifiers: {
+        x: gsap.utils.unitize(x => parseFloat(x) % 100)
+      }
+    });
+
+    gyglMarqueeSVGTweens.push(tween);
   });
 }
 
 export function destroyGyglMarqueeSVG() {
-  if (!gyglMarqueeSVGEl) return;
+  if (!gyglMarqueeSVGTweens.length) return;
 
-  if (gyglMarqueeSVGTween) {
-    gyglMarqueeSVGTween.kill();
-    gyglMarqueeSVGTween = null;
-  }
+  gyglMarqueeSVGTweens.forEach(tween => tween.kill());
 
-  gyglMarqueeSVGEl = null;
+  gyglMarqueeSVGTweens = [];
+  gyglMarqueeSVGEls = [];
 }
+
+
+

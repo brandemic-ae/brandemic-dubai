@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-02-10T12:51:50.828Z
+ * Built: 2026-02-10T13:10:18.513Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -2773,37 +2773,41 @@
 
       gyglTextPathEl = null;
     }
-
-    let gyglMarqueeSVGTween = null;
-    let gyglMarqueeSVGEl = null;
+    let gyglMarqueeSVGEls = [];
+    let gyglMarqueeSVGTweens = [];
 
     function initGyglMarqueeSVG() {
-      gyglMarqueeSVGEl = document.querySelector(".gygl-marquee-svg");
-      if (!gyglMarqueeSVGEl) return;
+      gyglMarqueeSVGEls = Array.from(
+        document.querySelectorAll(".gygl-marquee-svg")
+      );
+
+      if (!gyglMarqueeSVGEls.length) return;
 
       // prevent duplicate init
-      if (gyglMarqueeSVGTween) return;
+      if (gyglMarqueeSVGTweens.length) return;
 
-      gyglMarqueeSVGTween = gsap.to(gyglMarqueeSVGEl, {
-        x: "-100%",
-        duration: 40,
-        ease: "none",
-        repeat: -1,
-        modifiers: {
-          x: gsap.utils.unitize(x => parseFloat(x) % 100)
-        }
+      gyglMarqueeSVGEls.forEach((el) => {
+        const tween = gsap.to(el, {
+          x: "-100%",
+          duration: 40,
+          ease: "none",
+          repeat: -1,
+          modifiers: {
+            x: gsap.utils.unitize(x => parseFloat(x) % 100)
+          }
+        });
+
+        gyglMarqueeSVGTweens.push(tween);
       });
     }
 
     function destroyGyglMarqueeSVG() {
-      if (!gyglMarqueeSVGEl) return;
+      if (!gyglMarqueeSVGTweens.length) return;
 
-      if (gyglMarqueeSVGTween) {
-        gyglMarqueeSVGTween.kill();
-        gyglMarqueeSVGTween = null;
-      }
+      gyglMarqueeSVGTweens.forEach(tween => tween.kill());
 
-      gyglMarqueeSVGEl = null;
+      gyglMarqueeSVGTweens = [];
+      gyglMarqueeSVGEls = [];
     }
 
     let skaiTextPathTween = null;
@@ -2835,6 +2839,37 @@
       skaiTextPathEl = null;
     }
 
+    let rotateGroupTween = null;
+    let rotateGroupEls = null;
+
+    function initFloutRotateGroupAnimation() {
+      rotateGroupEls = document.querySelectorAll(".rotate-group");
+      if (!rotateGroupEls.length) return;
+
+      // prevent duplicate init
+      if (rotateGroupTween) return;
+
+      rotateGroupTween = gsap.to(rotateGroupEls, {
+        rotation: 360,
+        duration: 25,
+        repeat: -1,
+        ease: "none",
+        transformOrigin: "50% 50%",
+        transformBox: "fill-box"
+      });
+    }
+
+    function destroyFloutRotateGroupAnimation() {
+      if (!rotateGroupEls || !rotateGroupEls.length) return;
+
+      if (rotateGroupTween) {
+        rotateGroupTween.kill();
+        rotateGroupTween = null;
+      }
+
+      rotateGroupEls = null;
+    }
+
     /**
      * Case Study Page - Initialize and destroy animations
      */
@@ -2860,6 +2895,7 @@
         initGyglTextPathAnimation();
         initGyglMarqueeSVG();
         initSkaiTextPathAnimation();
+        initFloutRotateGroupAnimation();
     }
 
     /**
@@ -2873,6 +2909,7 @@
         destroyGyglTextPathAnimation();
         destroyGyglMarqueeSVG();
         destroySkaiTextPathAnimation();
+        destroyFloutRotateGroupAnimation();
     }
 
     /**
