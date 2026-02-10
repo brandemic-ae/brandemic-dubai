@@ -22,7 +22,7 @@ import { applyParallaxEffect } from '../animations/scroll/parallax.js';
 import { initHappyFeetAnimation, destroyHappyFeetAnimation } from '../animations/sections/case-study/happyfeet.js';
 import { initHabitusSVG, destroyHabitusSVG } from '../animations/sections/case-study/habitus.js';
 import { initGyglTextPathAnimation, destroyGyglTextPathAnimation, initGyglMarqueeSVG, destroyGyglMarqueeSVG } from '../animations/sections/case-study/gygl.js';
-import { initSkaiTextPathAnimation, destroySkaiTextPathAnimation } from '../animations/sections/case-study/skai.js';
+import { initSkaiMarqueeSVG, destroySkaiMarqueeSVG} from '../animations/sections/case-study/skai.js';
 import { initFloutRotateGroupAnimation,destroyFloutRotateGroupAnimation } from '../animations/sections/case-study/flout.js';
 /**
  * Initialize all case study page animations
@@ -44,8 +44,8 @@ export function initCaseStudyAnimations() {
     initHabitusSVG();
     initGyglTextPathAnimation();
     initGyglMarqueeSVG();
-    initSkaiTextPathAnimation();
     initFloutRotateGroupAnimation();
+    initSkaiMarqueeSVG();
 }
 
 /**
@@ -58,7 +58,8 @@ export function destroyCaseStudyAnimations() {
     destroyHabitusSVG();
     destroyGyglTextPathAnimation();
     destroyGyglMarqueeSVG();
-    destroySkaiTextPathAnimation();
+    destroySkaiMarqueeSVG();
     destroyFloutRotateGroupAnimation();
+    
 }
 

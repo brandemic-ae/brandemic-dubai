@@ -1,28 +1,47 @@
-let skaiTextPathTween = null;
-let skaiTextPathEl = null;
+// Marquee SVG animation
+let marqueeTweens = [];
+let marqueeActive = false;
 
-export function initSkaiTextPathAnimation() {
-  skaiTextPathEl = document.querySelector("#text-path");
-  if (!skaiTextPathEl) return;
+export function initSkaiMarqueeSVG() {
+  if (marqueeActive) return;
 
-  // prevent duplicate init
-  if (skaiTextPathTween) return;
+  const svgs = document.querySelectorAll(".marquee_text-svg");
+  if (!svgs.length) return;
 
-  skaiTextPathTween = gsap.to(skaiTextPathEl, {
-    duration: 40,
-    repeat: -1,
-    ease: "linear",
-    attr: { startOffset: "100%" }
+  const wrapper = svgs[0].parentElement;
+  if (!wrapper) return;
+
+  const speed = 80; // px per second
+  const totalWidth = wrapper.scrollWidth;
+
+  marqueeActive = true;
+  marqueeTweens = [];
+
+  svgs.forEach((svg) => {
+    const startX = svg.offsetLeft;
+
+    const tween = gsap.to(svg, {
+      x: -totalWidth,
+      duration: totalWidth / speed,
+      ease: "linear",
+      repeat: -1,
+      onRepeat: () => {
+        gsap.set(svg, { x: startX });
+      },
+    });
+
+    marqueeTweens.push({ svg, startX, tween });
   });
 }
 
-export function destroySkaiTextPathAnimation() {
-  if (!skaiTextPathEl) return;
+export function destroySkaiMarqueeSVG() {
+  if (!marqueeActive) return;
 
-  if (skaiTextPathTween) {
-    skaiTextPathTween.kill();
-    skaiTextPathTween = null;
-  }
+  marqueeTweens.forEach(({ svg, startX, tween }) => {
+    tween.kill();
+    gsap.set(svg, { x: startX });
+  });
 
-  skaiTextPathEl = null;
+  marqueeTweens = [];
+  marqueeActive = false;
 }

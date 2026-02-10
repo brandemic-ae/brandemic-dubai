@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-02-10T13:10:18.513Z
+ * Built: 2026-02-10T13:21:07.411Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -2810,33 +2810,52 @@
       gyglMarqueeSVGEls = [];
     }
 
-    let skaiTextPathTween = null;
-    let skaiTextPathEl = null;
+    // Marquee SVG animation
+    let marqueeTweens = [];
+    let marqueeActive = false;
 
-    function initSkaiTextPathAnimation() {
-      skaiTextPathEl = document.querySelector("#text-path");
-      if (!skaiTextPathEl) return;
+    function initSkaiMarqueeSVG() {
+      if (marqueeActive) return;
 
-      // prevent duplicate init
-      if (skaiTextPathTween) return;
+      const svgs = document.querySelectorAll(".marquee_text-svg");
+      if (!svgs.length) return;
 
-      skaiTextPathTween = gsap.to(skaiTextPathEl, {
-        duration: 40,
-        repeat: -1,
-        ease: "linear",
-        attr: { startOffset: "100%" }
+      const wrapper = svgs[0].parentElement;
+      if (!wrapper) return;
+
+      const speed = 80; // px per second
+      const totalWidth = wrapper.scrollWidth;
+
+      marqueeActive = true;
+      marqueeTweens = [];
+
+      svgs.forEach((svg) => {
+        const startX = svg.offsetLeft;
+
+        const tween = gsap.to(svg, {
+          x: -totalWidth,
+          duration: totalWidth / speed,
+          ease: "linear",
+          repeat: -1,
+          onRepeat: () => {
+            gsap.set(svg, { x: startX });
+          },
+        });
+
+        marqueeTweens.push({ svg, startX, tween });
       });
     }
 
-    function destroySkaiTextPathAnimation() {
-      if (!skaiTextPathEl) return;
+    function destroySkaiMarqueeSVG() {
+      if (!marqueeActive) return;
 
-      if (skaiTextPathTween) {
-        skaiTextPathTween.kill();
-        skaiTextPathTween = null;
-      }
+      marqueeTweens.forEach(({ svg, startX, tween }) => {
+        tween.kill();
+        gsap.set(svg, { x: startX });
+      });
 
-      skaiTextPathEl = null;
+      marqueeTweens = [];
+      marqueeActive = false;
     }
 
     let rotateGroupTween = null;
@@ -2894,8 +2913,8 @@
         initHabitusSVG();
         initGyglTextPathAnimation();
         initGyglMarqueeSVG();
-        initSkaiTextPathAnimation();
         initFloutRotateGroupAnimation();
+        initSkaiMarqueeSVG();
     }
 
     /**
@@ -2908,8 +2927,9 @@
         destroyHabitusSVG();
         destroyGyglTextPathAnimation();
         destroyGyglMarqueeSVG();
-        destroySkaiTextPathAnimation();
+        destroySkaiMarqueeSVG();
         destroyFloutRotateGroupAnimation();
+        
     }
 
     /**
