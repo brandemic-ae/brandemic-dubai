@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-02-10T06:47:51.406Z
+ * Built: 2026-02-10T12:51:50.828Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -2745,10 +2745,99 @@
       habitusActive = false;
     }
 
+    let gyglTextPathTween = null;
+    let gyglTextPathEl = null;
+
+    function initGyglTextPathAnimation() {
+      gyglTextPathEl = document.querySelector("#text-path");
+      if (!gyglTextPathEl) return;
+
+      // prevent duplicate init
+      if (gyglTextPathTween) return;
+
+      gyglTextPathTween = gsap.to(gyglTextPathEl, {
+        duration: 40,
+        repeat: -1,
+        ease: "linear",
+        attr: { startOffset: "100%" }
+      });
+    }
+
+    function destroyGyglTextPathAnimation() {
+      if (!gyglTextPathEl) return;
+
+      if (gyglTextPathTween) {
+        gyglTextPathTween.kill();
+        gyglTextPathTween = null;
+      }
+
+      gyglTextPathEl = null;
+    }
+
+    let gyglMarqueeSVGTween = null;
+    let gyglMarqueeSVGEl = null;
+
+    function initGyglMarqueeSVG() {
+      gyglMarqueeSVGEl = document.querySelector(".gygl-marquee-svg");
+      if (!gyglMarqueeSVGEl) return;
+
+      // prevent duplicate init
+      if (gyglMarqueeSVGTween) return;
+
+      gyglMarqueeSVGTween = gsap.to(gyglMarqueeSVGEl, {
+        x: "-100%",
+        duration: 40,
+        ease: "none",
+        repeat: -1,
+        modifiers: {
+          x: gsap.utils.unitize(x => parseFloat(x) % 100)
+        }
+      });
+    }
+
+    function destroyGyglMarqueeSVG() {
+      if (!gyglMarqueeSVGEl) return;
+
+      if (gyglMarqueeSVGTween) {
+        gyglMarqueeSVGTween.kill();
+        gyglMarqueeSVGTween = null;
+      }
+
+      gyglMarqueeSVGEl = null;
+    }
+
+    let skaiTextPathTween = null;
+    let skaiTextPathEl = null;
+
+    function initSkaiTextPathAnimation() {
+      skaiTextPathEl = document.querySelector("#text-path");
+      if (!skaiTextPathEl) return;
+
+      // prevent duplicate init
+      if (skaiTextPathTween) return;
+
+      skaiTextPathTween = gsap.to(skaiTextPathEl, {
+        duration: 40,
+        repeat: -1,
+        ease: "linear",
+        attr: { startOffset: "100%" }
+      });
+    }
+
+    function destroySkaiTextPathAnimation() {
+      if (!skaiTextPathEl) return;
+
+      if (skaiTextPathTween) {
+        skaiTextPathTween.kill();
+        skaiTextPathTween = null;
+      }
+
+      skaiTextPathEl = null;
+    }
+
     /**
      * Case Study Page - Initialize and destroy animations
      */
-
 
     /**
      * Initialize all case study page animations
@@ -2768,6 +2857,9 @@
         hopscotchTicker();
         initHappyFeetAnimation();
         initHabitusSVG();
+        initGyglTextPathAnimation();
+        initGyglMarqueeSVG();
+        initSkaiTextPathAnimation();
     }
 
     /**
@@ -2778,6 +2870,9 @@
         destroyTickers();
         destroyHappyFeetAnimation();
         destroyHabitusSVG();
+        destroyGyglTextPathAnimation();
+        destroyGyglMarqueeSVG();
+        destroySkaiTextPathAnimation();
     }
 
     /**

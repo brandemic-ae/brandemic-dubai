@@ -21,7 +21,8 @@ import { applyParallaxEffect } from '../animations/scroll/parallax.js';
 // Variant animations (case-study specific)
 import { initHappyFeetAnimation, destroyHappyFeetAnimation } from '../animations/sections/case-study/happyfeet.js';
 import { initHabitusSVG, destroyHabitusSVG } from '../animations/sections/case-study/habitus.js';
-
+import { initGyglTextPathAnimation, destroyGyglTextPathAnimation, initGyglMarqueeSVG, destroyGyglMarqueeSVG } from '../animations/sections/case-study/gygl.js';
+import { initSkaiTextPathAnimation, destroySkaiTextPathAnimation } from '../animations/sections/case-study/skai.js';
 /**
  * Initialize all case study page animations
  */
@@ -40,6 +41,9 @@ export function initCaseStudyAnimations() {
     hopscotchTicker();
     initHappyFeetAnimation();
     initHabitusSVG();
+    initGyglTextPathAnimation();
+    initGyglMarqueeSVG();
+    initSkaiTextPathAnimation();
 }
 
 /**
@@ -50,5 +54,8 @@ export function destroyCaseStudyAnimations() {
     destroyTickers();
     destroyHappyFeetAnimation();
     destroyHabitusSVG();
+    destroyGyglTextPathAnimation();
+    destroyGyglMarqueeSVG();
+    destroySkaiTextPathAnimation();
 }
 
