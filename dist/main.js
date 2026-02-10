@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-02-09T09:25:13.988Z
+ * Built: 2026-02-10T06:47:51.406Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -2099,6 +2099,31 @@
         }
     }
 
+    function initLotties$1(container) {
+      container.querySelectorAll('[data-lottie]').forEach(el => {
+        // prevent double init
+        if (el._lottieInstance) return;
+
+        const anim = lottie.loadAnimation({
+          container: el,
+          renderer: 'svg',
+          loop: true,
+          autoplay: true,
+          path: el.dataset.lottieSrc
+        });
+
+        el._lottieInstance = anim;
+      });
+    }
+    function destroyLotties(container) {
+      container.querySelectorAll('[data-lottie]').forEach(el => {
+        if (el._lottieInstance) {
+          el._lottieInstance.destroy();
+          el._lottieInstance = null;
+        }
+      });
+    }
+
     /**
      * About Page - Initialize and destroy animations
      */
@@ -2108,6 +2133,7 @@
      */
     function initAboutAnimations() {
         initHeroAnimation();
+        initLotties$1(document.body);
         animateMilestones();
         scrollPinObserver();
         brandTicker();
@@ -2129,6 +2155,8 @@
         destroyProcessSwiper();
         destroyBrandTicker();
         destroyAccordionComponents();
+        destroyLotties(document.body);
+
     }
 
     /**
@@ -2432,13 +2460,14 @@
      */
 
 
-
     /**
      * Initialize all contact page animations
      */
     function initContactAnimations() {
         initCharAnimations();
         initContactHeroAnimation();
+        initLotties$1(document.body);
+
     }
 
     /**
@@ -2446,6 +2475,8 @@
      */
     function destroyContactAnimations() {
         destroyContactHeroAnimation();
+        destroyLotties(document.body);
+
     }
 
     /**
@@ -2812,7 +2843,6 @@
      */
 
 
-
     /**
      * Initialize all service page animations
      */
@@ -2828,6 +2858,7 @@
         serviceProcessScroll();
         serviceHoverAnimation();
         initTestimonialsSwiperScripts();
+        initLotties$1(document.body);
     }
 
     /**
@@ -2841,6 +2872,7 @@
         destroyServiceHoverAnimation();
         destroyFeaturedWorkLoop();
         destroyTestimonialsSwiperScripts();
+        destroyLotties(document.body);
     }
 
     /**
@@ -3351,31 +3383,6 @@
         destroyTableOfContents();
     }
 
-    function initLotties(container) {
-      container.querySelectorAll('[data-lottie]').forEach(el => {
-        // prevent double init
-        if (el._lottieInstance) return;
-
-        const anim = lottie.loadAnimation({
-          container: el,
-          renderer: 'svg',
-          loop: true,
-          autoplay: true,
-          path: el.dataset.lottieSrc
-        });
-
-        el._lottieInstance = anim;
-      });
-    }
-    function destroyLotties(container) {
-      container.querySelectorAll('[data-lottie]').forEach(el => {
-        if (el._lottieInstance) {
-          el._lottieInstance.destroy();
-          el._lottieInstance = null;
-        }
-      });
-    }
-
     /**
      * Barba.js Configuration - Page transitions and view management
      */
@@ -3388,13 +3395,9 @@
         barba.init({
             sync: true,
             transitions: [{
-                once(data) {
-                    initLotties(data.next.container);
-                },
                 async leave(data) {
                     const done = this.async();
                     const isOpen = getIsOpen();
-                    destroyLotties(data.current.container);
                     if (isOpen) {
                         const closeMenuTimeline = getCloseMenuTimeline();
                         closeMenuTimeline.restart();
