@@ -20,7 +20,7 @@ import { applyParallaxEffect } from '../animations/scroll/parallax.js';
 
 // Variant animations (case-study specific)
 import { initHappyFeetAnimation, destroyHappyFeetAnimation } from '../animations/sections/case-study/happyfeet.js';
-import { initHabitusSVG, destroyHabitusSVG } from '../animations/sections/case-study/Habitus.js';
+import { initHabitusSVG, destroyHabitusSVG } from '../animations/sections/case-study/habitus.js';
 
 /**
  * Initialize all case study page animations

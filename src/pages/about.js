@@ -28,11 +28,14 @@ import { animateSvgPaths } from '../animations/svg/drawPaths.js';
 // Swipers
 import { initProcessSwiper, destroyProcessSwiper } from '../components/swiper/processSwiper.js';
 
+import { initLotties, destroyLotties } from '../components/lottie/lottie.js';
+
 /**
  * Initialize all about page animations
  */
 export function initAboutAnimations() {
     initHeroAnimation();
+    initLotties(document.body);
     animateMilestones();
     scrollPinObserver();
     brandTicker();
@@ -54,5 +57,7 @@ export function destroyAboutAnimations() {
     destroyProcessSwiper();
     destroyBrandTicker();
     destroyAccordionComponents();
+    destroyLotties(document.body);
+
 }
 

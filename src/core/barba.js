@@ -20,7 +20,6 @@ import { initServiceAnimations, destroyServiceAnimations } from '../pages/servic
 import { initThankAnimations, destroyThankAnimations } from '../pages/thanks.js';
 import { initBlogAnimations, destroyBlogAnimations } from '../pages/blog.js';
 import { initBlogPostAnimations, destroyBlogPostAnimations } from '../pages/blogPost.js';
-import {initLotties, destroyLotties} from '../components/lottie/lottie.js';
 /**
  * Get the appropriate hero animation function for a namespace
  * @param {string} namespace 
@@ -58,13 +57,9 @@ export function initBarba() {
     barba.init({
         sync: true,
         transitions: [{
-            once(data) {
-                initLotties(data.next.container);
-            },
             async leave(data) {
                 const done = this.async();
                 const isOpen = getIsOpen();
-                destroyLotties(data.current.container);
                 if (isOpen) {
                     const closeMenuTimeline = getCloseMenuTimeline();
                     closeMenuTimeline.restart();
