@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-02-11T10:48:34.023Z
+ * Built: 2026-02-11T10:51:23.981Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -2377,7 +2377,6 @@
      */
     function cycleHeadingWords() {
         const words = [
-            "Marhaba,",
             "Namaste,",
             "Bonjour,",
             "Hej,",
@@ -2387,6 +2386,7 @@
             "Hola,",
             "Hello,",
             "こんにちは,",
+            "Marhaba,",
         ];
 
         const greetingText = document.querySelector("#greeting-text");
