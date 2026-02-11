@@ -5,8 +5,6 @@
 import { horizontalLoop } from '../../utils/horizontalLoop.js';
 
 let aboutTickerLoops = [];
-let caseStudyTickerLoop = null;
-let livXTickerLoop = null;
 let hopscotchTickerLoops = [];
 
 /**
@@ -111,16 +109,6 @@ export function hopscotchTicker() {
  * Destroy case study variant tickers
  */
 export function destroyTickers() {
-    if (caseStudyTickerLoop && caseStudyTickerLoop.kill) {
-        caseStudyTickerLoop.kill();
-        caseStudyTickerLoop = null;
-    }
-
-    if (livXTickerLoop && livXTickerLoop.kill) {
-        livXTickerLoop.kill();
-        livXTickerLoop = null;
-    }
-
     hopscotchTickerLoops.forEach(loop => {
         if (loop && typeof loop.kill === 'function') {
             loop.kill();

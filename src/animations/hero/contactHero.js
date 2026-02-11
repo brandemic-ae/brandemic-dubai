@@ -132,6 +132,8 @@ function initContactHeroFloatingEffect() {
  */
 function cycleHeadingWords() {
     const words = [
+        "Marhaba,",
+        "Namaste,",
         "Bonjour,",
         "Hej,",
         "Ciao,",
@@ -140,7 +142,6 @@ function cycleHeadingWords() {
         "Hola,",
         "Hello,",
         "こんにちは,",
-        "Marhaba,",
     ];
 
     const greetingText = document.querySelector("#greeting-text");

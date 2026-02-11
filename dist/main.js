@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-02-11T10:07:59.288Z
+ * Built: 2026-02-11T10:48:34.023Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -1285,6 +1285,11 @@
         aboutTickerLoops = [];
     }
 
+    /**
+     * Initialize case study ticker
+     */
+    let tickerLoops = [];
+
     function initHorizontalTicker(wrapperSelector, itemSelector) {
       const wrapper = document.querySelector(wrapperSelector);
       if (!wrapper) return;
@@ -1298,7 +1303,14 @@
         repeat: -1,
         center: false,
       });
+
+      tickerLoops.push(loop);
       return loop;
+    }
+
+    function destroyHorizontalTickers() {
+      tickerLoops.forEach(loop => loop.kill && loop.kill());
+      tickerLoops = [];
     }
 
 
@@ -1336,7 +1348,6 @@
      * Destroy case study variant tickers
      */
     function destroyTickers() {
-
         hopscotchTickerLoops.forEach(loop => {
             if (loop && typeof loop.kill === 'function') {
                 loop.kill();
@@ -2366,6 +2377,8 @@
      */
     function cycleHeadingWords() {
         const words = [
+            "Marhaba,",
+            "Namaste,",
             "Bonjour,",
             "Hej,",
             "Ciao,",
@@ -2374,7 +2387,6 @@
             "Hola,",
             "Hello,",
             "こんにちは,",
-            "Marhaba,",
         ];
 
         const greetingText = document.querySelector("#greeting-text");
@@ -2880,7 +2892,7 @@
 
         // Variant animations (element-guarded)
         // Case Study ticker
-        initHorizontalTicker(".case_studies-ticker-element", ".case_study-ticker-image");
+        initHorizontalTicker(". ", ".case_study-ticker-image");
 
         // LivX ticker
         initHorizontalTicker(".is-livx-texts", ".livx_ticker-text");
@@ -2900,6 +2912,7 @@
     function destroyCaseStudyAnimations() {
         destroyHPIHeroAnimation();
         destroyTickers();
+        destroyHorizontalTickers();
         destroyHappyFeetAnimation();
         destroyHabitusSVG();
         destroyGyglTextPathAnimation();

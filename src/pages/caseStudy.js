@@ -11,7 +11,7 @@ import { initLineAnimations } from '../animations/text/lineAnimations.js';
 
 // Sections
 import { featuredWorkLoop } from '../animations/sections/featuredWork.js';
-import { initHorizontalTicker, hopscotchTicker, destroyTickers } from '../animations/sections/ticker.js';
+import { initHorizontalTicker, hopscotchTicker, destroyTickers,destroyHorizontalTickers } from '../animations/sections/ticker.js';
 import { animateCTA } from '../animations/sections/cta.js';
 import { animateGalleryImages } from '../animations/sections/gallery.js';
 
@@ -38,7 +38,7 @@ export function initCaseStudyAnimations() {
 
     // Variant animations (element-guarded)
     // Case Study ticker
-    initHorizontalTicker(".case_studies-ticker-element", ".case_study-ticker-image");
+    initHorizontalTicker(". ", ".case_study-ticker-image");
 
     // LivX ticker
     initHorizontalTicker(".is-livx-texts", ".livx_ticker-text");
@@ -58,6 +58,7 @@ export function initCaseStudyAnimations() {
 export function destroyCaseStudyAnimations() {
     destroyHPIHeroAnimation();
     destroyTickers();
+    destroyHorizontalTickers();
     destroyHappyFeetAnimation();
     destroyHabitusSVG();
     destroyGyglTextPathAnimation();
