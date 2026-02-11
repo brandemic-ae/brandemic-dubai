@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-02-10T13:21:07.411Z
+ * Built: 2026-02-11T10:00:59.211Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -1244,9 +1244,6 @@
 
 
     let aboutTickerLoops = [];
-    let caseStudyTickerLoop = null;
-    let livXTickerLoop = null;
-    let hopscotchTickerLoops = [];
 
     /**
      * Initialize about page tickers (brands, team, culture)
@@ -1287,39 +1284,7 @@
         aboutTickerLoops = [];
     }
 
-    /**
-     * Initialize case study ticker
-     */
-    function caseStudyTicker() {
-        const wrapper = document.querySelector(".case_studies-ticker-element");
-        if (!wrapper) return;
 
-        const wrapperContent = gsap.utils.toArray(".case_study-ticker-image");
-
-        caseStudyTickerLoop = horizontalLoop(wrapperContent, {
-            draggable: false,
-            inertia: false,
-            repeat: -1,
-            center: false,
-        });
-    }
-
-    /**
-     * Initialize LivX ticker
-     */
-    function livXTicker() {
-        const livxTexts = document.querySelector(".is-livx-texts");
-        if (!livxTexts) return;
-
-        const livxText = gsap.utils.toArray(".livx_ticker-text");
-
-        livXTickerLoop = horizontalLoop(livxText, {
-            draggable: false,
-            inertia: false,
-            repeat: -1,
-            center: false,
-        });
-    }
 
     /**
      * Initialize Hopscotch tickers (two tickers moving in opposite directions)
@@ -1334,7 +1299,7 @@
             { selector: ".hopscotch_ticker.is-two .hopscotch_ticker-svg", reversed: true },
         ];
 
-        hopscotchTickerLoops = elements.map(({ selector, reversed }) => {
+        elements.map(({ selector, reversed }) => {
             const items = gsap.utils.toArray(selector);
             if (items.length === 0) return null;
 
@@ -1348,28 +1313,6 @@
 
             return loop;
         }).filter(Boolean);
-    }
-
-    /**
-     * Destroy case study variant tickers
-     */
-    function destroyTickers() {
-        if (caseStudyTickerLoop && caseStudyTickerLoop.kill) {
-            caseStudyTickerLoop.kill();
-            caseStudyTickerLoop = null;
-        }
-
-        if (livXTickerLoop && livXTickerLoop.kill) {
-            livXTickerLoop.kill();
-            livXTickerLoop = null;
-        }
-
-        hopscotchTickerLoops.forEach(loop => {
-            if (loop && typeof loop.kill === 'function') {
-                loop.kill();
-            }
-        });
-        hopscotchTickerLoops = [];
     }
 
     /**
@@ -2901,13 +2844,17 @@
         applyParallaxEffect();
         initCharAnimations();
         initLineAnimations();
-        caseStudyTicker();
         featuredWorkLoop();
         animateCTA();
         animateGalleryImages();
 
         // Variant animations (element-guarded)
-        livXTicker();
+        // Case Study ticker
+        initHorizontalTicker(".case_studies-ticker-element", ".case_study-ticker-image");
+
+        // LivX ticker
+        initHorizontalTicker(".is-livx-texts", ".livx_ticker-text");
+
         hopscotchTicker();
         initHappyFeetAnimation();
         initHabitusSVG();

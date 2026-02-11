@@ -51,36 +51,32 @@ export function destroyBrandTicker() {
 /**
  * Initialize case study ticker
  */
-export function caseStudyTicker() {
-    const wrapper = document.querySelector(".case_studies-ticker-element");
-    if (!wrapper) return;
+let tickerLoops = [];
 
-    const wrapperContent = gsap.utils.toArray(".case_study-ticker-image");
+export function initHorizontalTicker(wrapperSelector, itemSelector) {
+  const wrapper = document.querySelector(wrapperSelector);
+  if (!wrapper) return;
 
-    caseStudyTickerLoop = horizontalLoop(wrapperContent, {
-        draggable: false,
-        inertia: false,
-        repeat: -1,
-        center: false,
-    });
+  const items = gsap.utils.toArray(itemSelector);
+  if (!items.length) return;
+
+  const loop = horizontalLoop(items, {
+    draggable: false,
+    inertia: false,
+    repeat: -1,
+    center: false,
+  });
+
+  tickerLoops.push(loop);
+  return loop;
 }
 
-/**
- * Initialize LivX ticker
- */
-export function livXTicker() {
-    const livxTexts = document.querySelector(".is-livx-texts");
-    if (!livxTexts) return;
-
-    const livxText = gsap.utils.toArray(".livx_ticker-text");
-
-    livXTickerLoop = horizontalLoop(livxText, {
-        draggable: false,
-        inertia: false,
-        repeat: -1,
-        center: false,
-    });
+export function destroyHorizontalTickers() {
+  tickerLoops.forEach(loop => loop.kill && loop.kill());
+  tickerLoops = [];
 }
+
+
 
 /**
  * Initialize Hopscotch tickers (two tickers moving in opposite directions)
