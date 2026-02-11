@@ -11,7 +11,7 @@ import { initLineAnimations } from '../animations/text/lineAnimations.js';
 
 // Sections
 import { featuredWorkLoop } from '../animations/sections/featuredWork.js';
-import { hopscotchTicker, destroyHorizontalTickers } from '../animations/sections/ticker.js';
+import { initHorizontalTicker, hopscotchTicker, destroyTickers } from '../animations/sections/ticker.js';
 import { animateCTA } from '../animations/sections/cta.js';
 import { animateGalleryImages } from '../animations/sections/gallery.js';
 

@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-02-11T10:00:59.211Z
+ * Built: 2026-02-11T10:07:59.288Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -1244,6 +1244,7 @@
 
 
     let aboutTickerLoops = [];
+    let hopscotchTickerLoops = [];
 
     /**
      * Initialize about page tickers (brands, team, culture)
@@ -1284,6 +1285,22 @@
         aboutTickerLoops = [];
     }
 
+    function initHorizontalTicker(wrapperSelector, itemSelector) {
+      const wrapper = document.querySelector(wrapperSelector);
+      if (!wrapper) return;
+
+      const items = gsap.utils.toArray(itemSelector);
+      if (!items.length) return;
+
+      const loop = horizontalLoop(items, {
+        draggable: false,
+        inertia: false,
+        repeat: -1,
+        center: false,
+      });
+      return loop;
+    }
+
 
 
     /**
@@ -1299,7 +1316,7 @@
             { selector: ".hopscotch_ticker.is-two .hopscotch_ticker-svg", reversed: true },
         ];
 
-        elements.map(({ selector, reversed }) => {
+        hopscotchTickerLoops = elements.map(({ selector, reversed }) => {
             const items = gsap.utils.toArray(selector);
             if (items.length === 0) return null;
 
@@ -1313,6 +1330,19 @@
 
             return loop;
         }).filter(Boolean);
+    }
+
+    /**
+     * Destroy case study variant tickers
+     */
+    function destroyTickers() {
+
+        hopscotchTickerLoops.forEach(loop => {
+            if (loop && typeof loop.kill === 'function') {
+                loop.kill();
+            }
+        });
+        hopscotchTickerLoops = [];
     }
 
     /**
