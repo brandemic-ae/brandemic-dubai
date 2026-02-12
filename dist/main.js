@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-02-11T10:51:23.981Z
+ * Built: 2026-02-12T06:18:52.564Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -2892,8 +2892,7 @@
 
         // Variant animations (element-guarded)
         // Case Study ticker
-        initHorizontalTicker(". ", ".case_study-ticker-image");
-
+        initHorizontalTicker(".case_studies-ticker-element", ".case_study-ticker-image");
         // LivX ticker
         initHorizontalTicker(".is-livx-texts", ".livx_ticker-text");
 

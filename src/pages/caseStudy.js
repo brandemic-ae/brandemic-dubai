@@ -38,8 +38,7 @@ export function initCaseStudyAnimations() {
 
     // Variant animations (element-guarded)
     // Case Study ticker
-    initHorizontalTicker(". ", ".case_study-ticker-image");
-
+    initHorizontalTicker(".case_studies-ticker-element", ".case_study-ticker-image");
     // LivX ticker
     initHorizontalTicker(".is-livx-texts", ".livx_ticker-text");
 
