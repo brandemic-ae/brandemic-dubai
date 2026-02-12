@@ -117,3 +117,39 @@ export function destroyTickers() {
     hopscotchTickerLoops = [];
 }
 
+let marqueeTweens = [];
+
+/**
+ * Initialize SVG marquee animation
+ * @param {string} className - CSS class (without dot)
+ */
+export function initMarqueeSVG(className) {
+  const elements = document.querySelectorAll(`.${className}`);
+  if (!elements.length) return;
+
+  elements.forEach((el) => {
+    // prevent duplicate tween on same element
+    if (marqueeTweens.some(t => t.targets().includes(el))) return;
+
+    const tween = gsap.to(el, {
+      x: "-100%",
+      duration: 40,
+      ease: "none",
+      repeat: -1,
+      modifiers: {
+        x: gsap.utils.unitize(x => parseFloat(x) % 100)
+      }
+    });
+
+    marqueeTweens.push(tween);
+  });
+}
+
+/**
+ * Destroy ALL marquee tweens
+ */
+export function destroyMarqueeSVG() {
+  marqueeTweens.forEach(tween => tween.kill());
+  marqueeTweens = [];
+}
+

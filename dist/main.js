@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-02-12T12:44:10.707Z
+ * Built: 2026-02-12T12:55:48.393Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -1354,6 +1354,42 @@
             }
         });
         hopscotchTickerLoops = [];
+    }
+
+    let marqueeTweens$1 = [];
+
+    /**
+     * Initialize SVG marquee animation
+     * @param {string} className - CSS class (without dot)
+     */
+    function initMarqueeSVG(className) {
+      const elements = document.querySelectorAll(`.${className}`);
+      if (!elements.length) return;
+
+      elements.forEach((el) => {
+        // prevent duplicate tween on same element
+        if (marqueeTweens$1.some(t => t.targets().includes(el))) return;
+
+        const tween = gsap.to(el, {
+          x: "-100%",
+          duration: 40,
+          ease: "none",
+          repeat: -1,
+          modifiers: {
+            x: gsap.utils.unitize(x => parseFloat(x) % 100)
+          }
+        });
+
+        marqueeTweens$1.push(tween);
+      });
+    }
+
+    /**
+     * Destroy ALL marquee tweens
+     */
+    function destroyMarqueeSVG() {
+      marqueeTweens$1.forEach(tween => tween.kill());
+      marqueeTweens$1 = [];
     }
 
     /**
@@ -2758,42 +2794,6 @@
 
       gyglTextPathEl = null;
     }
-    let gyglMarqueeSVGEls = [];
-    let gyglMarqueeSVGTweens = [];
-
-    function initGyglMarqueeSVG() {
-      gyglMarqueeSVGEls = Array.from(
-        document.querySelectorAll(".gygl-marquee-svg")
-      );
-
-      if (!gyglMarqueeSVGEls.length) return;
-
-      // prevent duplicate init
-      if (gyglMarqueeSVGTweens.length) return;
-
-      gyglMarqueeSVGEls.forEach((el) => {
-        const tween = gsap.to(el, {
-          x: "-100%",
-          duration: 40,
-          ease: "none",
-          repeat: -1,
-          modifiers: {
-            x: gsap.utils.unitize(x => parseFloat(x) % 100)
-          }
-        });
-
-        gyglMarqueeSVGTweens.push(tween);
-      });
-    }
-
-    function destroyGyglMarqueeSVG() {
-      if (!gyglMarqueeSVGTweens.length) return;
-
-      gyglMarqueeSVGTweens.forEach(tween => tween.kill());
-
-      gyglMarqueeSVGTweens = [];
-      gyglMarqueeSVGEls = [];
-    }
 
     // Marquee SVG animation
     let marqueeTweens = [];
@@ -2874,42 +2874,6 @@
       rotateGroupEls = null;
     }
 
-    let blitzMarqueeSVGs = [];
-    let blitzMarqueeSVGTweens = [];
-    function initBlitzMarqueeSVG() {
-      blitzMarqueeSVGs = Array.from(
-        document.querySelectorAll(".blitz-text-svg")
-      );
-
-      if (!blitzMarqueeSVGs.length) return;
-
-      // prevent duplicate init
-      if (blitzMarqueeSVGTweens.length) return;
-
-      blitzMarqueeSVGs.forEach((el) => {
-        const tween = gsap.to(el, {
-          x: "-100%",
-          duration: 40,
-          ease: "none",
-          repeat: -1,
-          modifiers: {
-            x: gsap.utils.unitize(x => parseFloat(x) % 100)
-          }
-        });
-
-        blitzMarqueeSVGTweens.push(tween);
-      });
-    }
-
-    function destroyBlitzMarqueeSVG() {
-      if (!blitzMarqueeSVGTweens.length) return;
-
-      blitzMarqueeSVGTweens.forEach(tween => tween.kill());
-
-      blitzMarqueeSVGTweens = [];
-      blitzMarqueeSVGs = [];
-    }
-
     /**
      * Case Study Page - Initialize and destroy animations
      */
@@ -2932,14 +2896,14 @@
         initHorizontalTicker(".case_studies-ticker-element", ".case_study-ticker-image");
         // LivX ticker
         initHorizontalTicker(".is-livx-texts", ".livx_ticker-text");
-        initBlitzMarqueeSVG();
         hopscotchTicker();
         initHappyFeetAnimation();
         initHabitusSVG();
         initGyglTextPathAnimation();
-        initGyglMarqueeSVG();
         initFloutRotateGroupAnimation();
         initSkaiMarqueeSVG();
+        initMarqueeSVG("blitz-text-svg");
+        initMarqueeSVG("gygl-marquee-svg");
     }
 
     /**
@@ -2952,10 +2916,9 @@
         destroyHappyFeetAnimation();
         destroyHabitusSVG();
         destroyGyglTextPathAnimation();
-        destroyGyglMarqueeSVG();
         destroySkaiMarqueeSVG();
         destroyFloutRotateGroupAnimation();
-        destroyBlitzMarqueeSVG(); 
+        destroyMarqueeSVG();
     }
 
     /**
