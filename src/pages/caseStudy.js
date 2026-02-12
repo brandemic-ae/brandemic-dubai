@@ -24,6 +24,8 @@ import { initHabitusSVG, destroyHabitusSVG } from '../animations/sections/case-s
 import { initGyglTextPathAnimation, destroyGyglTextPathAnimation, initGyglMarqueeSVG, destroyGyglMarqueeSVG } from '../animations/sections/case-study/gygl.js';
 import { initSkaiMarqueeSVG, destroySkaiMarqueeSVG} from '../animations/sections/case-study/skai.js';
 import { initFloutRotateGroupAnimation,destroyFloutRotateGroupAnimation } from '../animations/sections/case-study/flout.js';
+import { initBlitzMarqueeSVG, destroyBlitzMarqueeSVG } from '../animations/sections/case-study/blitz.js';
+
 /**
  * Initialize all case study page animations
  */
@@ -41,7 +43,7 @@ export function initCaseStudyAnimations() {
     initHorizontalTicker(".case_studies-ticker-element", ".case_study-ticker-image");
     // LivX ticker
     initHorizontalTicker(".is-livx-texts", ".livx_ticker-text");
-
+    initBlitzMarqueeSVG();
     hopscotchTicker();
     initHappyFeetAnimation();
     initHabitusSVG();
@@ -64,6 +66,6 @@ export function destroyCaseStudyAnimations() {
     destroyGyglMarqueeSVG();
     destroySkaiMarqueeSVG();
     destroyFloutRotateGroupAnimation();
-    
+    destroyBlitzMarqueeSVG(); 
 }
 

@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-02-12T06:18:52.564Z
+ * Built: 2026-02-12T12:44:10.707Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -2874,9 +2874,46 @@
       rotateGroupEls = null;
     }
 
+    let blitzMarqueeSVGs = [];
+    let blitzMarqueeSVGTweens = [];
+    function initBlitzMarqueeSVG() {
+      blitzMarqueeSVGs = Array.from(
+        document.querySelectorAll(".blitz-text-svg")
+      );
+
+      if (!blitzMarqueeSVGs.length) return;
+
+      // prevent duplicate init
+      if (blitzMarqueeSVGTweens.length) return;
+
+      blitzMarqueeSVGs.forEach((el) => {
+        const tween = gsap.to(el, {
+          x: "-100%",
+          duration: 40,
+          ease: "none",
+          repeat: -1,
+          modifiers: {
+            x: gsap.utils.unitize(x => parseFloat(x) % 100)
+          }
+        });
+
+        blitzMarqueeSVGTweens.push(tween);
+      });
+    }
+
+    function destroyBlitzMarqueeSVG() {
+      if (!blitzMarqueeSVGTweens.length) return;
+
+      blitzMarqueeSVGTweens.forEach(tween => tween.kill());
+
+      blitzMarqueeSVGTweens = [];
+      blitzMarqueeSVGs = [];
+    }
+
     /**
      * Case Study Page - Initialize and destroy animations
      */
+
 
     /**
      * Initialize all case study page animations
@@ -2895,7 +2932,7 @@
         initHorizontalTicker(".case_studies-ticker-element", ".case_study-ticker-image");
         // LivX ticker
         initHorizontalTicker(".is-livx-texts", ".livx_ticker-text");
-
+        initBlitzMarqueeSVG();
         hopscotchTicker();
         initHappyFeetAnimation();
         initHabitusSVG();
@@ -2918,7 +2955,7 @@
         destroyGyglMarqueeSVG();
         destroySkaiMarqueeSVG();
         destroyFloutRotateGroupAnimation();
-        
+        destroyBlitzMarqueeSVG(); 
     }
 
     /**
