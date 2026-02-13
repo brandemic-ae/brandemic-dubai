@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-02-12T12:55:48.393Z
+ * Built: 2026-02-13T07:31:42.241Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -1372,7 +1372,7 @@
 
         const tween = gsap.to(el, {
           x: "-100%",
-          duration: 40,
+          duration: 20,
           ease: "none",
           repeat: -1,
           modifiers: {

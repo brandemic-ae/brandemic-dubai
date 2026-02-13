@@ -133,7 +133,7 @@ export function initMarqueeSVG(className) {
 
     const tween = gsap.to(el, {
       x: "-100%",
-      duration: 40,
+      duration: 20,
       ease: "none",
       repeat: -1,
       modifiers: {
