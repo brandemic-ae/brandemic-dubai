@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-02-18T09:34:15.580Z
+ * Built: 2026-02-18T09:35:23.520Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -350,6 +350,31 @@
             const currentYear = new Date().getFullYear();
             yearSpan.textContent = currentYear;
         }
+    }
+
+    function initLotties(container) {
+      container.querySelectorAll('[data-lottie]').forEach(el => {
+        // prevent double init
+        if (el._lottieInstance) return;
+
+        const anim = lottie.loadAnimation({
+          container: el,
+          renderer: 'svg',
+          loop: true,
+          autoplay: true,
+          path: el.dataset.lottieSrc
+        });
+
+        el._lottieInstance = anim;
+      });
+    }
+    function destroyLotties(container) {
+      container.querySelectorAll('[data-lottie]').forEach(el => {
+        if (el._lottieInstance) {
+          el._lottieInstance.destroy();
+          el._lottieInstance = null;
+        }
+      });
     }
 
     /**
@@ -2119,31 +2144,6 @@
         }
     }
 
-    function initLotties$1(container) {
-      container.querySelectorAll('[data-lottie]').forEach(el => {
-        // prevent double init
-        if (el._lottieInstance) return;
-
-        const anim = lottie.loadAnimation({
-          container: el,
-          renderer: 'svg',
-          loop: true,
-          autoplay: true,
-          path: el.dataset.lottieSrc
-        });
-
-        el._lottieInstance = anim;
-      });
-    }
-    function destroyLotties(container) {
-      container.querySelectorAll('[data-lottie]').forEach(el => {
-        if (el._lottieInstance) {
-          el._lottieInstance.destroy();
-          el._lottieInstance = null;
-        }
-      });
-    }
-
     /**
      * About Page - Initialize and destroy animations
      */
@@ -2153,7 +2153,7 @@
      */
     function initAboutAnimations() {
         initHeroAnimation();
-        initLotties$1(document.body);
+        initLotties(document.body);
         animateMilestones();
         scrollPinObserver();
         brandTicker();
@@ -2487,7 +2487,7 @@
     function initContactAnimations() {
         initCharAnimations();
         initContactHeroAnimation();
-        initLotties$1(document.body);
+        initLotties(document.body);
 
     }
 
@@ -3026,7 +3026,7 @@
         serviceProcessScroll();
         serviceHoverAnimation();
         initTestimonialsSwiperScripts();
-        initLotties$1(document.body);
+        initLotties(document.body);
     }
 
     /**
