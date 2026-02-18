@@ -1,24 +1,34 @@
 export function initLotties(container) {
-  container.querySelectorAll('[data-lottie]').forEach(el => {
-    // prevent double init
-    if (el._lottieInstance) return;
+  if (!container) return;
+
+  const elements = container.querySelectorAll('[data-animation-type="lottie"]');
+
+  elements.forEach((el) => {
+
+    if (el._manualLottie) return;
+
+    const src = el.getAttribute("data-src");
 
     const anim = lottie.loadAnimation({
       container: el,
-      renderer: 'svg',
-      loop: true,
-      autoplay: true,
-      path: el.dataset.lottieSrc
+      renderer: "svg",
+      loop: el.getAttribute("data-loop") === "1",
+      autoplay: el.getAttribute("data-autoplay") === "1",
+      path: src
     });
 
-    el._lottieInstance = anim;
+    el._manualLottie = anim;
+
   });
 }
+
 export function destroyLotties(container) {
-  container.querySelectorAll('[data-lottie]').forEach(el => {
-    if (el._lottieInstance) {
-      el._lottieInstance.destroy();
-      el._lottieInstance = null;
+  if (!container) return;
+
+  container.querySelectorAll('[data-animation-type="lottie"]').forEach((el) => {
+    if (el._manualLottie) {
+      el._manualLottie.destroy();
+      el._manualLottie = null;
     }
   });
 }

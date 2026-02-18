@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-02-18T08:53:30.515Z
+ * Built: 2026-02-18T09:05:35.004Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -2120,26 +2120,36 @@
     }
 
     function initLotties(container) {
-      container.querySelectorAll('[data-lottie]').forEach(el => {
-        // prevent double init
-        if (el._lottieInstance) return;
+      if (!container) return;
+
+      const elements = container.querySelectorAll('[data-animation-type="lottie"]');
+
+      elements.forEach((el) => {
+
+        if (el._manualLottie) return;
+
+        const src = el.getAttribute("data-src");
 
         const anim = lottie.loadAnimation({
           container: el,
-          renderer: 'svg',
-          loop: true,
-          autoplay: true,
-          path: el.dataset.lottieSrc
+          renderer: "svg",
+          loop: el.getAttribute("data-loop") === "1",
+          autoplay: el.getAttribute("data-autoplay") === "1",
+          path: src
         });
 
-        el._lottieInstance = anim;
+        el._manualLottie = anim;
+
       });
     }
+
     function destroyLotties(container) {
-      container.querySelectorAll('[data-lottie]').forEach(el => {
-        if (el._lottieInstance) {
-          el._lottieInstance.destroy();
-          el._lottieInstance = null;
+      if (!container) return;
+
+      container.querySelectorAll('[data-animation-type="lottie"]').forEach((el) => {
+        if (el._manualLottie) {
+          el._manualLottie.destroy();
+          el._manualLottie = null;
         }
       });
     }
@@ -3665,10 +3675,10 @@
             }, {
                 namespace: 'contact',
                 afterEnter(data) {
-                    initContactAnimations();
+                    initContactAnimations(data.next.container);
                 },
                 beforeLeave(data) {
-                    destroyContactAnimations();
+                    destroyContactAnimations(data.current.container);
                 },
             }, {
                 namespace: 'case-study',
