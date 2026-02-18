@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-02-18T09:41:01.001Z
+ * Built: 2026-02-18T09:49:51.353Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -2949,25 +2949,6 @@
     }
 
     /**
-     * Scroll Down Animation - Repeating scroll indicator
-     */
-
-    /**
-     * Start scroll down indicator animation
-     */
-    function startScrollDownAnimation() {
-        gsap.set(".scroll-down-wrapper", { y: 0 });
-
-        gsap.to(".scroll-down-wrapper", {
-            y: 120,
-            duration: 1.5,
-            ease: "none",
-            repeat: -1,
-            onRepeat: () => gsap.set(".scroll-down-wrapper", { y: 0 })
-        });
-    }
-
-    /**
      * Featured Swiper - Swiper for featured projects
      */
 
@@ -3019,7 +3000,7 @@
         initAccordionComponents();
         lineAnimation();
         animateWorkImages();
-        startScrollDownAnimation();
+        // startScrollDownAnimation();
         initCharAnimations();
         animateSvgPaths();
         initFeaturedSwiper();

@@ -13,7 +13,7 @@ import { serviceHoverAnimation, destroyServiceHoverAnimation } from '../animatio
 import { serviceProcessScroll, destroyServiceProcessScroll } from '../animations/sections/process.js';
 
 // Scroll
-import { startScrollDownAnimation } from '../animations/scroll/scrollDown.js';
+// import { startScrollDownAnimation } from '../animations/scroll/scrollDown.js';
 
 // SVG
 import { animateSvgPaths } from '../animations/svg/drawPaths.js';
@@ -39,7 +39,7 @@ export function initServiceAnimations() {
     initAccordionComponents();
     lineAnimation();
     animateWorkImages();
-    startScrollDownAnimation();
+    // startScrollDownAnimation();
     initCharAnimations();
     animateSvgPaths();
     initFeaturedSwiper();
