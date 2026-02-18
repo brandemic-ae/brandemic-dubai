@@ -155,10 +155,10 @@ export function initBarba() {
         }, {
             namespace: 'contact',
             afterEnter(data) {
-                initContactAnimations();
+                initContactAnimations(data.next.container);
             },
             beforeLeave(data) {
-                destroyContactAnimations();
+                destroyContactAnimations(data.current.container);
             },
         }, {
             namespace: 'case-study',

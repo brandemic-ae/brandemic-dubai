@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-02-18T07:03:07.603Z
+ * Built: 2026-02-18T07:18:07.121Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -2119,47 +2119,25 @@
         }
     }
 
-    function initLotties(scope) {
-      // Auto-detect active Barba container if none provided
-      const container =
-        document.querySelector('[data-barba="container"]') ||
-        document;
+    function initLotties(container) {
+      container.querySelectorAll('[data-lottie]').forEach(el => {
+        // prevent double init
+        if (el._lottieInstance) return;
 
-      if (!container || !(container instanceof Element)) return;
-
-      const lottieElements = container.querySelectorAll('[data-lottie]');
-      if (!lottieElements.length) return;
-
-      // Wait one frame to ensure DOM/layout is ready after transition
-      requestAnimationFrame(() => {
-        lottieElements.forEach((el) => {
-          if (!el || el._lottieInstance) return;
-
-          const src = el.dataset.lottieSrc;
-          if (!src) return;
-
-          const anim = lottie.loadAnimation({
-            container: el,
-            renderer: 'svg',
-            loop: true,
-            autoplay: true,
-            path: src,
-          });
-
-          el._lottieInstance = anim;
+        const anim = lottie.loadAnimation({
+          container: el,
+          renderer: 'svg',
+          loop: true,
+          autoplay: true,
+          path: el.dataset.lottieSrc
         });
+
+        el._lottieInstance = anim;
       });
     }
-
-    function destroyLotties(scope) {
-      const container =
-        document.querySelector('[data-barba="container"]') ||
-        document;
-
-      if (!container || !(container instanceof Element)) return;
-
-      container.querySelectorAll('[data-lottie]').forEach((el) => {
-        if (el?._lottieInstance) {
+    function destroyLotties(container) {
+      container.querySelectorAll('[data-lottie]').forEach(el => {
+        if (el._lottieInstance) {
           el._lottieInstance.destroy();
           el._lottieInstance = null;
         }
@@ -2506,19 +2484,19 @@
     /**
      * Initialize all contact page animations
      */
-    function initContactAnimations() {
+    function initContactAnimations(container) {
         initCharAnimations();
         initContactHeroAnimation();
-        initLotties();
+        initLotties(container);
 
     }
 
     /**
      * Destroy all contact page animations
      */
-    function destroyContactAnimations() {
+    function destroyContactAnimations(container) {
         destroyContactHeroAnimation();
-        destroyLotties();
+        destroyLotties(container);
 
     }
 
@@ -3683,10 +3661,10 @@
             }, {
                 namespace: 'contact',
                 afterEnter(data) {
-                    initContactAnimations();
+                    initContactAnimations(data.next.container);
                 },
                 beforeLeave(data) {
-                    destroyContactAnimations();
+                    destroyContactAnimations(data.current.container);
                 },
             }, {
                 namespace: 'case-study',

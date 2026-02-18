@@ -13,19 +13,19 @@ import { initLotties, destroyLotties } from '../components/lottie/lottie.js';
 /**
  * Initialize all contact page animations
  */
-export function initContactAnimations() {
+export function initContactAnimations(container) {
     initCharAnimations();
     initContactHeroAnimation();
-    initLotties();
+    initLotties(container);
 
 }
 
 /**
  * Destroy all contact page animations
  */
-export function destroyContactAnimations() {
+export function destroyContactAnimations(container) {
     destroyContactHeroAnimation();
-    destroyLotties();
+    destroyLotties(container);
 
 }
 
