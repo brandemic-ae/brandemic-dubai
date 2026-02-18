@@ -126,18 +126,11 @@ export function initBarba() {
                     filter: "blur(10px)",
                     duration: 0.5,
                 });
+                if (window.Webflow) {
+                    window.Webflow.destroy();
+                    window.Webflow.ready();
+                }
             },
-            async afterEnter(data) {
-                requestAnimationFrame(() => {
-                    if (window.Webflow && window.Webflow.require) {
-                    const ix2 = window.Webflow.require("ix2");
-
-                    ix2.store.dispatch({
-                        type: "IX2_PAGE_UPDATE"
-                    });
-                    }
-                });
-            }
         }],
         views: [{
             namespace: 'home',
