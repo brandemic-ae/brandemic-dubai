@@ -72,7 +72,7 @@ export function initBarba() {
                     filter: "blur(10px)",
                     duration: 0.5,
                 });
-                destroyLotties(data.current.container);
+
                 await delay(500);
                 data.current.container.remove();
                 done();

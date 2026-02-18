@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-02-18T09:24:22.389Z
+ * Built: 2026-02-18T09:28:06.926Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -2153,7 +2153,7 @@
      */
     function initAboutAnimations() {
         initHeroAnimation();
-        initLotties();
+        initLotties(document.body);
         animateMilestones();
         scrollPinObserver();
         brandTicker();
@@ -2175,7 +2175,7 @@
         destroyProcessSwiper();
         destroyBrandTicker();
         destroyAccordionComponents();
-        destroyLotties();
+        destroyLotties(document.body);
 
     }
 
@@ -3026,7 +3026,7 @@
         serviceProcessScroll();
         serviceHoverAnimation();
         initTestimonialsSwiperScripts();
-        initLotties();
+        initLotties(document.body);
     }
 
     /**
@@ -3040,7 +3040,7 @@
         destroyServiceHoverAnimation();
         destroyFeaturedWorkLoop();
         destroyTestimonialsSwiperScripts();
-        destroyLotties();
+        destroyLotties(document.body);
     }
 
     /**
@@ -3578,7 +3578,7 @@
                         filter: "blur(10px)",
                         duration: 0.5,
                     });
-                    destroyLotties(data.current.container);
+
                     await delay(500);
                     data.current.container.remove();
                     done();
