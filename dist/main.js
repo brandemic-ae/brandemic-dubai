@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-02-18T09:49:51.353Z
+ * Built: 2026-02-18T09:55:51.434Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -3614,6 +3614,14 @@
                         duration: 0.5,
                     });
                     // initLotties(data.next.container);
+                },
+                async afterEnter(data) {
+                    resetWebflow(data);
+                    if (window.Webflow) {
+                        window.Webflow.destroy();
+                        window.Webflow.ready();
+                        window.Webflow.require('lottie').ready();
+                    }
                 },
             }],
             views: [{

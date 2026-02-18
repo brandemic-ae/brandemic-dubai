@@ -128,6 +128,14 @@ export function initBarba() {
                 });
                 // initLotties(data.next.container);
             },
+            async afterEnter(data) {
+                resetWebflow(data);
+                if (window.Webflow) {
+                    window.Webflow.destroy();
+                    window.Webflow.ready();
+                    window.Webflow.require('lottie').ready();
+                }
+            },
         }],
         views: [{
             namespace: 'home',
