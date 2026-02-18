@@ -16,7 +16,7 @@ import { initLotties, destroyLotties } from '../components/lottie/lottie.js';
 export function initContactAnimations() {
     initCharAnimations();
     initContactHeroAnimation();
-    initLotties(document.body);
+    initLotties();
 
 }
 
@@ -25,7 +25,7 @@ export function initContactAnimations() {
  */
 export function destroyContactAnimations() {
     destroyContactHeroAnimation();
-    destroyLotties(document.body);
+    destroyLotties();
 
 }
 

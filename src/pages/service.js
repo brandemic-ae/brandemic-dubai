@@ -46,7 +46,7 @@ export function initServiceAnimations() {
     serviceProcessScroll();
     serviceHoverAnimation();
     initTestimonialsSwiperScripts();
-    initLotties(document.body);
+    initLotties();
 }
 
 /**
@@ -60,6 +60,6 @@ export function destroyServiceAnimations() {
     destroyServiceHoverAnimation();
     destroyFeaturedWorkLoop();
     destroyTestimonialsSwiperScripts();
-    destroyLotties(document.body);
+    destroyLotties();
 }
 

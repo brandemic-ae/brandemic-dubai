@@ -35,7 +35,7 @@ import { initLotties, destroyLotties } from '../components/lottie/lottie.js';
  */
 export function initAboutAnimations() {
     initHeroAnimation();
-    initLotties(document.body);
+    initLotties();
     animateMilestones();
     scrollPinObserver();
     brandTicker();
@@ -57,7 +57,7 @@ export function destroyAboutAnimations() {
     destroyProcessSwiper();
     destroyBrandTicker();
     destroyAccordionComponents();
-    destroyLotties(document.body);
+    destroyLotties();
 
 }
 
