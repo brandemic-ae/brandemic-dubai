@@ -9,7 +9,7 @@ import { recreateSmoother } from './smoothScroll.js';
 import { mouseHover, getScaleAnim } from '../components/cursor/customCursor.js';
 import { getIsOpen, setIsOpen, getCloseMenuTimeline } from '../components/navigation/megaMenu.js';
 import { footerLimitless, copyYear } from '../footer/footer.js';
-import { initLotties, destroyLotties } from '../components/lottie/lottie.js';
+
 // Page modules
 import { initHomeAnimations, destroyHomeAnimations } from '../pages/home.js';
 import { initAboutAnimations, destroyAboutAnimations } from '../pages/about.js';
@@ -93,8 +93,8 @@ export function initBarba() {
 
                     mouseHover();
                 }
-                initLotties(data.next.container);
-                recreateSmoother();
+
+                
 
                 ScrollTrigger.normalizeScroll(false);
 
@@ -126,7 +126,8 @@ export function initBarba() {
                     filter: "blur(10px)",
                     duration: 0.5,
                 });
-                
+                initLotties(data.next.container);
+                recreateSmoother();
             },
         }],
         views: [{
