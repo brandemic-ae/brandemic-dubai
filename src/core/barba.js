@@ -78,7 +78,7 @@ export function initBarba() {
                 done();
             },
             async beforeEnter(data) {
-                resetWebflow(data);
+                // resetWebflow(data);
                 const mobile = isMobile();
 
                 if (!mobile) {
@@ -127,6 +127,11 @@ export function initBarba() {
                     duration: 0.5,
                 });
             },
+            afterEnter(data) {
+                resetWebflow(data);
+                initContactAnimations(data.next.container);
+            },
+
         }],
         views: [{
             namespace: 'home',
