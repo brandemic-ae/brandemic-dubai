@@ -126,15 +126,6 @@ export function initBarba() {
                     filter: "blur(10px)",
                     duration: 0.5,
                 });
-                // initLotties(data.next.container);
-            },
-            async afterEnter(data) {
-                resetWebflow(data);
-                if (window.Webflow) {
-                    window.Webflow.destroy();
-                    window.Webflow.ready();
-                    window.Webflow.require('lottie').ready();
-                }
             },
         }],
         views: [{

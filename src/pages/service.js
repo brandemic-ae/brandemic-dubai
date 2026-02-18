@@ -28,8 +28,8 @@ import { initAccordionComponents, destroyAccordionComponents, lineAnimation } fr
 //FeaturedWorks
 import { animateWorkImages, destroyFeaturedWorkLoop } from '../animations/sections/featuredWork.js';
 
-// Lottie
-import { initLotties, destroyLotties } from '../components/lottie/lottie.js';
+// Arrow Scrolling
+import { initScrollArrows,destroyScrollArrows } from '../components/lottie/arrowScroll.js';
 
 /**
  * Initialize all service page animations
@@ -46,7 +46,7 @@ export function initServiceAnimations() {
     serviceProcessScroll();
     serviceHoverAnimation();
     initTestimonialsSwiperScripts();
-    initLotties(document.body);
+    initScrollArrows();
 }
 
 /**
@@ -60,6 +60,6 @@ export function destroyServiceAnimations() {
     destroyServiceHoverAnimation();
     destroyFeaturedWorkLoop();
     destroyTestimonialsSwiperScripts();
-    destroyLotties(document.body);
+    destroyScrollArrows();
 }
 

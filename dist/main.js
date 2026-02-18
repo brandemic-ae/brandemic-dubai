@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-02-18T09:55:51.434Z
+ * Built: 2026-02-18T11:59:51.908Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -2119,29 +2119,55 @@
         }
     }
 
-    function initLotties(container) {
-      container.querySelectorAll('[data-lottie]').forEach(el => {
-        // prevent double init
-        if (el._lottieInstance) return;
+    let scrollArrowTL = null;
 
-        const anim = lottie.loadAnimation({
-          container: el,
-          renderer: 'svg',
-          loop: true,
-          autoplay: true,
-          path: el.dataset.lottieSrc
-        });
+    function initScrollArrows() {
 
-        el._lottieInstance = anim;
-      });
+      if (scrollArrowTL) {
+        scrollArrowTL.kill();
+        scrollArrowTL = null;
+      }
+
+      const arrow1 = document.querySelector(".arrow-1");
+      const arrow2 = document.querySelector(".arrow-2");
+
+      if (!arrow1 || !arrow2) return;
+
+      scrollArrowTL = gsap.timeline({ repeat: -1 });
+
+      scrollArrowTL
+        .fromTo(arrow1,
+          { y: 0, opacity: 0 },
+          { y: 20, opacity: 1, duration: 0.5, ease: "power2.out" }
+        )
+
+        .to({}, { duration: 0.4 })
+
+        .fromTo(arrow2,
+          { y: 0, opacity: 0 },
+          { y: 18, opacity: 1, duration: 0.5, ease: "power2.out" }
+        )
+
+        .to(arrow1, {
+          opacity: 0,
+          duration: 0.4,
+          ease: "power1.out"
+        })
+
+        .to(arrow2, {
+          opacity: 0,
+          duration: 0.4,
+          ease: "power1.out"
+        })
+
+        .set([arrow1, arrow2], { y: 0 });
     }
-    function destroyLotties(container) {
-      container.querySelectorAll('[data-lottie]').forEach(el => {
-        if (el._lottieInstance) {
-          el._lottieInstance.destroy();
-          el._lottieInstance = null;
-        }
-      });
+
+    function destroyScrollArrows() {
+      if (scrollArrowTL) {
+        scrollArrowTL.kill();
+        scrollArrowTL = null;
+      }
     }
 
     /**
@@ -2153,7 +2179,7 @@
      */
     function initAboutAnimations() {
         initHeroAnimation();
-        initLotties(document.body);
+        initScrollArrows();
         animateMilestones();
         scrollPinObserver();
         brandTicker();
@@ -2175,8 +2201,7 @@
         destroyProcessSwiper();
         destroyBrandTicker();
         destroyAccordionComponents();
-        destroyLotties(document.body);
-
+        destroyScrollArrows();
     }
 
     /**
@@ -2487,7 +2512,7 @@
     function initContactAnimations() {
         initCharAnimations();
         initContactHeroAnimation();
-        initLotties(document.body);
+        initScrollArrows();
 
     }
 
@@ -2496,8 +2521,7 @@
      */
     function destroyContactAnimations() {
         destroyContactHeroAnimation();
-        destroyLotties(document.body);
-
+        destroyScrollArrows();
     }
 
     /**
@@ -3007,7 +3031,7 @@
         serviceProcessScroll();
         serviceHoverAnimation();
         initTestimonialsSwiperScripts();
-        initLotties(document.body);
+        initScrollArrows();
     }
 
     /**
@@ -3021,7 +3045,7 @@
         destroyServiceHoverAnimation();
         destroyFeaturedWorkLoop();
         destroyTestimonialsSwiperScripts();
-        destroyLotties(document.body);
+        destroyScrollArrows();
     }
 
     /**
@@ -3613,15 +3637,6 @@
                         filter: "blur(10px)",
                         duration: 0.5,
                     });
-                    // initLotties(data.next.container);
-                },
-                async afterEnter(data) {
-                    resetWebflow(data);
-                    if (window.Webflow) {
-                        window.Webflow.destroy();
-                        window.Webflow.ready();
-                        window.Webflow.require('lottie').ready();
-                    }
                 },
             }],
             views: [{
