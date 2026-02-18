@@ -126,7 +126,7 @@ export function initBarba() {
                     filter: "blur(10px)",
                     duration: 0.5,
                 });
-                initLotties(data.next.container);
+                // initLotties(data.next.container);
             },
         }],
         views: [{

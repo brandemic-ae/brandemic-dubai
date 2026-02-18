@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-02-18T09:36:57.856Z
+ * Built: 2026-02-18T09:41:01.001Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -2119,7 +2119,7 @@
         }
     }
 
-    function initLotties$1(container) {
+    function initLotties(container) {
       container.querySelectorAll('[data-lottie]').forEach(el => {
         // prevent double init
         if (el._lottieInstance) return;
@@ -2153,7 +2153,7 @@
      */
     function initAboutAnimations() {
         initHeroAnimation();
-        initLotties$1(document.body);
+        initLotties(document.body);
         animateMilestones();
         scrollPinObserver();
         brandTicker();
@@ -2487,7 +2487,7 @@
     function initContactAnimations() {
         initCharAnimations();
         initContactHeroAnimation();
-        initLotties$1(document.body);
+        initLotties(document.body);
 
     }
 
@@ -3026,7 +3026,7 @@
         serviceProcessScroll();
         serviceHoverAnimation();
         initTestimonialsSwiperScripts();
-        initLotties$1(document.body);
+        initLotties(document.body);
     }
 
     /**
@@ -3632,7 +3632,7 @@
                         filter: "blur(10px)",
                         duration: 0.5,
                     });
-                    initLotties(data.next.container);
+                    // initLotties(data.next.container);
                 },
             }],
             views: [{
