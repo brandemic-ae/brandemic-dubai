@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-02-18T12:20:41.873Z
+ * Built: 2026-02-18T12:51:33.632Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -1890,159 +1890,6 @@
     let processTl = null;
 
     /**
-     * Initialize scroll pin observer for process section
-     */
-    function scrollPinObserver() {
-        if (isMobile()) return;
-
-        let headings = gsap.utils.toArray(".process_heading"),
-            descriptions = gsap.utils.toArray(".process_description"),
-            images = gsap.utils.toArray(".process_image"),
-            splitHeadings = headings.map(heading =>
-                new SplitText(heading, { type: "chars,words,lines", linesClass: "clip-text" })
-            ),
-            splitDescriptions = descriptions.map(desc =>
-                new SplitText(desc, { type: "lines, words", linesClass: "clip-line" })
-            ),
-            currentIndex = 0,
-            animating;
-
-        splitHeadings.forEach((split, i) => {
-            gsap.set(split.chars, {
-                autoAlpha: i === 0 ? 1 : 0,
-                yPercent: i === 0 ? 0 : 150
-            });
-        });
-
-        splitDescriptions.forEach((split, i) => {
-            gsap.set(split.words, {
-                autoAlpha: i === 0 ? 1 : 0,
-                yPercent: i === 0 ? 0 : 100
-            });
-        });
-
-        images.forEach((img, i) => {
-            gsap.set(img, {
-                autoAlpha: i === 0 ? 1 : 0,
-            });
-        });
-
-        function gotoSection(index, direction) {
-            if (index < 0 || index >= headings.length) {
-                intentObserver.disable();
-                return;
-            }
-
-            animating = true;
-            let fromTop = direction === -1,
-                dFactor = fromTop ? -1 : 1,
-                tl = gsap.timeline({
-                    defaults: { duration: 1.25, ease: "power1.inOut" },
-                    onComplete: () => animating = false
-                });
-
-            let currentHeadingSplit = splitHeadings[currentIndex];
-            let nextHeadingSplit = splitHeadings[index];
-
-            let currentDescSplit = splitDescriptions[currentIndex];
-            let nextDescSplit = splitDescriptions[index];
-
-            let currentImage = images[currentIndex];
-            let nextImage = images[index];
-
-            // Heading animation
-            tl.to(currentHeadingSplit.chars, {
-                autoAlpha: 0,
-                yPercent: -150 * dFactor,
-                duration: 1,
-                ease: "power2",
-                stagger: 0.01
-            }, 0);
-
-            tl.fromTo(nextHeadingSplit.chars, {
-                autoAlpha: 0,
-                yPercent: 150 * dFactor
-            }, {
-                autoAlpha: 1,
-                yPercent: 0,
-                duration: 1,
-                ease: "power2",
-                stagger: 0.02
-            }, 0.2);
-
-            // Description animation
-            tl.to(currentDescSplit.words, {
-                autoAlpha: 0,
-                yPercent: -100 * dFactor,
-                duration: 0.8,
-                ease: "power2",
-                stagger: 0.01
-            }, 0);
-
-            tl.fromTo(nextDescSplit.words, {
-                autoAlpha: 0,
-                yPercent: 100 * dFactor
-            }, {
-                autoAlpha: 1,
-                yPercent: 0,
-                duration: 0.8,
-                ease: "power2",
-                stagger: 0.01
-            }, 0.25);
-
-            // Images animation
-            tl.to(currentImage, {
-                autoAlpha: 0,
-                duration: 1,
-                ease: "power2.inOut"
-            }, 0);
-
-            tl.fromTo(nextImage, {
-                autoAlpha: 0,
-            }, {
-                autoAlpha: 1,
-                duration: 1,
-                ease: "power2.out"
-            }, 0.3);
-
-            currentIndex = index;
-        }
-
-        let intentObserver = Observer.create({
-            type: "wheel,touch,pointer",
-            wheelSpeed: -1,
-            onDown: () => !animating && gotoSection(currentIndex - 1, -1),
-            onUp: () => !animating && gotoSection(currentIndex + 1, 1),
-            tolerance: 10,
-            preventDefault: true,
-            onEnable(self) {
-                ScrollTrigger.normalizeScroll(false);
-            },
-            onDisable(self) {
-                ScrollTrigger.normalizeScroll(true);
-            }
-        });
-        intentObserver.disable();
-
-        ScrollTrigger.create({
-            trigger: ".section_process-desktop",
-            pin: true,
-            start: "top top",
-            end: "+=10",
-            onEnter: (self) => {
-                if (intentObserver.isEnabled) { return; }
-                self.scroll(self.start + 1);
-                intentObserver.enable();
-            },
-            onEnterBack: (self) => {
-                if (intentObserver.isEnabled) { return; }
-                self.scroll(self.end - 1);
-                intentObserver.enable();
-            },
-        });
-    }
-
-    /**
      * Destroy scroll pin observer
      */
     function destroyScrollPinObserver() {
@@ -2181,7 +2028,7 @@
         initHeroAnimation();
         initScrollArrows();
         animateMilestones();
-        scrollPinObserver();
+        // scrollPinObserver();
         brandTicker();
         initAccordionComponents();
         lineAnimation();

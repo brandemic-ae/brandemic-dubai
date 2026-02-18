@@ -37,7 +37,7 @@ export function initAboutAnimations() {
     initHeroAnimation();
     initScrollArrows();
     animateMilestones();
-    scrollPinObserver();
+    // scrollPinObserver();
     brandTicker();
     initAccordionComponents();
     lineAnimation();
