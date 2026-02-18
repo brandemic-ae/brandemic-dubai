@@ -24,7 +24,7 @@ import { initHabitusSVG, destroyHabitusSVG } from '../animations/sections/case-s
 import { initGyglTextPathAnimation, destroyGyglTextPathAnimation,} from '../animations/sections/case-study/gygl.js';
 import { initSkaiMarqueeSVG, destroySkaiMarqueeSVG} from '../animations/sections/case-study/skai.js';
 import { initFloutRotateGroupAnimation,destroyFloutRotateGroupAnimation } from '../animations/sections/case-study/flout.js';
-
+import { initCasePreviewIframe } from '../utils/case-preview-iframe-loader.js';
 /**
  * Initialize all case study page animations
  */
@@ -50,6 +50,7 @@ export function initCaseStudyAnimations() {
     initSkaiMarqueeSVG();
     initMarqueeSVG("blitz-text-svg");
     initMarqueeSVG("gygl-marquee-svg");
+    initCasePreviewIframe();
 }
 
 /**
