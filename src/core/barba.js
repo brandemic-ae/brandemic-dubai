@@ -9,7 +9,7 @@ import { recreateSmoother } from './smoothScroll.js';
 import { mouseHover, getScaleAnim } from '../components/cursor/customCursor.js';
 import { getIsOpen, setIsOpen, getCloseMenuTimeline } from '../components/navigation/megaMenu.js';
 import { footerLimitless, copyYear } from '../footer/footer.js';
-
+import { initLotties, destroyLotties } from '../components/lottie/lottie.js';
 // Page modules
 import { initHomeAnimations, destroyHomeAnimations } from '../pages/home.js';
 import { initAboutAnimations, destroyAboutAnimations } from '../pages/about.js';
@@ -72,7 +72,7 @@ export function initBarba() {
                     filter: "blur(10px)",
                     duration: 0.5,
                 });
-
+                destroyLotties(data.current.container);
                 await delay(500);
                 data.current.container.remove();
                 done();
@@ -126,10 +126,7 @@ export function initBarba() {
                     filter: "blur(10px)",
                     duration: 0.5,
                 });
-                if (window.Webflow) {
-                    window.Webflow.destroy();
-                    window.Webflow.ready();
-                }
+                initLotties(data.next.container);
             },
         }],
         views: [{
@@ -159,10 +156,10 @@ export function initBarba() {
         }, {
             namespace: 'contact',
             afterEnter(data) {
-                initContactAnimations(data.next.container);
+                initContactAnimations();
             },
             beforeLeave(data) {
-                destroyContactAnimations(data.current.container);
+                destroyContactAnimations();
             },
         }, {
             namespace: 'case-study',

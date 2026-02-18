@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-02-18T09:13:42.166Z
+ * Built: 2026-02-18T09:24:22.389Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -350,6 +350,31 @@
             const currentYear = new Date().getFullYear();
             yearSpan.textContent = currentYear;
         }
+    }
+
+    function initLotties(container) {
+      container.querySelectorAll('[data-lottie]').forEach(el => {
+        // prevent double init
+        if (el._lottieInstance) return;
+
+        const anim = lottie.loadAnimation({
+          container: el,
+          renderer: 'svg',
+          loop: true,
+          autoplay: true,
+          path: el.dataset.lottieSrc
+        });
+
+        el._lottieInstance = anim;
+      });
+    }
+    function destroyLotties(container) {
+      container.querySelectorAll('[data-lottie]').forEach(el => {
+        if (el._lottieInstance) {
+          el._lottieInstance.destroy();
+          el._lottieInstance = null;
+        }
+      });
     }
 
     /**
@@ -2119,74 +2144,6 @@
         }
     }
 
-    function initLotties(container) {
-      console.log("🔵 initLotties called");
-      
-      if (!container) {
-        console.log("❌ No container passed to initLotties");
-        return;
-      }
-
-      const elements = container.querySelectorAll('[data-animation-type="lottie"]');
-      console.log(`🟡 Found ${elements.length} Lottie element(s)`);
-
-      elements.forEach((el, index) => {
-
-        if (el._manualLottie) {
-          console.log(`⚠️ Lottie ${index} already initialized, skipping`);
-          return;
-        }
-
-        const src = el.getAttribute("data-src");
-
-        if (!src) {
-          console.log(`❌ Lottie ${index} has no data-src`);
-          return;
-        }
-
-        console.log(`🟢 Initializing Lottie ${index}`, src);
-
-        const anim = lottie.loadAnimation({
-          container: el,
-          renderer: "svg",
-          loop: el.getAttribute("data-loop") === "1",
-          autoplay: el.getAttribute("data-autoplay") === "1",
-          path: src
-        });
-
-        anim.addEventListener("DOMLoaded", () => {
-          console.log(`✅ Lottie ${index} DOMLoaded`);
-        });
-
-        anim.addEventListener("data_failed", () => {
-          console.log(`❌ Lottie ${index} failed to load JSON`);
-        });
-
-        el._manualLottie = anim;
-
-      });
-    }
-
-    function destroyLotties(container) {
-      console.log("🔴 destroyLotties called");
-
-      if (!container) {
-        console.log("❌ No container passed to destroyLotties");
-        return;
-      }
-
-      const elements = container.querySelectorAll('[data-animation-type="lottie"]');
-      console.log(`🟡 Found ${elements.length} Lottie element(s) to destroy`);
-
-      elements.forEach((el, index) => {
-        if (el._manualLottie) {
-          console.log(`🗑 Destroying Lottie ${index}`);
-          el._manualLottie.destroy();
-          el._manualLottie = null;
-        }
-      });
-    }
-
     /**
      * About Page - Initialize and destroy animations
      */
@@ -2527,19 +2484,19 @@
     /**
      * Initialize all contact page animations
      */
-    function initContactAnimations(container) {
+    function initContactAnimations() {
         initCharAnimations();
         initContactHeroAnimation();
-        initLotties(container);
+        initLotties(document.body);
 
     }
 
     /**
      * Destroy all contact page animations
      */
-    function destroyContactAnimations(container) {
+    function destroyContactAnimations() {
         destroyContactHeroAnimation();
-        destroyLotties(container);
+        destroyLotties(document.body);
 
     }
 
@@ -3621,7 +3578,7 @@
                         filter: "blur(10px)",
                         duration: 0.5,
                     });
-
+                    destroyLotties(data.current.container);
                     await delay(500);
                     data.current.container.remove();
                     done();
@@ -3675,10 +3632,7 @@
                         filter: "blur(10px)",
                         duration: 0.5,
                     });
-                    if (window.Webflow) {
-                        window.Webflow.destroy();
-                        window.Webflow.ready();
-                    }
+                    initLotties(data.next.container);
                 },
             }],
             views: [{
@@ -3708,10 +3662,10 @@
             }, {
                 namespace: 'contact',
                 afterEnter(data) {
-                    initContactAnimations(data.next.container);
+                    initContactAnimations();
                 },
                 beforeLeave(data) {
-                    destroyContactAnimations(data.current.container);
+                    destroyContactAnimations();
                 },
             }, {
                 namespace: 'case-study',
