@@ -78,7 +78,7 @@ export function initBarba() {
                 done();
             },
             async beforeEnter(data) {
-                // resetWebflow(data);
+                resetWebflow(data);
                 const mobile = isMobile();
 
                 if (!mobile) {
@@ -127,11 +127,17 @@ export function initBarba() {
                     duration: 0.5,
                 });
             },
-            afterEnter(data) {
-                resetWebflow(data);
-                initContactAnimations(data.next.container);
-            },
+            async afterEnter(data) {
+                requestAnimationFrame(() => {
+                    if (window.Webflow && window.Webflow.require) {
+                    const ix2 = window.Webflow.require("ix2");
 
+                    ix2.store.dispatch({
+                        type: "IX2_PAGE_UPDATE"
+                    });
+                    }
+                });
+            }
         }],
         views: [{
             namespace: 'home',
@@ -160,10 +166,10 @@ export function initBarba() {
         }, {
             namespace: 'contact',
             afterEnter(data) {
-                initContactAnimations(data.next.container);
+                initContactAnimations();
             },
             beforeLeave(data) {
-                destroyContactAnimations(data.current.container);
+                destroyContactAnimations();
             },
         }, {
             namespace: 'case-study',

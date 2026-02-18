@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-02-18T07:34:47.173Z
+ * Built: 2026-02-18T08:43:21.666Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -3584,7 +3584,7 @@
                     done();
                 },
                 async beforeEnter(data) {
-                    // resetWebflow(data);
+                    resetWebflow(data);
                     const mobile = isMobile();
 
                     if (!mobile) {
@@ -3633,11 +3633,17 @@
                         duration: 0.5,
                     });
                 },
-                afterEnter(data) {
-                    resetWebflow(data);
-                    initContactAnimations(data.next.container);
-                },
+                async afterEnter(data) {
+                    requestAnimationFrame(() => {
+                        if (window.Webflow && window.Webflow.require) {
+                        const ix2 = window.Webflow.require("ix2");
 
+                        ix2.store.dispatch({
+                            type: "IX2_PAGE_UPDATE"
+                        });
+                        }
+                    });
+                }
             }],
             views: [{
                 namespace: 'home',
@@ -3666,10 +3672,10 @@
             }, {
                 namespace: 'contact',
                 afterEnter(data) {
-                    initContactAnimations(data.next.container);
+                    initContactAnimations();
                 },
                 beforeLeave(data) {
-                    destroyContactAnimations(data.current.container);
+                    destroyContactAnimations();
                 },
             }, {
                 namespace: 'case-study',
