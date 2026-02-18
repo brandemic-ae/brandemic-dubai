@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-02-18T12:15:23.055Z
+ * Built: 2026-02-18T12:20:41.873Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -3021,6 +3021,7 @@
      */
     function initServiceAnimations() {
         initHeroAnimation();
+        initScrollArrows();
         initAccordionComponents();
         lineAnimation();
         animateWorkImages();
@@ -3031,7 +3032,6 @@
         serviceProcessScroll();
         serviceHoverAnimation();
         initTestimonialsSwiperScripts();
-        initScrollArrows();
     }
 
     /**

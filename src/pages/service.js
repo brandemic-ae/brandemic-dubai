@@ -36,6 +36,7 @@ import { initScrollArrows,destroyScrollArrows } from '../components/lottie/arrow
  */
 export function initServiceAnimations() {
     initHeroAnimation();
+    initScrollArrows();
     initAccordionComponents();
     lineAnimation();
     animateWorkImages();
@@ -46,7 +47,6 @@ export function initServiceAnimations() {
     serviceProcessScroll();
     serviceHoverAnimation();
     initTestimonialsSwiperScripts();
-    initScrollArrows();
 }
 
 /**
