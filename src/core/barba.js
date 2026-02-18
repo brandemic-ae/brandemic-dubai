@@ -93,7 +93,7 @@ export function initBarba() {
 
                     mouseHover();
                 }
-
+                initLotties(data.next.container);
                 recreateSmoother();
 
                 ScrollTrigger.normalizeScroll(false);
@@ -126,7 +126,7 @@ export function initBarba() {
                     filter: "blur(10px)",
                     duration: 0.5,
                 });
-                initLotties(data.next.container);
+                
             },
         }],
         views: [{
