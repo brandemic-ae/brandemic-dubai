@@ -56,8 +56,6 @@ export function getHeroAnimationFunction(namespace) {
 export function initBarba() {
     barba.init({
         sync: true,
-        debug: true,
-        logLevel: 'debug',
         transitions: [{
             async leave(data) {
                 const done = this.async();
