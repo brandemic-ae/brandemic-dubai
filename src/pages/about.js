@@ -1,10 +1,7 @@
 /**
  * About Page - Initialize and destroy animations
  */
-import { initHeroAnimation, destroyHeroAnimation } from '../animations/hero/serviceHero.js';
-
-// Hero
-import { initHPIHeroAnimation, destroyHPIHeroAnimation } from '../animations/hero/hpiHero.js';
+import { initHeroAnimation, destroyHeroAnimation } from '../animations/hero/hero.js';
 
 // Text Animations
 import { initCharAnimations } from '../animations/text/charAnimations.js';

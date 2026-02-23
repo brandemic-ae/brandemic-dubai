@@ -1,6 +1,6 @@
 /**
  * HPI Hero Animation - Generic hero page intro animation
- * Used on About, Portfolio, and Case Study pages
+ * Used on Portfolio and Case Study pages
  */
 
 import { createHeroTimeline } from '../../utils/heroTimeline.js';

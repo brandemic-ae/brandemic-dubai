@@ -3,7 +3,7 @@
  */
 
 // Hero
-import { initHeroAnimation, destroyHeroAnimation } from '../animations/hero/serviceHero.js';
+import { initHeroAnimation, destroyHeroAnimation } from '../animations/hero/hero.js';
 
 // Text Animations
 import { initCharAnimations } from '../animations/text/charAnimations.js';
