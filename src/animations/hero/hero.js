@@ -13,8 +13,8 @@ export function initHeroAnimation() {
     const splitTag = new SplitText(".hero-tl-0", { type: "chars,words,lines" });
     const splitHeadline = new SplitText(".hero-tl-1", { type: "chars,words,lines" });
     const splitPara = new SplitText(".hero-tl-2", { type: "chars,words,lines" });
-    const leftImages = ['.is-one', '.is-two', '.is-three'];
-    const rightImages = ['.is-four', '.is-five', '.is-six'];
+    const leftImages = ['.animated_hero-image.is-one', '.animated_hero-image.is-two', '.animated_hero-image.is-three'];
+    const rightImages = ['.animated_hero-image.is-four', '.animated_hero-image.is-five', '.animated_hero-image.is-six'];
 
     heroTl.from(splitTag.chars, {
             opacity: 0,
