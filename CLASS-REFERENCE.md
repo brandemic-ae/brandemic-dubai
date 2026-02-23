@@ -223,7 +223,6 @@ This document lists ALL classes that have JavaScript animations attached.
 | `.service_hero-tl-2` | Paragraph |
 | `.is-one` through `.is-six` | Floating images |
 | `.scroll-down` | Scroll indicator |
-| `.scroll-down-wrapper` | Scroll animation wrapper |
 
 ### Featured Swiper
 | Class | Purpose |
