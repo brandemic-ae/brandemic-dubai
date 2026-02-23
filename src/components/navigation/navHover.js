@@ -16,7 +16,7 @@ export function initNavHoverAnimation() {
             // Fade out other blocks
             allBlocks.forEach(otherBlock => {
                 if (otherBlock !== block) {
-                    gsap.to(otherBlock, { opacity: 0.4, duration: 0.3 });
+                    gsap.to(otherBlock, { opacity: 0.4, duration: 0.3, overwrite: true });
                 }
             });
 
@@ -55,7 +55,7 @@ export function initSubMenuNavHover() {
         // Fade out other blocks
         allBlocks.forEach(otherBlock => {
             if (otherBlock !== serviceBlock) {
-                gsap.to(otherBlock, { opacity: 0.4, duration: 0.3 });
+                gsap.to(otherBlock, { opacity: 0.4, duration: 0.3, overwrite: true });
             }
         });
 

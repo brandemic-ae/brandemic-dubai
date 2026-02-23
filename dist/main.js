@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-02-23T11:28:46.943Z
+ * Built: 2026-02-23T11:55:45.323Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -3770,7 +3770,7 @@
                 // Fade out other blocks
                 allBlocks.forEach(otherBlock => {
                     if (otherBlock !== block) {
-                        gsap.to(otherBlock, { opacity: 0.4, duration: 0.3 });
+                        gsap.to(otherBlock, { opacity: 0.4, duration: 0.3, overwrite: true });
                     }
                 });
 
@@ -3809,7 +3809,7 @@
             // Fade out other blocks
             allBlocks.forEach(otherBlock => {
                 if (otherBlock !== serviceBlock) {
-                    gsap.to(otherBlock, { opacity: 0.4, duration: 0.3 });
+                    gsap.to(otherBlock, { opacity: 0.4, duration: 0.3, overwrite: true });
                 }
             });
 
