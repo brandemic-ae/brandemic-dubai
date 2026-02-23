@@ -34,10 +34,10 @@ import { initScrollArrows,destroyScrollArrows } from '../components/lottie/arrow
  * Initialize all about page animations
  */
 export function initAboutAnimations() {
+    initHeroAnimation();
     initScrollArrows();
     animateMilestones();
     scrollPinObserver();
-    initHeroAnimation();
     brandTicker();
     initAccordionComponents();
     lineAnimation();

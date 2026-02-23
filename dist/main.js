@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-02-23T10:22:16.569Z
+ * Built: 2026-02-23T11:10:36.176Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -1669,46 +1669,44 @@
     }
 
     /**
-     * Service Hero Animation - Service page hero with floating images
+     * Hero Animation with Floating Images
+     * Shared animation for pages with image grid hero sections
      */
 
 
-    let serviceHeroTl = null;
+    let heroTl$2 = null;
 
-    /**
-     * Initialize service hero animation
-     */
     function initHeroAnimation() {
-        serviceHeroTl = createHeroTimeline();
+        heroTl$2 = createHeroTimeline();
 
-        const splitServiceTag = new SplitText(".service_hero-tl-0", { type: "chars,words,lines" });
-        const splitServiceHeroHeadline = new SplitText(".service_hero-tl-1", { type: "chars,words,lines" });
-        const splitServiceHeroPara = new SplitText(".service_hero-tl-2", { type: "chars,words,lines" });
-        const serviceLeftImages = ['.is-one', '.is-two', '.is-three'];
-        const serviceRightImages = ['.is-four', '.is-five', '.is-six'];
+        const splitTag = new SplitText(".hero-tl-0", { type: "chars,words,lines" });
+        const splitHeadline = new SplitText(".hero-tl-1", { type: "chars,words,lines" });
+        const splitPara = new SplitText(".hero-tl-2", { type: "chars,words,lines" });
+        const leftImages = ['.is-one', '.is-two', '.is-three'];
+        const rightImages = ['.is-four', '.is-five', '.is-six'];
 
-        serviceHeroTl.from(splitServiceTag.chars, {
+        heroTl$2.from(splitTag.chars, {
                 opacity: 0,
                 x: 16,
                 y: "30%",
                 filter: "blur(10px)",
                 stagger: 0.02,
             })
-            .from(splitServiceHeroHeadline.chars, {
+            .from(splitHeadline.chars, {
                 opacity: 0,
                 x: 16,
                 y: "30%",
                 filter: "blur(10px)",
                 stagger: 0.03,
             }, "-=0.5")
-            .from(splitServiceHeroPara.words, {
+            .from(splitPara.words, {
                 opacity: 0,
                 x: 16,
                 y: "30%",
                 filter: "blur(10px)",
                 stagger: 0.03,
             }, "-=0.5")
-            .fromTo(serviceLeftImages, {
+            .fromTo(leftImages, {
                 x: -200,
                 y: -100,
                 scale: 0.5,
@@ -1724,7 +1722,7 @@
                 ease: "power3.out",
                 stagger: 0.2
             }, "<")
-            .fromTo(serviceRightImages, {
+            .fromTo(rightImages, {
                 x: 200,
                 y: -100,
                 scale: 0.5,
@@ -1748,9 +1746,6 @@
             .add(() => initHeroFloatingEffect());
     }
 
-    /**
-     * Initialize floating effect for service hero images
-     */
     function initHeroFloatingEffect() {
         const floatTargets = [
             { selector: '.is-one', xFactor: 20, yFactor: 10, rotFactor: 5 },
@@ -1761,7 +1756,7 @@
             { selector: '.is-six', xFactor: -25, yFactor: 15, rotFactor: -4 },
         ];
 
-        const wrapper = document.querySelector(".section_service-hero");
+        const wrapper = document.querySelector(".section-hero");
         if (!wrapper) return;
 
         wrapper.addEventListener("mousemove", (e) => {
@@ -1794,11 +1789,8 @@
         });
     }
 
-    /**
-     * Destroy service hero animation
-     */
     function destroyHeroAnimation() {
-        if (serviceHeroTl) serviceHeroTl.kill();
+        if (heroTl$2) heroTl$2.kill();
     }
 
     /**
@@ -2178,10 +2170,10 @@
      * Initialize all about page animations
      */
     function initAboutAnimations() {
+        initHeroAnimation();
         initScrollArrows();
         animateMilestones();
         scrollPinObserver();
-        initHeroAnimation();
         brandTicker();
         initAccordionComponents();
         lineAnimation();

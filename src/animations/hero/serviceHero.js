@@ -1,45 +1,43 @@
 /**
- * Service Hero Animation - Service page hero with floating images
+ * Hero Animation with Floating Images
+ * Shared animation for pages with image grid hero sections
  */
 
 import { createHeroTimeline } from '../../utils/heroTimeline.js';
 
-let serviceHeroTl = null;
+let heroTl = null;
 
-/**
- * Initialize service hero animation
- */
 export function initHeroAnimation() {
-    serviceHeroTl = createHeroTimeline();
+    heroTl = createHeroTimeline();
 
-    const splitServiceTag = new SplitText(".service_hero-tl-0", { type: "chars,words,lines" });
-    const splitServiceHeroHeadline = new SplitText(".service_hero-tl-1", { type: "chars,words,lines" });
-    const splitServiceHeroPara = new SplitText(".service_hero-tl-2", { type: "chars,words,lines" });
-    const serviceLeftImages = ['.is-one', '.is-two', '.is-three'];
-    const serviceRightImages = ['.is-four', '.is-five', '.is-six'];
+    const splitTag = new SplitText(".hero-tl-0", { type: "chars,words,lines" });
+    const splitHeadline = new SplitText(".hero-tl-1", { type: "chars,words,lines" });
+    const splitPara = new SplitText(".hero-tl-2", { type: "chars,words,lines" });
+    const leftImages = ['.is-one', '.is-two', '.is-three'];
+    const rightImages = ['.is-four', '.is-five', '.is-six'];
 
-    serviceHeroTl.from(splitServiceTag.chars, {
+    heroTl.from(splitTag.chars, {
             opacity: 0,
             x: 16,
             y: "30%",
             filter: "blur(10px)",
             stagger: 0.02,
         })
-        .from(splitServiceHeroHeadline.chars, {
+        .from(splitHeadline.chars, {
             opacity: 0,
             x: 16,
             y: "30%",
             filter: "blur(10px)",
             stagger: 0.03,
         }, "-=0.5")
-        .from(splitServiceHeroPara.words, {
+        .from(splitPara.words, {
             opacity: 0,
             x: 16,
             y: "30%",
             filter: "blur(10px)",
             stagger: 0.03,
         }, "-=0.5")
-        .fromTo(serviceLeftImages, {
+        .fromTo(leftImages, {
             x: -200,
             y: -100,
             scale: 0.5,
@@ -55,7 +53,7 @@ export function initHeroAnimation() {
             ease: "power3.out",
             stagger: 0.2
         }, "<")
-        .fromTo(serviceRightImages, {
+        .fromTo(rightImages, {
             x: 200,
             y: -100,
             scale: 0.5,
@@ -79,9 +77,6 @@ export function initHeroAnimation() {
         .add(() => initHeroFloatingEffect());
 }
 
-/**
- * Initialize floating effect for service hero images
- */
 function initHeroFloatingEffect() {
     const floatTargets = [
         { selector: '.is-one', xFactor: 20, yFactor: 10, rotFactor: 5 },
@@ -92,7 +87,7 @@ function initHeroFloatingEffect() {
         { selector: '.is-six', xFactor: -25, yFactor: 15, rotFactor: -4 },
     ];
 
-    const wrapper = document.querySelector(".section_service-hero");
+    const wrapper = document.querySelector(".section-hero");
     if (!wrapper) return;
 
     wrapper.addEventListener("mousemove", (e) => {
@@ -125,10 +120,7 @@ function initHeroFloatingEffect() {
     });
 }
 
-/**
- * Destroy service hero animation
- */
 export function destroyHeroAnimation() {
-    if (serviceHeroTl) serviceHeroTl.kill();
+    if (heroTl) heroTl.kill();
 }
 
