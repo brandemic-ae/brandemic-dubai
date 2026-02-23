@@ -1,7 +1,7 @@
 /**
  * Brandemic Dubai - Custom Animations
  * Version: 1.0.0
- * Built: 2026-02-23T11:10:36.176Z
+ * Built: 2026-02-23T11:23:28.482Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -1794,62 +1794,6 @@
     }
 
     /**
-     * HPI Hero Animation - Generic hero page intro animation
-     * Used on About, Portfolio, and Case Study pages
-     */
-
-
-    let heroTl$1 = null;
-
-    /**
-     * Initialize HPI hero animation
-     */
-    function initHPIHeroAnimation() {
-        heroTl$1 = createHeroTimeline();
-
-        const heroHeadline = document.querySelector(".hero-timeline-1");
-        const heroPara = document.querySelector(".hero-timeline-2");
-
-        if (!heroHeadline) return;
-
-        const splitHeroHeadline = new SplitText(heroHeadline, { type: "chars,words,lines" });
-        const splitHeroPara = heroPara ? new SplitText(heroPara, { type: "chars,words,lines" }) : null;
-
-        heroTl$1.from(splitHeroHeadline.chars, {
-                opacity: 0,
-                x: 16,
-                y: "30%",
-                filter: "blur(10px)",
-                stagger: 0.03,
-            });
-
-        if (splitHeroPara) {
-            heroTl$1.from(splitHeroPara.words, {
-                opacity: 0,
-                x: 16,
-                y: "30%",
-                filter: "blur(10px)",
-                stagger: 0.03,
-            }, "-=0.5");
-        }
-
-        heroTl$1.fromTo(".hero-timeline-3", {
-            clipPath: "polygon(0 0, 100% 0, 100% 0%, 0 0%)",
-        }, {
-            clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-            duration: 0.8,
-            ease: "power1.inOut",
-        }, "-=0.2");
-    }
-
-    /**
-     * Destroy HPI hero animation
-     */
-    function destroyHPIHeroAnimation() {
-        if (heroTl$1) heroTl$1.kill();
-    }
-
-    /**
      * Milestones Animation - Animated milestone blocks
      */
 
@@ -2194,6 +2138,62 @@
         destroyBrandTicker();
         destroyAccordionComponents();
         destroyScrollArrows();
+    }
+
+    /**
+     * HPI Hero Animation - Generic hero page intro animation
+     * Used on Portfolio and Case Study pages
+     */
+
+
+    let heroTl$1 = null;
+
+    /**
+     * Initialize HPI hero animation
+     */
+    function initHPIHeroAnimation() {
+        heroTl$1 = createHeroTimeline();
+
+        const heroHeadline = document.querySelector(".hero-timeline-1");
+        const heroPara = document.querySelector(".hero-timeline-2");
+
+        if (!heroHeadline) return;
+
+        const splitHeroHeadline = new SplitText(heroHeadline, { type: "chars,words,lines" });
+        const splitHeroPara = heroPara ? new SplitText(heroPara, { type: "chars,words,lines" }) : null;
+
+        heroTl$1.from(splitHeroHeadline.chars, {
+                opacity: 0,
+                x: 16,
+                y: "30%",
+                filter: "blur(10px)",
+                stagger: 0.03,
+            });
+
+        if (splitHeroPara) {
+            heroTl$1.from(splitHeroPara.words, {
+                opacity: 0,
+                x: 16,
+                y: "30%",
+                filter: "blur(10px)",
+                stagger: 0.03,
+            }, "-=0.5");
+        }
+
+        heroTl$1.fromTo(".hero-timeline-3", {
+            clipPath: "polygon(0 0, 100% 0, 100% 0%, 0 0%)",
+        }, {
+            clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+            duration: 0.8,
+            ease: "power1.inOut",
+        }, "-=0.2");
+    }
+
+    /**
+     * Destroy HPI hero animation
+     */
+    function destroyHPIHeroAnimation() {
+        if (heroTl$1) heroTl$1.kill();
     }
 
     /**
