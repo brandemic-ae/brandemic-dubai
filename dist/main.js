@@ -1,7 +1,7 @@
 /**
  * Brandemic - Custom Animations
  * Version: 1.0.0
- * Built: 2026-07-01T06:43:52.215Z
+ * Built: 2026-07-02T12:56:23.659Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -2779,6 +2779,19 @@
     const RECAPTCHA_KEY    = '6LdUc9osAAAAAJ5DdiwM0gKwl60xPn0BVM1C2Q92';
     const RECAPTCHA_ACTION = 'contact_form_submit';
 
+    // --- NEW: blocklist config ---
+    const BLOCKED_EMAILS = [
+        // exact addresses to block, lowercase
+        'vi.ta.lyapupse.n@gmail.com ',
+        'je.ga.j.uk.ose89@gmail.com',
+        'sales_promo@meta.ua'
+    ];
+
+    function isEmailBlocked(email) {
+        const clean = (email || '').trim().toLowerCase();
+        return BLOCKED_EMAILS.includes(clean);
+    }
+
     function val(id) {
         const el = document.getElementById(id);
         return el ? (el.value || '') : '';
@@ -2818,6 +2831,9 @@
 
         submitHandler = function () {
             const data = collectFormData();
+            if (isEmailBlocked(data.email)) {
+                return;
+            }
 
             grecaptcha.ready(function () {
                 grecaptcha.execute(RECAPTCHA_KEY, { action: RECAPTCHA_ACTION })

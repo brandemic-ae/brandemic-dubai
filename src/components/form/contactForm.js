@@ -4,6 +4,19 @@ const WORKER_URL       = 'https://brandemicrecaptcha.web-455.workers.dev/';
 const RECAPTCHA_KEY    = '6LdUc9osAAAAAJ5DdiwM0gKwl60xPn0BVM1C2Q92';
 const RECAPTCHA_ACTION = 'contact_form_submit';
 
+// --- NEW: blocklist config ---
+const BLOCKED_EMAILS = [
+    // exact addresses to block, lowercase
+    'vi.ta.lyapupse.n@gmail.com ',
+    'je.ga.j.uk.ose89@gmail.com',
+    'sales_promo@meta.ua'
+];
+
+function isEmailBlocked(email) {
+    const clean = (email || '').trim().toLowerCase();
+    return BLOCKED_EMAILS.includes(clean);
+}
+
 function val(id) {
     const el = document.getElementById(id);
     return el ? (el.value || '') : '';
@@ -43,6 +56,9 @@ export function initContactForm() {
 
     submitHandler = function () {
         const data = collectFormData();
+        if (isEmailBlocked(data.email)) {
+            return;
+        }
 
         grecaptcha.ready(function () {
             grecaptcha.execute(RECAPTCHA_KEY, { action: RECAPTCHA_ACTION })
