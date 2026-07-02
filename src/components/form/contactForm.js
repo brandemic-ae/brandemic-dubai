@@ -6,8 +6,7 @@ const RECAPTCHA_ACTION = 'contact_form_submit';
 
 // --- NEW: blocklist config ---
 const BLOCKED_EMAILS = [
-    // exact addresses to block, lowercase
-    'vi.ta.lyapupse.n@gmail.com ',
+    'vi.ta.lyapupse.n@gmail.com',
     'je.ga.j.uk.ose89@gmail.com',
     'sales_promo@meta.ua'
 ];

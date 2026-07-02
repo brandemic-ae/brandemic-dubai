@@ -1,7 +1,7 @@
 /**
  * Brandemic - Custom Animations
  * Version: 1.0.0
- * Built: 2026-07-02T12:56:23.659Z
+ * Built: 2026-07-02T13:00:08.998Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -2781,8 +2781,7 @@
 
     // --- NEW: blocklist config ---
     const BLOCKED_EMAILS = [
-        // exact addresses to block, lowercase
-        'vi.ta.lyapupse.n@gmail.com ',
+        'vi.ta.lyapupse.n@gmail.com',
         'je.ga.j.uk.ose89@gmail.com',
         'sales_promo@meta.ua'
     ];
