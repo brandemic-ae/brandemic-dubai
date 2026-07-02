@@ -1,7 +1,7 @@
 /**
  * Brandemic - Custom Animations
  * Version: 1.0.0
- * Built: 2026-07-02T13:00:08.998Z
+ * Built: 2026-07-02T13:04:49.199Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -2779,7 +2779,6 @@
     const RECAPTCHA_KEY    = '6LdUc9osAAAAAJ5DdiwM0gKwl60xPn0BVM1C2Q92';
     const RECAPTCHA_ACTION = 'contact_form_submit';
 
-    // --- NEW: blocklist config ---
     const BLOCKED_EMAILS = [
         'vi.ta.lyapupse.n@gmail.com',
         'je.ga.j.uk.ose89@gmail.com',
@@ -2788,7 +2787,7 @@
 
     function isEmailBlocked(email) {
         const clean = (email || '').trim().toLowerCase();
-        return BLOCKED_EMAILS.includes(clean);
+        return BLOCKED_EMAILS.some(blocked => blocked.trim().toLowerCase() === clean);
     }
 
     function val(id) {
@@ -2828,9 +2827,13 @@
         const form = document.querySelector('#wf-form-Contact-Form');
         if (!form) return;
 
-        submitHandler = function () {
+        submitHandler = function (e) {
             const data = collectFormData();
+
             if (isEmailBlocked(data.email)) {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                console.warn('[CRM] Submission blocked: disallowed email');
                 return;
             }
 

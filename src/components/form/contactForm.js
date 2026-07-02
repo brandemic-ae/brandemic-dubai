@@ -4,7 +4,6 @@ const WORKER_URL       = 'https://brandemicrecaptcha.web-455.workers.dev/';
 const RECAPTCHA_KEY    = '6LdUc9osAAAAAJ5DdiwM0gKwl60xPn0BVM1C2Q92';
 const RECAPTCHA_ACTION = 'contact_form_submit';
 
-// --- NEW: blocklist config ---
 const BLOCKED_EMAILS = [
     'vi.ta.lyapupse.n@gmail.com',
     'je.ga.j.uk.ose89@gmail.com',
@@ -13,7 +12,7 @@ const BLOCKED_EMAILS = [
 
 function isEmailBlocked(email) {
     const clean = (email || '').trim().toLowerCase();
-    return BLOCKED_EMAILS.includes(clean);
+    return BLOCKED_EMAILS.some(blocked => blocked.trim().toLowerCase() === clean);
 }
 
 function val(id) {
@@ -53,9 +52,13 @@ export function initContactForm() {
     const form = document.querySelector('#wf-form-Contact-Form');
     if (!form) return;
 
-    submitHandler = function () {
+    submitHandler = function (e) {
         const data = collectFormData();
+
         if (isEmailBlocked(data.email)) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            console.warn('[CRM] Submission blocked: disallowed email');
             return;
         }
 
