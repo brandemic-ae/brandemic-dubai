@@ -1,7 +1,7 @@
 /**
  * Brandemic - Custom Animations
  * Version: 1.0.0
- * Built: 2026-07-02T13:04:49.199Z
+ * Built: 2026-07-06T13:09:44.137Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -322,23 +322,37 @@
      */
 
     /**
-     * Animate "Think Limitless" text in footer
+     * Animate "Think Limitless" text and footer AI elements in footer
      */
     function footerLimitless() {
         const thinkLimitless = document.querySelector('[data-anim-attr="think-limitless"]');
-        if (!thinkLimitless) return;
+        if (thinkLimitless) {
+            const splitLimitless = new SplitText(thinkLimitless, { type: "chars" });
 
-        const splitLimitless = new SplitText(thinkLimitless, { type: "chars" });
+            gsap.from(splitLimitless.chars, {
+                y: "100%",
+                stagger: 0.1,
+                scrollTrigger: {
+                    trigger: thinkLimitless,
+                    start: "top 90%",
+                    toggleActions: "play none none none",
+                }
+            });
+        }
 
-        gsap.from(splitLimitless.chars, {
-            y: "100%",
-            stagger: 0.1,
-            scrollTrigger: {
-                trigger: thinkLimitless,
-                start: "top 90%",
-                toggleActions: "play none none none",
-            }
-        });
+        const footerAiEls = document.querySelectorAll('[data-anim-attr="footer_ai"]');
+        if (footerAiEls.length) {
+            gsap.from(footerAiEls, {
+                y: 40,
+                opacity: 0,
+                stagger: 0.1,
+                scrollTrigger: {
+                    trigger: footerAiEls[0],
+                    start: "top 90%",
+                    toggleActions: "play none none none",
+                }
+            });
+        }
     }
 
     /**
