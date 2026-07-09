@@ -1,7 +1,7 @@
 /**
  * Brandemic - Custom Animations
  * Version: 1.0.0
- * Built: 2026-07-06T13:11:54.488Z
+ * Built: 2026-07-09T12:37:47.018Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -331,7 +331,7 @@
 
             gsap.from(splitLimitless.chars, {
                 y: "100%",
-                stagger: 0.3,
+                stagger: 0.1,
                 scrollTrigger: {
                     trigger: thinkLimitless,
                     start: "top 75%",

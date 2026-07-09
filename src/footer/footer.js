@@ -12,7 +12,7 @@ export function footerLimitless() {
 
         gsap.from(splitLimitless.chars, {
             y: "100%",
-            stagger: 0.3,
+            stagger: 0.1,
             scrollTrigger: {
                 trigger: thinkLimitless,
                 start: "top 75%",
