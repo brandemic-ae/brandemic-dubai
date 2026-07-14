@@ -49,7 +49,7 @@ function collectFormData() {
 }
 
 export function initContactForm() {
-    const form = document.querySelector('#wf-form-Contact-Form');
+    const form = document.querySelector('#wf-form-Contact-Form, #wf-form-Brandemic-Dubai');
     if (!form) return;
 
     submitHandler = function (e) {

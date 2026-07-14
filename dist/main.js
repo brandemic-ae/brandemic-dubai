@@ -1,7 +1,7 @@
 /**
  * Brandemic - Custom Animations
  * Version: 1.0.0
- * Built: 2026-07-09T21:20:52.622Z
+ * Built: 2026-07-14T09:04:55.718Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -2746,7 +2746,7 @@
     }
 
     function initContactForm() {
-        const form = document.querySelector('#wf-form-Contact-Form');
+        const form = document.querySelector('#wf-form-Contact-Form, #wf-form-Brandemic-Dubai');
         if (!form) return;
 
         submitHandler = function (e) {
