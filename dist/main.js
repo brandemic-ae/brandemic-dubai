@@ -1,7 +1,7 @@
 /**
  * Brandemic - Custom Animations
  * Version: 1.0.0
- * Built: 2026-07-14T09:04:55.718Z
+ * Built: 2026-07-28T07:36:56.724Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -670,23 +670,23 @@
             videoCursor.removeEventListener("click", exitFullscreen);
         }
 
-        // On mobile, mute video when scrolled past
-        if (mobile) {
-            ScrollTrigger.create({
-                trigger: videoElement,
-                start: "bottom top",
-                onEnter: () => {
-                    videoElement.pause();
-                    videoElement.muted = true;
-                },
-                onLeaveBack: () => {
-                    if (videoCursor.classList.contains("close")) {
-                        videoElement.muted = false;
-                        videoElement.play();
-                    }
-                }
-            });
-        }
+        // // On mobile, mute video when scrolled past
+        // if (mobile) {
+        //     ScrollTrigger.create({
+        //         trigger: videoElement,
+        //         start: "bottom top",
+        //         onEnter: () => {
+        //             videoElement.pause();
+        //             videoElement.muted = true;
+        //         },
+        //         onLeaveBack: () => {
+        //             if (videoCursor.classList.contains("close")) {
+        //                 videoElement.muted = false;
+        //                 videoElement.play();
+        //             }
+        //         }
+        //     });
+        // }
 
         // Attach the click listener **only once** to prevent duplicates
         videoCursor.removeEventListener("click", enterFullscreen);
