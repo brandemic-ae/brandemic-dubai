@@ -1,7 +1,7 @@
 /**
  * Brandemic - Custom Animations
  * Version: 1.0.0
- * Built: 2026-07-28T07:36:56.724Z
+ * Built: 2026-07-28T13:20:29.975Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -2696,6 +2696,7 @@
     }
 
     let submitHandler = null;
+    let retryTimeoutId = null;
 
     const WORKER_URL       = 'https://brandemicrecaptcha.web-455.workers.dev/';
     const RECAPTCHA_KEY    = '6LdUc9osAAAAAJ5DdiwM0gKwl60xPn0BVM1C2Q92';
@@ -2707,6 +2708,8 @@
         'sales_promo@meta.ua'
     ];
 
+    const URL_TRACKING_KEYS = ['gclid', 'wbraid', 'gbraid']; // URL-based, behave exactly like UTMs
+
     function isEmailBlocked(email) {
         const clean = (email || '').trim().toLowerCase();
         return BLOCKED_EMAILS.some(blocked => blocked.trim().toLowerCase() === clean);
@@ -2716,6 +2719,59 @@
         const el = document.getElementById(id);
         return el ? (el.value || '') : '';
     }
+
+    /* ---------- Google click ID + GA client ID tracking ---------- */
+
+    function saveClickIdsFromURL() {
+        const p = new URLSearchParams(window.location.search);
+        URL_TRACKING_KEYS.forEach(key => {
+            const value = p.get(key);
+            if (value) localStorage.setItem(key, value);
+        });
+    }
+
+    function getGAClientId() {
+        const m = document.cookie.match(/_ga=GA\d\.\d\.(\d+\.\d+)/);
+        return m ? m[1] : ''; // e.g. "1234567890.1699999999"
+    }
+
+    function getTrackingValues() {
+        return {
+            gclid:        localStorage.getItem('gclid') || '',
+            wbraid:       localStorage.getItem('wbraid') || '',
+            gbraid:       localStorage.getItem('gbraid') || '',
+            ga_client_id: getGAClientId(),
+        };
+    }
+
+    // Pushes tracking values into hidden fields (if present) for Webflow's native submit.
+    // Returns true once ga_client_id has been resolved (used to decide whether to keep retrying).
+    function populateTrackingFields() {
+        const values = getTrackingValues();
+        Object.keys(values).forEach(key => {
+            const field = document.getElementById(key);
+            if (field && values[key]) {
+                field.value = values[key];
+                field.setAttribute('value', values[key]);
+            }
+        });
+        return !!values.ga_client_id;
+    }
+
+    function startTrackingCapture() {
+        saveClickIdsFromURL();
+
+        let tries = 0;
+        (function retry() {
+            const done = populateTrackingFields();
+            if (!done && tries < 10) {
+                tries++;
+                retryTimeoutId = setTimeout(retry, 400);
+            }
+        })();
+    }
+
+    /* ---------- Form data + submission ---------- */
 
     function collectFormData() {
         const fullName  = val('full_name').trim().split(' ');
@@ -2742,12 +2798,21 @@
             deadline:       val('project_deadline'),
             message:        val('your_message'),
             howDidYouHear:  val('how_did_you_hear'),
+            ...getTrackingValues(), // gclid, wbraid, gbraid, ga_client_id
         };
     }
 
     function initContactForm() {
-        const form = document.querySelector('#wf-form-Contact-Form, #wf-form-Brandemic-Dubai');
+        const form = document.querySelector(
+            '#wf-form-Contact-Form, #wf-form-Brandemic-Dubai, #wf-form-form-Contact-2'
+        );
         if (!form) return;
+
+        startTrackingCapture();
+
+        // Top up hidden tracking fields right before Webflow sends the form (capture phase,
+        // runs before Webflow's own submit handling).
+        form.addEventListener('submit', populateTrackingFields, true);
 
         submitHandler = function (e) {
             const data = collectFormData();
@@ -2776,10 +2841,20 @@
     }
 
     function destroyContactForm() {
-        if (submitHandler) {
-            const form = document.querySelector('#wf-form-Contact-Form');
-            if (form) form.removeEventListener('submit', submitHandler);
-            submitHandler = null;
+        const form = document.querySelector(
+            '#wf-form-Contact-Form, #wf-form-Brandemic-Dubai, #wf-form-form-Contact-2'
+        );
+
+        if (form) {
+            if (submitHandler) form.removeEventListener('submit', submitHandler);
+            form.removeEventListener('submit', populateTrackingFields, true);
+        }
+
+        submitHandler = null;
+
+        if (retryTimeoutId) {
+            clearTimeout(retryTimeoutId);
+            retryTimeoutId = null;
         }
     }
 
