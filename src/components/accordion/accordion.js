@@ -37,6 +37,13 @@ function destroyAccordionListeners() {
     accordionListeners = [];
 }
 
+function openAllAccordions(acc, panels) {
+    for (let i = 0; i < acc.length; i++) {
+        acc[i].classList.add("active");
+        panels[i].style.maxHeight = panels[i].scrollHeight + "px";
+    }
+}
+
 export function lineAnimation() {
     gsap.fromTo(
         '[data-anim-attr="accordion"]',
@@ -58,9 +65,13 @@ export function lineAnimation() {
 export function initAccordionComponents() {
     const accordions = document.querySelectorAll('[data-anim-attr="accordion_toggle"]');
     const panels = document.querySelectorAll('[data-anim-attr="accordion_panel"]');
-    
+
     initAccordion(accordions, panels);
 
+    const namespace = document.querySelector('[data-barba-namespace]')?.dataset.barbaNamespace;
+    if (namespace === "blog") {
+        openAllAccordions(accordions, panels);
+    }
 }
 export function destroyAccordionComponents() {
     destroyAccordionListeners();

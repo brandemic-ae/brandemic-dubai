@@ -1,7 +1,7 @@
 /**
  * Brandemic - Custom Animations
  * Version: 1.0.0
- * Built: 2026-08-03T09:39:16.804Z
+ * Built: 2026-08-10T06:04:57.498Z
  * 
  * This file is auto-generated from modular source code.
  * Do not edit directly - edit the source files in /src instead.
@@ -1744,6 +1744,13 @@
         accordionListeners = [];
     }
 
+    function openAllAccordions(acc, panels) {
+        for (let i = 0; i < acc.length; i++) {
+            acc[i].classList.add("active");
+            panels[i].style.maxHeight = panels[i].scrollHeight + "px";
+        }
+    }
+
     function lineAnimation() {
         gsap.fromTo(
             '[data-anim-attr="accordion"]',
@@ -1765,9 +1772,13 @@
     function initAccordionComponents() {
         const accordions = document.querySelectorAll('[data-anim-attr="accordion_toggle"]');
         const panels = document.querySelectorAll('[data-anim-attr="accordion_panel"]');
-        
+
         initAccordion(accordions, panels);
 
+        const namespace = document.querySelector('[data-barba-namespace]')?.dataset.barbaNamespace;
+        if (namespace === "blog") {
+            openAllAccordions(accordions, panels);
+        }
     }
     function destroyAccordionComponents() {
         destroyAccordionListeners();
